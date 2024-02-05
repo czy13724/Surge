@@ -1,6 +1,6 @@
 # Levi对本仓库说明
 Surge自用规则库
-脚本请访问[该地址获取](https://github.com/czy13724/Quantumult-X/main/Surge)。按照各个脚本的说明操作即可。
+脚本请访问[该地址获取](https://github.com/czy13724/Quantumult-X/tree/main/Surge)。按照各个脚本的说明操作即可。
 
 什么也不会，靠自己！
 
