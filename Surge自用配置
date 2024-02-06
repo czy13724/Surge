@@ -1,0 +1,215 @@
+[General]
+http-api = Tartarus@0.0.0.0:6166
+# > 日志级别
+loglevel = notify
+
+# > 当遇到 REJECT 策略时返回错误页
+show-error-page-for-reject = true
+
+# > 允许 Wi-Fi 访问 (仅 iOS，若允许远程访问将「false」改为「true」)
+allow-wifi-access = false
+wifi-access-http-port = 6152
+wifi-access-socks5-port = 6153
+
+# > 允许 Wi-Fi 访问 (仅 macOS，若允许远程访问将「127.0.0.1」改为「0.0.0.0」)
+http-listen = 0.0.0.0
+socks5-listen = 0.0.0.0
+
+# > 兼容模式 (仅 iOS)
+# compatibility-mode = 0
+
+# > 增强版 Wi-Fi 助理
+# (在 Wi-Fi 网络不佳时尝试使用数据网络建立连接，请仅当使用不限量的数据流量时开启)
+wifi-assist = false
+
+# > All Hybrid 网络并发
+all-hybrid = false
+
+# > IPv6 支持（默认关闭）
+ipv6 = false
+
+# > 测试超时（秒）
+test-timeout = 5
+
+# > Internet 测试 URL
+internet-test-url = http://captive.apple.com/generate_204
+
+# > 代理测速 URL
+proxy-test-url = http://cp.cloudflare.com/generate_204
+
+# > GeoIP数据库
+geoip-maxmind-url = https://github.com/Hackl0us/GeoIP2-CN/raw/release/Country.mmdb
+
+# > 排除简单主机名
+exclude-simple-hostnames = true
+
+# > Network framwork
+network-framework = false
+
+# > DNS 服务器 (如无必要不建议使用 DNS over HTTPS)
+dns-server = 223.5.5.5, 119.29.29.29, system
+hijack-dns = *:53
+
+# > 从 /etc/hosts 读取 DNS 记录
+read-etc-hosts = true
+
+# > 远程控制器 VIF Excluded Routes
+http-api-web-dashboard = true
+use-default-policy-if-wifi-not-primary = false
+
+# > 跳过代理
+skip-proxy = 127.0.0.1, 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12, 100.64.0.0/10, 17.0.0.0/8, localhost, *.local, *.crashlytics.com, passenger.t3go.cn
+
+# Surge VIF Excluded Routes
+# tun-excluded-routes = 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12, 239.255.255.250/32
+# tun-included-routes = 192.168.1.12/32
+
+# > Always Real IP Hosts
+always-real-ip = *.srv.nintendo.net, *.stun.playstation.net, xbox.*.microsoft.com, *.xboxlive.com*.srv.nintendo.net, *.stun.playstation.net, xbox.*.microsoft.com, *.xboxlive.com, *.battlenet.com.cn, *.battlenet.com, *.blzstatic.cn, *.battle.net, msftconnecttest.com, msftncsi.com, *.msftconnecttest.com, *.msftncsi.com, *.srv.nintendo.net
+
+# > TCP Force HTTP Hosts
+force-http-engine-hosts = *.ott.cibntv.net, 123.59.31.1,119.18.193.135, 122.14.246.33, 175.102.178.52, 116.253.24.*, 175.6.26.*, 220.169.153.*
+
+# 高级设置
+
+[Proxy]
+国内直连 = direct
+
+[Proxy Group]
+# > 策略组（下面的节点信息需与外部节点对应，若删除了外部节点里的节点，那么在策略组里也要删除。）
+
+Proxy = select, 香港节点, 美国节点, 新加坡节点, 日本节点, 台湾节点
+YouTube = select, Proxy, 香港节点, 美国节点, 新加坡节点, 日本节点, 台湾节点
+Telegram = select, Proxy, 香港节点, 美国节点, 新加坡节点, 日本节点, 台湾节点
+OpenAI = select, Proxy, 美国节点, 新加坡节点, 日本节点, 台湾节点
+TikTok = select, Proxy, 美国节点, 新加坡节点, 日本节点, 台湾节点
+Netflix = select, Proxy, 香港节点, 美国节点, 新加坡节点, 日本节点, 台湾节点
+Disney+ = select, Proxy, 香港节点, 美国节点, 新加坡节点, 日本节点, 台湾节点
+BiliBili = select, DIRECT, Proxy, 香港节点, 台湾节点
+Spotify = select, Proxy, 香港节点, 美国节点, 新加坡节点, 日本节点, 台湾节点
+Apple = select, DIRECT, Proxy, 香港节点, 美国节点, 新加坡节点, 日本节点, 台湾节点
+谷歌服务 = select, Proxy, 香港节点, 美国节点, 新加坡节点, 日本节点, 台湾节点
+国外媒体 = select, Proxy, 香港节点, 美国节点, 新加坡节点, 日本节点, 台湾节点
+国内媒体 = select, DIRECT, Proxy, 香港节点, 美国节点, 新加坡节点, 日本节点, 台湾节点
+游戏平台 = select, DIRECT, Proxy, 香港节点, 美国节点, 新加坡节点, 日本节点, 台湾节点
+
+# > 外部节点
+机场 = url-test, policy-path=你的机场订阅链接, update-interval=0
+
+
+香港节点 = fallback, 机场, include-all-proxies=1, policy-regex-filter=(🇭🇰)|(港)|(Hong)|(HK), hidden=1
+台湾节点 = fallback, 机场, include-all-proxies=1, policy-regex-filter=(🇨🇳)|(台)|(Tai)|(TW), hidden=1
+美国节点 = fallback, 机场, include-all-proxies=1, policy-regex-filter=(🇺🇸)|(美)|(States)|(US), hidden=1
+日本节点 = fallback, 机场, include-all-proxies=1, policy-regex-filter=(🇯🇵)|(日)|(Japan)|(JP), hidden=1
+新加坡节点 = fallback, 机场, include-all-proxies=1, policy-regex-filter=(🇸🇬)|(坡)|(Singapore)|(SG), hidden=1
+
+[Rule]
+# > Reject 去广告
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Advertising/Advertising.list,DIRECT
+DOMAIN-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Advertising/Advertising_Domain.list,DIRECT
+
+# Speedtest 分流
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Surge/Speedtest/Speedtest.list,Proxy
+
+# > Spotify 分流
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Spotify/Spotify.list,Spotify
+
+# > OpenAI 分流
+RULE-SET,https://raw.githubusercontent.com/EAlyce/conf/main/Rule/OpenAi.list,OpenAI
+
+# > WeChat 分流
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/WeChat/WeChat.list,DIRECT,update-interval=604800
+
+# > 去广告 默认禁用
+# RULE-SET,https://ruleset.skk.moe/List/non_ip/reject.conf,REJECT
+# DOMAIN-SET,https://ruleset.skk.moe/List/domainset/reject.conf,REJECT-TINYGIF
+# DOMAIN-SET,https://ruleset.skk.moe/List/domainset/reject_phishing.conf,REJECT
+# RULE-SET,https://ruleset.skk.moe/List/ip/reject.conf,REJECT-DROP
+
+# > 本地/局域网地址
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Lan/Lan.list,DIRECT
+RULE-SET,LAN,DIRECT
+
+# > 苹果服务
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Apple/Apple.list,Apple
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Surge/TestFlight/TestFlight.list,Apple
+
+# > 社交平台（Telegram）
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Telegram/Telegram.list,Telegram
+
+# > 游戏平台（Epic，Sony，Steam，Nintendo）
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Epic/Epic.list,游戏平台
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Sony/Sony.list,游戏平台
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Steam/Steam.list,游戏平台
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Nintendo/Nintendo.list,游戏平台
+
+# > 流媒体（TikTok，YouTube，Netflix，Disney+，BiliBili，ChinaMedia，ProxyMedia）
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/TikTok/TikTok.list,TikTok
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/YouTube/YouTube.list,YouTube
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Netflix/Netflix.list,Netflix
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Disney/Disney.list,Disney+
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/BiliBili/BiliBili.list,BiliBili
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/ChinaMedia/ChinaMedia.list,国内媒体
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyMedia.list,国外媒体
+
+# > 谷歌服务
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Google/Google.list,谷歌服务
+
+# >Unlock NeteaseMusic（解锁网易云音乐）
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/NetEaseMusic/NetEaseMusic.list,DIRECT
+
+# > Proxy
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Proxy/Proxy.list,Proxy
+DOMAIN-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Proxy/Proxy_Domain.list,Proxy
+
+# > 下载
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Download/Download.list,DIRECT
+
+# > 开源CDN加速
+DOMAIN-SET,https://ruleset.skk.moe/List/domainset/cdn.conf,Proxy
+RULE-SET,https://ruleset.skk.moe/List/non_ip/cdn.conf,Proxy
+
+# 防止应用循环请求
+IP-CIDR,0.0.0.0/32,REJECT,no-resolve
+
+# > China ASN
+RULE-SET,https://raw.githubusercontent.com/VirgilClyne/GetSomeFries/auto-update/ruleset/ASN.China.list,DIRECT
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Surge/China/China.list,DIRECT
+
+# GeoIP China
+GEOIP,CN,DIRECT
+
+# > DNS 查询失败走 Final 规则
+FINAL,Proxy,dns-failed
+
+[Host]
+*.taobao.com = server:223.5.5.5
+*.tmall.com = server:223.5.5.5
+*.jd.com = server:119.28.28.28
+*.qq.com = server:119.28.28.28
+*.tencent.com = server:119.28.28.28
+*.alicdn.com = server:223.5.5.5
+*.aliyun.com = server:223.5.5.5
+*.weixin.com = server:119.28.28.28
+*.163.com = server:119.29.29.29
+*.126.com = server:119.29.29.29
+*.126.net = server:119.29.29.29
+*.127.net = server:119.29.29.29
+*.netease.com = server:119.29.29.29
+*.mi.com = server:119.29.29.29
+*.xiaomi.com = server:119.29.29.29
+*.bilibili.com = server:119.29.29.29
+*testflight.apple.com = server:8.8.4.4
+mtalk.google.com = 108.177.125.188
+dl.google.com = server:119.29.29.29
+dl.l.google.com = server:119.29.29.29
+
+[URL Rewrite]
+^https?:\/\/(www.)?(g|google)\.cn https://www.google.com header
+
+[MITM]
+skip-server-cert-verify = true
+ca-passphrase = 
+ca-p12 = 
+
+[Script]
