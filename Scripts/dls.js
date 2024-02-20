@@ -1,6 +1,7 @@
 /**************************************
 项目名称：杜蕾斯会员中心小程序签到
 使用说明：手动签到提示获取ck即可使用，建议开启抓包再签到。自行抓包Access-Token并填入boxjs中的dls_data。
+自动获取：添加到重写，获取ck成功后关闭或删除。https://gist.githubusercontent.com/czy13724/fe5faca64d0a2202fe61335025446dad/raw/dls.conf
 项目作者：@Levi
 积分用处：购买时可用积分进行部分折扣
 反馈群组：https://t.me/IPAs_Dd
@@ -17,19 +18,19 @@
 ****************
 *    LanceX    *
 ****************
-[Script]
 # （默认上午9:30 执行，如需更改请自行修改cron表达式）
-杜蕾斯签到 = type=cron, cronexp="30 9 * * *", script-path=https://raw.githubusercontent.com/czy13724/Quantumult-X/main/scripts/dls.js
-杜蕾斯获取token = type=http-request,pattern=^https:\/\/vip\.ixiliu\.cn\/mp\/sign\/applyV2$,requires-body=0,max-size=0,script-path= https://raw.githubusercontent.com/czy13724/Quantumult-X/main/scripts/dls.js
+[Script]
+杜蕾斯签到 = type=cron, cronexp="30 9 * * *", script-path=https://raw.githubusercontent.com/czy13724/Surge/main/Scripts/dls.js
+杜蕾斯获取token = type=http-request,pattern=^https:\/\/vip\.ixiliu\.cn\/mp\/sign\/applyV2$,requires-body=0,max-size=0,script-path= https://raw.githubusercontent.com/czy13724/Surge/main/Scripts/dls.js
 -----------------------------------------------
 **************
 *Quantumult X*
 **************
 [task_local]
-30 9 * * * https://raw.githubusercontent.com/czy13724/Quantumult-X/main/scripts/dls.js, tag=杜蕾斯会员中心签到, img-url=https://raw.githubusercontent.com/czy13724/LeviIcons/main/leviicons/dls.png, enabled=true
+30 9 * * * https://raw.githubusercontent.com/czy13724/Surge/main/Scripts/dls.js, tag=杜蕾斯会员中心签到, img-url=https://raw.githubusercontent.com/czy13724/LeviIcons/main/leviicons/dls.png, enabled=true
 
 [rewrite_local]
-^https:\/\/vip\.ixiliu\.cn\/mp\/sign\/applyV2$ url script-request-body https://raw.githubusercontent.com/czy13724/Quantumult-X/main/scripts/dls.js
+^https:\/\/vip\.ixiliu\.cn\/mp\/sign\/applyV2$ url script-request-body https://raw.githubusercontent.com/czy13724/Surge/main/Scripts/dls.js
 
 [mitm]
 hostname = vip.ixiliu.cn
