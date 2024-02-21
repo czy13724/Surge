@@ -1,0 +1,10 @@
+# Talkatone anti-ads reject
+DOMAIN-SUFFIX, d.tktn.be
+DOMAIN-SUFFIX, ow.pubmatic.com
+DOMAIN-SUFFIX, telemetry.sdk.inmobi.cn
+DOMAIN-SUFFIX, googleads4.g.doubleclick.net
+DOMAIN-SUFFIX, adclick.g.doubleclick.net
+DOMAIN-SUFFIX, tr-us.adsmoloco.com
+DOMAIN-SUFFIX, sdk.ad.smaato.net
+DOMAIN-SUFFIX, ads.inmobi.com
+DOMAIN-SUFFIX, adrta.com
