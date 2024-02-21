@@ -1,4 +1,4 @@
-# Talkatone anti-ads reject
+# Talkatone anti-ads；reject；enable entended matching
 DOMAIN-SUFFIX, d.tktn.be
 DOMAIN-SUFFIX, ow.pubmatic.com
 DOMAIN-SUFFIX, telemetry.sdk.inmobi.cn
