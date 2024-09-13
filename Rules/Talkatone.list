@@ -1,14 +1,13 @@
 # Talkatone 分流
 # Author: Levi
-# Talkatone, update on 2023.11.18，此分流需要自行添加策略组
-# 注意：登录必须使用美国节点,登录软件成功后再开启此分流，请自行添加分流策略组
-# 引用建议：选择有编写好的筛选美国正则请直接引用美国节点。
+# Talkatone, update on 2024.09.13，此分流需要自行添加策略组
 # 登录提示服务器错误或提示使用VPN或网络封锁均说明节点不干净,自行更换美国节点即可.
-DOMAIN-SUFFIX, tktn.be
-DOMAIN-SUFFIX, talkatone.com
 DOMAIN-SUFFIX, inmobi.com
 DOMAIN-SUFFIX, mobilefuse.com
-IP-CIDR, 50.117.27.0/24
-IP-CIDR, 69.46.75.0/24
-IP-CIDR, 205.164.56.29/24
-IP-CIDR, 63.251.124.0/24
+DOMAIN-SUFFIX, tktn.be
+DOMAIN-SUFFIX, talkatone.com
+IP-CIDR, 50.117.27.0/24,no-resolve
+IP-CIDR, 63.251.124.0/24,no-resolve
+IP-CIDR, 69.46.75.0/24,no-resolve
+IP-CIDR, 205.164.56.29/24,no-resolve
+IP-CIDR, 216.172.154.0/24,no-resolve
