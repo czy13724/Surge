@@ -1,10 +1,17 @@
-# Talkatone anti-ads；reject；enable entended matching
-DOMAIN-SUFFIX, d.tktn.be
-DOMAIN-SUFFIX, ow.pubmatic.com
-DOMAIN-SUFFIX, telemetry.sdk.inmobi.cn
-DOMAIN-SUFFIX, googleads4.g.doubleclick.net
-DOMAIN-SUFFIX, adclick.g.doubleclick.net
-DOMAIN-SUFFIX, tr-us.adsmoloco.com
-DOMAIN-SUFFIX, sdk.ad.smaato.net
-DOMAIN-SUFFIX, ads.inmobi.com
-DOMAIN-SUFFIX, adrta.com
+# Talkatone anti-ads；reject & REJECT-DROP；enable entended matching
+
+DOMAIN-SUFFIX,adclick.g.doubleclick.net
+DOMAIN-SUFFIX,adrta.com
+DOMAIN-SUFFIX,adsappier.com
+DOMAIN-SUFFIX,ads.inmobi.com
+DOMAIN-SUFFIX,amazon-adsystem.com
+DOMAIN-SUFFIX,appier.net
+DOMAIN-SUFFIX,appiersig.com
+DOMAIN-SUFFIX,criteo.com
+DOMAIN-SUFFIX,d.tktn.be
+DOMAIN-SUFFIX,googleads4.g.doubleclick.net
+DOMAIN-SUFFIX,pubmatic.com
+DOMAIN-SUFFIX,smaato.net
+DOMAIN-SUFFIX,tappx.com
+DOMAIN-SUFFIX,tr-us.adsmoloco.com
+DOMAIN-SUFFIX,telemetry.sdk.inmobi.cn
