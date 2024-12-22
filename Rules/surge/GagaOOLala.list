@@ -3,5 +3,6 @@
 # date:2024/12/6
 # taiwan
 
-DOMAIN-SUFFIX,gagaoolala.com
-DOMAIN-SUFFIX,cloudfront.net
+DOMAIN,licensing.bitmovin.com,GagaOOLala
+DOMAIN-SUFFIX,gagaoolala.com,GagaOOLala
+DOMAIN-SUFFIX,cloudfront.net,GagaOOLala
