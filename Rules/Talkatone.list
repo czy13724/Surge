@@ -1,38 +1,39 @@
 # Talkatone 分流
 # Author: Levi
-# Talkatone, update on 2024.12.08，此分流需要自行添加策略组并命名为Talkatone
+# Talkatone, update on 2025.04.01，此分流需要自行添加策略组并命名为Talkatone
 # 登录提示服务器错误或提示使用VPN或网络封锁均说明节点不干净,自行更换节点即可.
-# DOMAIN-SUFFIX,inmobi.com
-# DOMAIN-SUFFIX,mobilefuse.com
-# DOMAIN-SUFFIX,tktn.be
-# DOMAIN-SUFFIX,talkatone.com
-# IP-CIDR,50.117.27.0/24,no-resolve
-# IP-CIDR,63.251.124.0/24,no-resolve
-# IP-CIDR,69.46.75.0/24,no-resolve
-# IP-CIDR,205.164.56.29/24,no-resolve
-# IP-CIDR,216.172.154.0/24,Talkatone      //通话必须
 # ************************************************************
-
 # 以下为该软件可以走直连的规则
 DOMAIN-SUFFIX,agkn.com,DIRECT
 DOMAIN-SUFFIX,cohere.com,DIRECT
 DOMAIN-SUFFIX,crashlytics.com,DIRECT
-DOMAIN-SUFFIX,inner-active.mobi,DIRECT
-DOMAIN-SUFFIX,inmobi.com,DIRECT
 DOMAIN-SUFFIX,ip-api.com,DIRECT
 DOMAIN-SUFFIX,kochava.com,DIRECT
-DOMAIN-SUFFIX,mobilefuse.com,DIRECT
-DOMAIN-SUFFIX,talkatone.com,DIRECT
-DOMAIN-SUFFIX,tktn.at,DIRECT
-IP-CIDR,50.117.27.0/24,DIRECT
-IP-CIDR,63.251.124.0/24,DIRECT
-IP-CIDR,69.46.75.0/24,DIRECT
-IP-CIDR,205.164.56.29/24,DIRECT
-
+# ************************************************************
 # 以下为该软件要走节点的规则
-DOMAIN-SUFFIX,tktn.be,Talkatone  
-IP-CIDR,216.172.154.0/24,Talkatone      //通话必须
-
+DOMAIN-SUFFIX,inmobi.com,Talkatone
+DOMAIN-SUFFIX,inner-active.mobi,Talkatone
+DOMAIN-SUFFIX,mobilefuse.com,Talkatone
+DOMAIN-SUFFIX,talkatone.com,Talkatone
+DOMAIN-SUFFIX,tktn.at,Talkatone
+DOMAIN-SUFFIX,tktn.be,Talkatone
+IP-CIDR,50.117.27.0/24,Talkatone
+IP-CIDR,63.251.124.0/24,Talkatone
+IP-CIDR,69.46.75.0/24,Talkatone
+# 电话相关 IP 段
+IP-CIDR,104.244.53.0/24,Talkatone
+IP-CIDR,131.153.7.0/24,Talkatone
+IP-CIDR,198.24.161.0/24,Talkatone
+IP-CIDR,205.164.56.29/24,Talkatone
+IP-CIDR,216.172.154.0/24,Talkatone
+# 短信相关 IP 段
+IP-CIDR,131.153.5.0/24,Talkatone
+IP-CIDR,198.24.160.0/24,Talkatone
+IP-CIDR,198.24.163.0/24,Talkatone
+IP-CIDR,198.24.183.0/24,Talkatone
+# 表情包
+DOMAIN-SUFFIX,media.tenor.com,Talkatone
+# ************************************************************
 # 以下为该软件部分去广告规则
 DOMAIN-SUFFIX,adclick.g.doubleclick.net,REJECT-DROP
 DOMAIN-SUFFIX,adrta.com,REJECT-DROP
