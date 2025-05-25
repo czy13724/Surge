@@ -1,0 +1,13 @@
+#!name = 当前汇率
+#!desc = 汇率面板
+#!openUrl = 
+#!author = deezertidal[https://github.com/deezertidal]
+#!homepage = https://github.com/mist-whisper/Surge/blob/master/README.md
+#!icon = 
+#!date = 2024-07-06 20:05:57
+#!category = 面板模块
+
+[Panel]
+当前汇率=script-name=当前汇率
+[Script]
+当前汇率=type=generic,script-path=https://raw.githubusercontent.com/deezertidal/Surge_Module/master/files/rates.js,argument=icon=yensign.circle&color=#D4AF37
