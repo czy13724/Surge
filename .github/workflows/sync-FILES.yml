@@ -71,10 +71,8 @@ jobs:
 
       - name: Set up Git user
         run: |
-        # 公开仓库可使用以下配置，如私有仓库使用请将下方改为自己的邮箱和用户名
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"        
 
       - name: Run sync_FILES.py
-        # 如你不想把这个文件放在仓库根目录下，请自行修改以下路径 格式为 python3 你想要的路径/sync_FILES.py
         run: python3 .github/py/sync_FILES.py
