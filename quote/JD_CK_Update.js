@@ -98,7 +98,7 @@ const $ = new Env('京东Cookie更新');
     const lastUpdateKey = `jd_cookie_update_${ptPin}`;
     const lastUpdateTime = $.getval(lastUpdateKey) || '0';
     const currentTime = Date.now();
-    const updateInterval = 10 * 60 * 1000; // 10分钟更新间隔
+    const updateInterval = 0 * 60 * 1000; // 10分钟更新间隔
     
     if (currentTime - parseInt(lastUpdateTime) < updateInterval) {
         $.log(`⏰ 距离上次更新不足10分钟，跳过更新`);
