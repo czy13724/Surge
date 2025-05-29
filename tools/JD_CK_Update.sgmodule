@@ -1,5 +1,5 @@
-#!name = 更新京东Cookie
-#!desc = 打开京东App获取Cookie，提示获取成功更新青龙Cookie。模块默认获取一次。关闭模块，可以在脚本72行前添加//空格 可以选择自行创建3天打开京东的快捷指令
+#!name = 京东Cookie同步青龙
+#!desc = 打开京东App获取Cookie，提示获取成功更新青龙Cookie。模块默认10分钟获取一次。可以选择自行创建3天打开京东的快捷指令
 #!system = ios
 #!category = 京东系列
 #!arguments=qinglongHost:http://192.168.1.2:5700,clientId:"",clientSecret:"" 
