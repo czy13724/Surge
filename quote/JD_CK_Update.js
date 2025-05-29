@@ -148,9 +148,9 @@ const $ = new Env('京东Cookie更新');
 })();
 
 // 获取青龙Token
-function getQinglongToken(host, clientId, clientSecret) {
+function getQinglongToken(qinglongHost, clientId, clientSecret) {
     return new Promise((resolve) => {
-        const url = `${host}/open/auth/token?client_id=${clientId}&client_secret=${clientSecret}`;
+        const url = `${qinglongHost}/open/auth/token?client_id=${clientId}&client_secret=${clientSecret}`;
         
         $.get(url, (error, response, body) => {
             try {
@@ -173,10 +173,10 @@ function getQinglongToken(host, clientId, clientSecret) {
 }
 
 // 获取环境变量ID
-function getQinglongEnvId(host, token, ptPin) {
+function getQinglongEnvId(qinglongHost, token, ptPin) {
     return new Promise((resolve) => {
         const options = {
-            url: `${host}/open/envs`,
+            url: `${qinglongHost}/open/envs`,
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
@@ -221,7 +221,7 @@ function getQinglongEnvId(host, token, ptPin) {
 }
 
 // 创建新的JD_COOKIE环境变量
-function createQinglongEnv(host, token, ptPin, cookieValue) {
+function createQinglongEnv(qinglongHost, token, ptPin, cookieValue) {
     return new Promise((resolve) => {
         const cookieValue = cookieValue.trim();
         const cleanPtPin = ptPin.replace(/[^\w\u4e00-\u9fa5]/g, '');
@@ -238,7 +238,7 @@ function createQinglongEnv(host, token, ptPin, cookieValue) {
         $.log(`🔧 创建环境变量参数: ${JSON.stringify(requestBody)}`);
         
         const options = {
-            url: `${host}/open/envs`,
+            url: `${qinglongHost}/open/envs`,
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
@@ -269,7 +269,7 @@ function createQinglongEnv(host, token, ptPin, cookieValue) {
                     };
                     
                     const retryOptions = {
-                        url: `${host}/open/envs`,
+                        url: `${qinglongHost}/open/envs`,
                         headers: {
                             'Authorization': `Bearer ${token}`,
                             'Content-Type': 'application/json'
@@ -319,7 +319,7 @@ function createQinglongEnv(host, token, ptPin, cookieValue) {
 }
 
 // 使用PUT方法更新环境变量
-function updateQinglongEnvValue(host, token, envId, cookieValue) {
+function updateQinglongEnvValue(qinglongHost, token, envId, cookieValue) {
     return new Promise((resolve) => {
         // 先尝试字符串格式
         const requestBody = [
@@ -336,7 +336,7 @@ function updateQinglongEnvValue(host, token, envId, cookieValue) {
         
         // 使用PUT方法更新指定ID的环境变量
         const options = {
-            url: `${host}/open/envs/${envId}`,
+            url: `${qinglongHost}/open/envs/${envId}`,
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
@@ -437,12 +437,12 @@ function updateQinglongEnvValue(host, token, envId, cookieValue) {
 }
 
 // 启用环境变量
-function updateQinglongEnvStatus(host, token, envId) {
+function updateQinglongEnvStatus(qinglongHost, token, envId) {
     return new Promise((resolve) => {
         $.log(`🔧 启用环境变量 ID: ${envId}`);
         
         const options = {
-            url: `${host}/open/envs/enable`,
+            url: `${qinglongHost}/open/envs/enable`,
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
