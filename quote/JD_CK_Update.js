@@ -39,7 +39,7 @@ const $ = new Env('京东Cookie更新');
         return;
     }
     
-    // 修复问题1: 更全面的Cookie获取方式
+    // Cookie获取
     let cookies = '';
     if ($request && $request.headers) {
         cookies = $request.headers['Cookie'] || $request.headers['cookie'] || '';
@@ -65,7 +65,7 @@ const $ = new Env('京东Cookie更新');
         return;
     }
     
-    // 修复问题1: 更精确的pt_pin和pt_key提取
+    // 精确提取pt_pin和pt_key
     const ptPinMatch = cookies.match(/pt_pin=([^;]+)/);
     const ptKeyMatch = cookies.match(/pt_key=([^;]+)/);
     
@@ -220,7 +220,7 @@ function getQinglongEnvId(host, token, ptPin) {
     });
 }
 
-// 创建新的JD_COOKIE环境变量 - 修复版本
+// 创建新的JD_COOKIE环境变量
 function createQinglongEnv(host, token, ptPin, cookieValue) {
     return new Promise((resolve) => {
         const cookieValue = cookieValue.trim();
@@ -318,7 +318,7 @@ function createQinglongEnv(host, token, ptPin, cookieValue) {
     });
 }
 
-// 修复：使用PUT方法更新环境变量
+// 使用PUT方法更新环境变量
 function updateQinglongEnvValue(host, token, envId, cookieValue) {
     return new Promise((resolve) => {
         // 先尝试字符串格式
