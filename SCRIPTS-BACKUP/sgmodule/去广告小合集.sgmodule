@@ -1,12 +1,10 @@
-#!name = BlockAds
-#!desc = 移除一些小广告，优化一些小功能。
-#!category = 去广告增强
+#!name=BlockAds
+#!desc=移除一些小广告，优化一些小功能。
 #!author = RuCu6[https://github.com/RuCu6],fishdown[https://github.com/fishdown],wish[https://github.com/mist-whisper]
-#!homepage = https://github.com/mist-whisper/Surge/blob/master/README.md
-#!icon = https://raw.githubusercontent.com/mist-whisper/Icon/master/MyIcon/BlockAds.png
-#!date = 2025-05-11 15:47:00
+#!category=去广告增强
+#!date=2025-05-25 12:00:00
 
-#!arguments = Dsenrp55去广告:跳转外部播放器
+#!arguments=Dsenrp55去广告:跳转外部播放器
 #!arguments-desc = [参数设置]\nDsenrp55去广告:跳转外部播放器脚本启停\n   ├ 跳转外部播放器：启用（默认值）\n   └ 填入"#"：注释停用
 
 [Rule]
@@ -68,6 +66,29 @@ DOMAIN,v2mi.gdt.qq.com,REJECT
 DOMAIN,da.bridgeturbo.com,REJECT
 DOMAIN,adx-os.bridgeturbo.com,REJECT
 DOMAIN,adx-bj.anythinktech.com,REJECT
+# Talkatone
+DOMAIN-SUFFIX,gum.criteo.com,REJECT
+DOMAIN-SUFFIX,ads.inmobi.com,REJECT
+DOMAIN-SUFFIX,cdn2.inner-active.mobi,REJECT
+DOMAIN-SUFFIX,sdk-dnt.ad.smaato.net,REJECT
+DOMAIN-SUFFIX,sdk-events.inner-active.mobi,REJECT
+DOMAIN-SUFFIX,ow.pubmatic.com,REJECT
+DOMAIN-SUFFIX,bidder.criteo.com,REJECT
+DOMAIN-SUFFIX,googleads.g.doubleclick-cn.net,REJECT
+DOMAIN-SUFFIX,wv.inner-active.mobi,REJECT
+DOMAIN-SUFFIX,c.amazon-adsystem.com,REJECT
+DOMAIN-SUFFIX,googleads.g.doubleclick-cn.net,REJECT
+DOMAIN-SUFFIX,cr.adsappier.com,REJECT
+DOMAIN-SUFFIX,ads.inmobi.com,REJECT
+DOMAIN-SUFFIX,tappx.com,REJECT
+DOMAIN-SUFFIX,criteo.com,REJECT
+DOMAIN-SUFFIX,pubmatic.com,REJECT
+DOMAIN-SUFFIX,smaato.net,REJECT
+DOMAIN-SUFFIX,amazon-adsystem.com,REJECT
+DOMAIN-KEYWORD,googleads,REJECT
+DOMAIN-SUFFIX,adsappier.com,REJECT
+DOMAIN-SUFFIX,appier.net,REJECT
+DOMAIN-SUFFIX,appiersig.com,REJECT
 
 [URL Rewrite]
 # 爱思助手
@@ -105,6 +126,14 @@ http-response ^https:\/\/d2bkn61acaxm61\.cloudfront\.net <style> <style> .gotocl
 http-response ^https:\/\/dsenrp55\.com\/tabbar </head> </head><style>.swiperBox,.adBox,.ad,.adItem,.start-page-container,.n-container,.intercept-18,div.van-tabbar-item:first-of-type,div.van-tabbar-item:last-of-type{display:none!important}img.back{margin:40px!important}</style>
 
 [Map Local]
+# 百词斩 开屏广告
+^http:\/\/advertise\.baicizhan\.com\/rpc\/advertise\/get_startup_ad data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+# 小熊拦截 移除更新弹窗
+^https:\/\/spamblocker-api\.zeekstudio\.com\/profile data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+^https:\/\/spamblocker-api\.zeekstudio\.com\/checkVersion data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
 # 全家 开屏广告
 ^https:\/\/fmapp\.chinafamilymart\.com\.cn\/api\/app\/market\/start\/ad data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
@@ -121,9 +150,6 @@ http-response ^https:\/\/dsenrp55\.com\/tabbar </head> </head><style>.swiperBox,
 ^https:\/\/api\.xiaoyuzhoufm\.com\/v\d\/search\/get data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
 ^https?:\/\/api\.xiaoyuzhoufm\.com\/v\d\/category data-type=text data="{}" status-code=200 header="Content-Type:application/json"
-
-# 会员横幅设为不可点击
-^https:\/\/api\.xiaoyuzhoufm\.com\/v1\/membership\/platform data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
 # 阿里云盘
 ^https:\/\/api\.alipan\.com\/adrive\/v1\/file\/getTopFolders data-type=text data="{}" status-code=200 header="Content-Type:application/json"
@@ -246,7 +272,10 @@ http-response ^https:\/\/dsenrp55\.com\/tabbar </head> </head><style>.swiperBox,
 移除Missav广告 = type=http-response, pattern=^https:\/\/missav\.(?:ai|ws)\/(?!(build|fonts|img|js|api|cdn-cgi)\/)., script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/Missav.js, requires-body=true
 
 # dsenrp55
-{{{Dsenrp55去广告}}} = type=http-request, pattern=^https:\/\/ghfgnm\.com\/mmapi\/m3u8\/p\/.+\.m3u8, script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/Dsenrp55.js, requires-body=true, timeout=60
+{{{移除Dsenrp55广告}}} = type=http-request, pattern=^https:\/\/ghfgnm\.com\/mmapi\/m3u8\/p\/.+\.m3u8, script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/Dsenrp55.js, requires-body=true, timeout=60
+
+# 小宇宙
+小宇宙首页净化 = type=http-response, pattern=^https:\/\/api\.xiaoyuzhoufm\.com\/v1\/discovery-feed\/list, script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/Xiaoyuzhou/Clean_home_feed.js, requires-body=true
 
 [MITM]
-hostname = %APPEND% ad.12306.cn, mobile.12306.cn, list-app-m.i4.cn, *api.alipan.com, member.alipan.com, acs.m.taobao.com, heic.alicdn.com, guide-acs.m.taobao.com, poplayer.template.alibaba.com, pan.baidu.com, 2023.redircdn.com, www.washpayer.com, api.douban.com, img3.doubanio.com, qnmob3.doubanio.com, img*.douban.com, frodo.douban.com, erebor.douban.com, image.mybank.icbc.com.cn, hfapp-service.qweather.net, acs-m.freshippo.com, gab.122.gov.cn, adserviceretry.kglink.cn, p0.pipi.cn, flowplus.meituan.net, img.meituan.net, s3plus.meituan.net, osg-service.sgcc.com.cn, api.m.mi.com, home.mi.com, shop-api.retail.mi.com, wallet.95516.com, mobilepaas.abchina.com.cn, ad.mcloud.139.com, jzts.cmpassport.com, boxer.baidu.com, m.baidu.com, www.baidu.com, zhidao.baidu.com, asserts.avple.tv, javdb.com, *.pornhub.com, 18hlw.com, lneuk.rslsilne.cc, 7054s.rbcmpeu.org, d2bkn61acaxm61.cloudfront.net, missav.ai, missav.ws, dsenrp55.com, ghfgnm.com, *.kelee.one, kelee.one, api.xiaoyuzhoufm.com, mobads.baidu.com, fmapp.chinafamilymart.com.cn
+hostname = %APPEND% ad.12306.cn, mobile.12306.cn, list-app-m.i4.cn, *api.alipan.com, member.alipan.com, acs.m.taobao.com, heic.alicdn.com, guide-acs.m.taobao.com, poplayer.template.alibaba.com, pan.baidu.com, 2023.redircdn.com, www.washpayer.com, api.douban.com, img3.doubanio.com, qnmob3.doubanio.com, img*.douban.com, frodo.douban.com, erebor.douban.com, image.mybank.icbc.com.cn, hfapp-service.qweather.net, acs-m.freshippo.com, gab.122.gov.cn, adserviceretry.kglink.cn, p0.pipi.cn, flowplus.meituan.net, img.meituan.net, s3plus.meituan.net, osg-service.sgcc.com.cn, api.m.mi.com, home.mi.com, shop-api.retail.mi.com, wallet.95516.com, mobilepaas.abchina.com.cn, ad.mcloud.139.com, jzts.cmpassport.com, boxer.baidu.com, m.baidu.com, www.baidu.com, zhidao.baidu.com, asserts.avple.tv, javdb.com, *.pornhub.com, 18hlw.com, lneuk.rslsilne.cc, 7054s.rbcmpeu.org, d2bkn61acaxm61.cloudfront.net, missav.ai, missav.ws, dsenrp55.com, ghfgnm.com, *.kelee.one, kelee.one, api.xiaoyuzhoufm.com, mobads.baidu.com, fmapp.chinafamilymart.com.cn, spamblocker-api.zeekstudio.com
