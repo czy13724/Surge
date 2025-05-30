@@ -4,12 +4,13 @@ import os
 import json
 import shutil
 import logging
+import subprocess
 from datetime import datetime, timedelta
 import requests
 import glob
 
 # ========== 脚本配置 ==========
-# 配置文件路径
+# 配置文件路径（请保证该文件受版本控制）
 CONFIG_FILE = "script-h-gist.json"
 # 备份目录
 BACKUP_DIR = "SCRIPTS-h-BACKUP"
@@ -77,8 +78,7 @@ def record_failure(name, url, error_message):
     将下载或写入失败的记录追加到当日的日志文件中，
     日志文件保存在 FAILED_DIR 目录下。
     """
-    if not os.path.isdir(FAILED_DIR):
-        os.makedirs(FAILED_DIR, exist_ok=True)
+    os.makedirs(FAILED_DIR, exist_ok=True)
     today = datetime.now().strftime('%Y-%m-%d')
     log_file = os.path.join(FAILED_DIR, f"{FAILED_LOG_PREFIX}{today}.log")
     with open(log_file, 'a', encoding='utf-8') as f:
@@ -102,24 +102,18 @@ def clean_old_failed_logs():
                 os.remove(fpath)
                 logging.info(f"已删除过期失败日志: {fpath}")
         except ValueError:
-            # 文件名格式不符合预期则跳过
             continue
 
 
 def download_and_compare(item):
     """
     下载并对比单个文件：
-    - 若文件不存在则保存并统计为 'added'
-    - 若内容不同则覆盖并统计为 'updated'
-    - 若内容相同则跳过并统计为 'skipped'
-    - 若下载或写入出错则统计为 'failed' 并记录日志
+      - 若文件不存在则保存并统计 'added'
+      - 若内容不同则覆盖并统计 'updated'
+      - 若内容相同则跳过并统计 'skipped'
+      - 出现异常则记录失败并统计 'failed'
 
-    参数 item 为字典，包含:
-      - name: 目标文件名（不含后缀）
-      - url: 下载链接
-      - headers: 可选，字典形式的 HTTP 请求头
-
-    返回值: 操作类型字符串 'added'/'updated'/'skipped'/'failed'
+    item dict 包含: name, url, 可选 headers
     """
     name = item.get('name')
     url = item.get('url')
@@ -127,16 +121,15 @@ def download_and_compare(item):
 
     ext = get_extension_from_url(url)
     subdir = get_subdir(ext)
-    target_dir = os.path.join(BACKUP_DIR, subdir)
-    os.makedirs(target_dir, exist_ok=True)
-    target_file = os.path.join(target_dir, name + ext)
+    os.makedirs(os.path.join(BACKUP_DIR, subdir), exist_ok=True)
+    target_file = os.path.join(BACKUP_DIR, subdir, name + ext)
 
     try:
         resp = requests.get(url, headers=headers, timeout=15)
         resp.raise_for_status()
         content = resp.content
     except Exception as e:
-        logging.error(f"下载失败: {name} 从 {url} 出错: {e}")
+        logging.error(f"下载失败: {name} | {url} | {e}")
         record_failure(name, url, str(e))
         return 'failed'
 
@@ -149,7 +142,7 @@ def download_and_compare(item):
             logging.info(f"更新文件: {target_file}")
             return 'updated'
         else:
-            logging.info(f"跳过，无变化: {target_file}")
+            logging.info(f"跳过无变化: {target_file}")
             return 'skipped'
     else:
         with open(target_file, 'wb') as f:
@@ -160,11 +153,8 @@ def download_and_compare(item):
 
 def cleanup_files(valid_paths):
     """
-    清理不在本次配置列表中的备份文件，
-    删除后在日志中打印并统计。
-
-    参数 valid_paths: 本次应保留文件的完整路径集合
-    返回: 删除的文件路径列表
+    删除不在 valid_paths 列表中的备份文件。
+    返回删除文件列表，并在日志中记录。
     """
     removed = []
     if not os.path.isdir(BACKUP_DIR):
@@ -186,7 +176,7 @@ def send_notifications(summary):
     """
     根据环境变量自动选择通知方式，支持 Bark、Server酱、企业微信、Telegram。
     根据 NOTIFY_LANG 参数切换中英语言。
-    参数 summary: 字典，包含 'added','updated','skipped','removed' 计数
+    summary dict 包含: added, updated, skipped, removed 计数
     """
     lang = os.getenv('NOTIFY_LANG', 'en-us').lower()
     labels = {
@@ -209,7 +199,7 @@ def send_notifications(summary):
         except Exception as e:
             logging.warning(f"Bark 推送失败: {e}")
 
-    # Server 酱
+    # Server 酱推送
     sckey = os.getenv('SERVERCHAN_SEND_KEY')
     if sckey:
         try:
@@ -219,7 +209,7 @@ def send_notifications(summary):
         except Exception as e:
             logging.warning(f"Server酱 推送失败: {e}")
 
-    # 企业微信机器人
+    # 企业微信机器人推送
     wechat_url = os.getenv('WECHAT_WEBHOOK_URL')
     if wechat_url:
         try:
@@ -229,7 +219,7 @@ def send_notifications(summary):
         except Exception as e:
             logging.warning(f"企业微信 推送失败: {e}")
 
-    # Telegram 机器人
+    # Telegram 机器人推送
     tg_token = os.getenv('TG_BOT_TOKEN')
     tg_user = os.getenv('TG_USER_ID')
     if tg_token and tg_user:
@@ -242,39 +232,49 @@ def send_notifications(summary):
 
 
 def main():
-    # 检查配置文件是否存在
+    # 记录初始配置内容，用于后续检测变更并提交版本控制
     if not os.path.exists(CONFIG_FILE):
         logging.error(f"未找到配置文件: {CONFIG_FILE}")
         return
+    with open(CONFIG_FILE, 'rb') as f:
+        original_cfg = f.read()
 
     # 清理旧失败日志
     clean_old_failed_logs()
 
-    # 读取配置
+    # 读取配置列表
     with open(CONFIG_FILE, 'r', encoding='utf-8') as cf:
         items = json.load(cf)
 
-    # 初始化统计
+    # 执行下载与统计
     stats = {'added': 0, 'updated': 0, 'skipped': 0, 'failed': 0}
     valid_paths = set()
-
-    # 执行下载与比对
     for item in items:
         result = download_and_compare(item)
         if result in stats:
             stats[result] += 1
-        # 记录应保留的文件路径
-        url = item.get('url')
-        ext = get_extension_from_url(url)
-        subdir = get_subdir(ext)
-        valid_paths.add(os.path.join(BACKUP_DIR, subdir, item['name'] + ext))
+        # 构建应保留文件路径
+        ext = get_extension_from_url(item.get('url'))
+        valid_paths.add(os.path.join(BACKUP_DIR, get_subdir(ext), item['name'] + ext))
 
-    # 清理过期备份文件
+    # 清理过期备份
     removed = cleanup_files(valid_paths)
     stats['removed'] = len(removed)
 
-    # 发送通知
+    # 推送通知
     send_notifications(stats)
+
+    # 若配置文件有变更，则提交并推送到远程仓库
+    with open(CONFIG_FILE, 'rb') as f:
+        new_cfg = f.read()
+    if new_cfg != original_cfg:
+        try:
+            subprocess.run(['git', 'add', CONFIG_FILE], check=True)
+            subprocess.run(['git', 'commit', '-m', 'config: update script-h-gist.json'], check=True)
+            subprocess.run(['git', 'push'], check=True)
+            logging.info("配置变更已提交并推送到远程仓库")
+        except subprocess.CalledProcessError as e:
+            logging.error(f"Git 提交或推送失败: {e}")
 
 if __name__ == '__main__':
     main()
