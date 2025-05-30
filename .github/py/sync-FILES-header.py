@@ -102,7 +102,7 @@ def download_and_compare(item):
       - 更新 (updated)
       - 相同跳过 (skipped)
       - 失败 (failed)
-    国产配置支持 headers 字段。
+    支持 headers 字段。
     """
     name = item.get('name')
     url = item.get('url')
@@ -231,7 +231,7 @@ def main():
         if res in stats:
             stats[res] += 1
         ext = get_extension_from_url(item.get('url'))
-        valid_paths.add(os.path.join(BACKUP_DIR, get_subdir(ext), item['name']+ext))
+        valid_paths.add(os.path.join(BACKUP_DIR, get_subdir(ext), item['name'] + ext))
 
     # 清理过期备份
     removed = cleanup_files(valid_paths)
@@ -245,13 +245,12 @@ def main():
         new_cfg = f.read()
     if new_cfg != original_cfg:
         try:
-            subprocess.run(['git','add',CONFIG_FILE],check=True)
-            subprocess.run(['git','commit','-m','config: update script-h-gist.json'],check=True)
-            subprocess.run(['git','push'],check=True)
+            subprocess.run(['git','add',CONFIG_FILE], check=True)
+            subprocess.run(['git','commit','-m','config: update script-h-gist.json'], check=True)
+            subprocess.run(['git','push'], check=True)
             logging.info("配置变更已提交并推送到远程仓库")
         except subprocess.CalledProcessError as e:
             logging.error(f"Git 操作失败: {e}")
 
 if __name__ == '__main__':
     main()
-
