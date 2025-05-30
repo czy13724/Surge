@@ -2,7 +2,6 @@
 #!/usr/bin/env python3
 import os
 import json
-import shutil
 import logging
 import subprocess
 from datetime import datetime, timedelta
@@ -54,29 +53,23 @@ logging.basicConfig(
     datefmt='%Y-%m-%d %H:%M:%S'
 )
 
-
 def get_extension_from_url(url):
     """
-    从 URL 中提取文件扩展名，用于后续分类存储。
-    如果无法解析，则返回 '.bin' 作为默认后缀。
+    从 URL 中提取文件扩展名，如果无法解析则返回 '.bin'。
     """
     basename = os.path.basename(url.split('?', 1)[0])
     ext = os.path.splitext(basename)[1].lower()
     return ext or '.bin'
 
-
 def get_subdir(ext):
     """
-    根据文件扩展名映射到对应的子目录名称，
-    未在映射表中的扩展名统一放到 'other' 目录。
+    映射扩展名到子目录，未映射项归为 'other'。
     """
     return EXTENSION_MAP.get(ext, 'other')
 
-
 def record_failure(name, url, error_message):
     """
-    将下载或写入失败的记录追加到当日的日志文件中，
-    日志文件保存在 FAILED_DIR 目录下。
+    记录下载或写入失败的信息到当天日志。
     """
     os.makedirs(FAILED_DIR, exist_ok=True)
     today = datetime.now().strftime('%Y-%m-%d')
@@ -84,16 +77,14 @@ def record_failure(name, url, error_message):
     with open(log_file, 'a', encoding='utf-8') as f:
         f.write(f"[{datetime.now().isoformat()}] {name} | {url} | {error_message}\n")
 
-
 def clean_old_failed_logs():
     """
-    清理超过保留天数的失败日志，按文件日期判断并删除。
+    删除超过保留天数的失败日志。
     """
     if not os.path.isdir(FAILED_DIR):
         return
     cutoff = datetime.now() - timedelta(days=FAILED_LOG_RETENTION_DAYS)
-    pattern = os.path.join(FAILED_DIR, f"{FAILED_LOG_PREFIX}*.log")
-    for fpath in glob.glob(pattern):
+    for fpath in glob.glob(os.path.join(FAILED_DIR, f"{FAILED_LOG_PREFIX}*.log")):
         fname = os.path.basename(fpath)
         date_str = fname.replace(FAILED_LOG_PREFIX, '').replace('.log', '')
         try:
@@ -104,16 +95,14 @@ def clean_old_failed_logs():
         except ValueError:
             continue
 
-
 def download_and_compare(item):
     """
-    下载并对比单个文件：
-      - 若文件不存在则保存并统计 'added'
-      - 若内容不同则覆盖并统计 'updated'
-      - 若内容相同则跳过并统计 'skipped'
-      - 出现异常则记录失败并统计 'failed'
-
-    item dict 包含: name, url, 可选 headers
+    下载并对比文件：
+      - 新增 (added)
+      - 更新 (updated)
+      - 相同跳过 (skipped)
+      - 失败 (failed)
+    国产配置支持 headers 字段。
     """
     name = item.get('name')
     url = item.get('url')
@@ -150,11 +139,10 @@ def download_and_compare(item):
         logging.info(f"新增文件: {target_file}")
         return 'added'
 
-
 def cleanup_files(valid_paths):
     """
-    删除不在 valid_paths 列表中的备份文件。
-    返回删除文件列表，并在日志中记录。
+    删除不在 valid_paths 中的旧备份。
+    返回删除列表。
     """
     removed = []
     if not os.path.isdir(BACKUP_DIR):
@@ -171,12 +159,10 @@ def cleanup_files(valid_paths):
                 removed.append(fullpath)
     return removed
 
-
 def send_notifications(summary):
     """
-    根据环境变量自动选择通知方式，支持 Bark、Server酱、企业微信、Telegram。
-    根据 NOTIFY_LANG 参数切换中英语言。
-    summary dict 包含: added, updated, skipped, removed 计数
+    按 NOTIFY_LANG 环境变量选择中英文，
+    支持 Bark, Server酱, 企业微信, Telegram 推送。
     """
     lang = os.getenv('NOTIFY_LANG', 'en-us').lower()
     labels = {
@@ -186,7 +172,7 @@ def send_notifications(summary):
         'removed': '删除' if lang == 'zh-cn' else 'Removed',
     }
     title = '同步结果' if lang == 'zh-cn' else 'Sync Summary'
-    parts = [f"{labels[key]}: {summary.get(key,0)}" for key in labels]
+    parts = [f"{labels[k]}: {summary.get(k, 0)}" for k in labels]
     message = title + "\n" + "\n".join(parts)
 
     # Bark 推送
@@ -198,83 +184,74 @@ def send_notifications(summary):
             requests.get(url, timeout=5)
         except Exception as e:
             logging.warning(f"Bark 推送失败: {e}")
-
-    # Server 酱推送
+    # Server酱 推送
     sckey = os.getenv('SERVERCHAN_SEND_KEY')
     if sckey:
         try:
             api = f"https://sctapi.ftqq.com/{sckey}.send"
-            data = {'title': title, 'desp': message}
-            requests.post(api, json=data, timeout=5)
+            requests.post(api, json={'title': title, 'desp': message}, timeout=5)
         except Exception as e:
             logging.warning(f"Server酱 推送失败: {e}")
-
-    # 企业微信机器人推送
+    # 企业微信 推送
     wechat_url = os.getenv('WECHAT_WEBHOOK_URL')
     if wechat_url:
         try:
-            payload = {'msgtype': 'text', 'text': {'content': message}}
-            headers = {'Content-Type': 'application/json'}
-            requests.post(wechat_url, json=payload, headers=headers, timeout=5)
+            requests.post(wechat_url, json={'msgtype':'text','text':{'content':message}}, headers={'Content-Type':'application/json'}, timeout=5)
         except Exception as e:
             logging.warning(f"企业微信 推送失败: {e}")
-
-    # Telegram 机器人推送
+    # Telegram 推送
     tg_token = os.getenv('TG_BOT_TOKEN')
     tg_user = os.getenv('TG_USER_ID')
     if tg_token and tg_user:
         try:
-            api = f"https://api.telegram.org/bot{tg_token}/sendMessage"
-            params = {'chat_id': tg_user, 'text': message}
-            requests.post(api, params=params, timeout=5)
+            requests.post(f"https://api.telegram.org/bot{tg_token}/sendMessage", params={'chat_id':tg_user,'text':message}, timeout=5)
         except Exception as e:
             logging.warning(f"Telegram 推送失败: {e}")
 
-
 def main():
-    # 记录初始配置内容，用于后续检测变更并提交版本控制
+    # 读取并保存配置原始内容，用于变更检测
     if not os.path.exists(CONFIG_FILE):
         logging.error(f"未找到配置文件: {CONFIG_FILE}")
         return
     with open(CONFIG_FILE, 'rb') as f:
         original_cfg = f.read()
 
-    # 清理旧失败日志
+    # 清理过期失败日志
     clean_old_failed_logs()
 
-    # 读取配置列表
+    # 加载配置列表
     with open(CONFIG_FILE, 'r', encoding='utf-8') as cf:
         items = json.load(cf)
 
-    # 执行下载与统计
-    stats = {'added': 0, 'updated': 0, 'skipped': 0, 'failed': 0}
+    # 执行下载、比对与统计
+    stats = {'added':0,'updated':0,'skipped':0,'failed':0}
     valid_paths = set()
     for item in items:
-        result = download_and_compare(item)
-        if result in stats:
-            stats[result] += 1
-        # 构建应保留文件路径
+        res = download_and_compare(item)
+        if res in stats:
+            stats[res] += 1
         ext = get_extension_from_url(item.get('url'))
-        valid_paths.add(os.path.join(BACKUP_DIR, get_subdir(ext), item['name'] + ext))
+        valid_paths.add(os.path.join(BACKUP_DIR, get_subdir(ext), item['name']+ext))
 
     # 清理过期备份
     removed = cleanup_files(valid_paths)
     stats['removed'] = len(removed)
 
-    # 推送通知
+    # 发送通知
     send_notifications(stats)
 
-    # 若配置文件有变更，则提交并推送到远程仓库
+    # 配置变更则自动提交并推送到 Git 远程仓库
     with open(CONFIG_FILE, 'rb') as f:
         new_cfg = f.read()
     if new_cfg != original_cfg:
         try:
-            subprocess.run(['git', 'add', CONFIG_FILE], check=True)
-            subprocess.run(['git', 'commit', '-m', 'config: update script-h-gist.json'], check=True)
-            subprocess.run(['git', 'push'], check=True)
+            subprocess.run(['git','add',CONFIG_FILE],check=True)
+            subprocess.run(['git','commit','-m','config: update script-h-gist.json'],check=True)
+            subprocess.run(['git','push'],check=True)
             logging.info("配置变更已提交并推送到远程仓库")
         except subprocess.CalledProcessError as e:
-            logging.error(f"Git 提交或推送失败: {e}")
+            logging.error(f"Git 操作失败: {e}")
 
 if __name__ == '__main__':
     main()
+
