@@ -1,0 +1,20 @@
+[
+  {"name": "12306_remove_ads", "url": "https://kelee.one/Tool/Loon/Plugin/12306_remove_ads.plugin", "headers": {"User-Agent": "Loon/853 CFNetwork/3826.500.131 Darwin/24.5.0"}},
+  {"name": "Reddit_remove_ads", "url": "https://kelee.one/Tool/Loon/Plugin/Reddit_remove_ads.plugin", "headers": {"User-Agent": "Loon/853 CFNetwork/3826.500.131 Darwin/24.5.0"}},
+  {"name": "PICC_Insurance_remove_ads", "url": "https://kelee.one/Tool/Loon/Plugin/PICC_Insurance_remove_ads.plugin", "headers": {"User-Agent": "Loon/853 CFNetwork/3826.500.131 Darwin/24.5.0"}},
+  {"name": "smzdm_remove_ads", "url": "https://kelee.one/Tool/Loon/Plugin/smzdm_remove_ads.plugin", "headers": {"User-Agent": "Loon/853 CFNetwork/3826.500.131 Darwin/24.5.0"}},
+  {"name": "QuarkBrowser_remove_ads", "url": "https://kelee.one/Tool/Loon/Plugin/QuarkBrowser_remove_ads.plugin", "headers": {"User-Agent": "Loon/853 CFNetwork/3826.500.131 Darwin/24.5.0"}},
+  {"name": "Weixin_Official_Accounts_remove_ads", "url": "https://kelee.one/Tool/Loon/Plugin/Weixin_Official_Accounts_remove_ads.plugin", "headers": {"User-Agent": "Loon/853 CFNetwork/3826.500.131 Darwin/24.5.0"}},
+  {"name": "Weixin_external_links_unlock", "url": "https://kelee.one/Tool/Loon/Plugin/Weixin_external_links_unlock.plugin", "headers": {"User-Agent": "Loon/853 CFNetwork/3826.500.131 Darwin/24.5.0"}},
+  {"name": "WexinMiniPrograms_Remove_ads", "url": "https://kelee.one/Tool/Loon/Plugin/WexinMiniPrograms_Remove_ads.plugin", "headers": {"User-Agent": "Loon/853 CFNetwork/3826.500.131 Darwin/24.5.0"}},
+  {"name": "SodaMusic_remove_ads", "url": "https://kelee.one/Tool/Loon/Plugin/SodaMusic_remove_ads.plugin", "headers": {"User-Agent": "Loon/853 CFNetwork/3826.500.131 Darwin/24.5.0"}},
+  {"name": "BaiduNetDisk_remove_ads", "url": "https://kelee.one/Tool/Loon/Plugin/BaiduNetDisk_remove_ads.plugin", "headers": {"User-Agent": "Loon/853 CFNetwork/3826.500.131 Darwin/24.5.0"}},
+  {"name": "Tieba_remove_ads", "url": "https://kelee.one/Tool/Loon/Plugin/Tieba_remove_ads.plugin", "headers": {"User-Agent": "Loon/853 CFNetwork/3826.500.131 Darwin/24.5.0"}},
+  {"name": "YoudaoDict_remove_ads", "url": "https://kelee.one/Tool/Loon/Plugin/YoudaoDict_remove_ads.plugin", "headers": {"User-Agent": "Loon/853 CFNetwork/3826.500.131 Darwin/24.5.0"}},
+  {"name": "MailMaster_remove_ads", "url": "https://kelee.one/Tool/Loon/Plugin/MailMaster_remove_ads.plugin", "headers": {"User-Agent": "Loon/853 CFNetwork/3826.500.131 Darwin/24.5.0"}},
+  {"name": "MeiTu_remove_ads", "url": "https://kelee.one/Tool/Loon/Plugin/MeiTu_remove_ads.plugin", "headers": {"User-Agent": "Loon/853 CFNetwork/3826.500.131 Darwin/24.5.0"}},
+  {"name": "CoolApk_remove_ads", "url": "https://kelee.one/Tool/Loon/Plugin/CoolApk_remove_ads.plugin", "headers": {"User-Agent": "Loon/853 CFNetwork/3826.500.131 Darwin/24.5.0"}},
+  {"name": "FleaMarket_remove_ads", "url": "https://kelee.one/Tool/Loon/Plugin/FleaMarket_remove_ads.plugin", "headers": {"User-Agent": "Loon/853 CFNetwork/3826.500.131 Darwin/24.5.0"}},
+  {"name": "AliYunDrive_remove_ads", "url": "https://kelee.one/Tool/Loon/Plugin/AliYunDrive_remove_ads.plugin", "headers": {"User-Agent": "Loon/853 CFNetwork/3826.500.131 Darwin/24.5.0"}},
+  {"name": "SF-Express_remove_ads", "url": "https://kelee.one/Tool/Loon/Plugin/SF-Express_remove_ads.plugin", "headers": {"User-Agent": "Loon/853 CFNetwork/3826.500.131 Darwin/24.5.0"}}
+]
