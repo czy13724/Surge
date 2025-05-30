@@ -1,4 +1,4 @@
-# 搭配sync_FILES_header.yml使用，旨在备份需要指定请求头才能访问成功的链接内容。
+# 搭配sync-FILES-header.yml使用，旨在备份需要指定请求头才能访问成功的链接内容。
 #!/usr/bin/env python3
 import os
 import json
