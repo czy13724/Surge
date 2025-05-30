@@ -1,0 +1,94 @@
+# 使用目的：自动同步指定链接文件并保存到当前仓库
+# 作者：Levi
+# 创建时间：2025/05/30
+# 搭配sync-FILES-header.py使用
+# 🚨推荐同步备份到你的私有仓库 你必须授予仓库读写权限才可使用！
+# 使用方式：
+# 1. 在仓库根目录创建 script-h-gist.json 文件，格式参考下方示例。
+# 2. 将 sync-FILES-header.py 文件放入 .github/py目录中
+# 3. 将此工作流文件放入 .github/workflows/sync-FILES-header.yml
+# 4. 在设置里为环境变量(env部分)增加Secrets以启用通知（可选项，未设置则不推送）
+# 5. 可监测配置文件改动执行或手动运行或等待定时触发（默认每天执行一次）
+# ------------------------------------------------------------------------
+# script-h-gist.json 文件格式如下（示例）：
+# [
+#  {
+#    "name": "",                          // 本地保存的文件名（不含后缀）
+#    "url": "",                          // 远程下载链接
+#    "headers": {                       // 可选，用于针对该 URL 额外设置 HTTP 请求头
+#      "User-Agent": "",
+#      "Accept": "",
+#      ...
+#               }
+#  },
+#  {
+#    "name": "",
+#    "url": ""
+#    // 没有 headers 时可省略该字段
+#  },
+#  {
+#    "name": "",
+#    "url": "",
+#    "headers": {}
+#  }
+# ]
+
+# ⚠️ script-h-gist.json 文件最后一个链接不需要加逗号，否则报错！
+# ------------------------------------------------------------------------
+name: Specific Files-h Backup via
+
+on:
+  schedule:
+    - cron: '0 2 * * *'        # UTC时间 到规定时间自动执行
+  push:                        # 监测文件内容改动 若有改动自动执行
+    paths:
+      - 'script-h-gist.json'   # 监视根目录文件夹script-h-gist.json内容是否改动
+  workflow_dispatch:           # 手动执行备份
+    inputs:
+      clean_mode:
+        description: '是否清理未在 script-h-gist.json 中的保留的历史文件?(true=清理，false=不清理)'
+        required: false
+        default: 'false'
+      notify_lang:
+        description: '通知语言 (en-us=英文，zh-cn=中文)'
+        required: false
+        default: 'zh-cn'
+      target_branch:
+        description: '要推送到哪个分支？（默认 main）'
+        required: false
+        default: 'main'  
+
+env:
+  CLEAN_MODE: ${{ github.event.inputs.clean_mode }}            # 谨慎开启。如你的配置文件链接访问失败/你移除了部分文件，开启后工作流执行完毕会将你备份的对应文件移除，即是否清理未在 script-gist.json 中的保留的历史文件（true/false）
+  TARGET_BRANCH: ${{ github.event.inputs.target_branch }}      # 推送分支 默认main
+  FORCE_NOTIFY: true                                           # 自定义开启。强制推送通知，需在仓库secret里添加配置，搭配下方可选通知方式使用。（true/false）
+  NOTIFY_LANG: ${{ github.event.inputs.notify_lang }}          # 通知语言配置 仅支持中英切换 (zh-cn或en-us)
+  BARK_PUSH_URL: ${{ secrets.BARK_PUSH_URL }}                  # Bark 推送完整 URL，例如：https://api.day.app/你的Key
+  SERVERCHAN_SEND_KEY: ${{ secrets.SERVERCHAN_SEND_KEY }}      # Server酱 SendKey（sct.ftqq.com 获取）
+  WECHAT_WEBHOOK_URL: ${{ secrets.WECHAT_WEBHOOK_URL }}        # 企业微信机器人 Webhook 地址
+  TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}                    # Telegram Bot Token（BotFather 获取）
+  TG_USER_ID: ${{ secrets.TG_USER_ID }}                        # Telegram 用户 ID（通过 @userinfobot 获取）
+  BARK_ICON_URL: ${{ secrets.BARK_ICON_URL }}                  # bark app 展示图标
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install Requests
+        run: pip install requests 
+
+      - name: Set up Git user
+        run: |
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"        
+
+      - name: Run sync-FILES-header.py
+        run: python3 .github/py/sync-FILES-header.py
