@@ -4,7 +4,7 @@
   {"name": "夸克去广告", "url": "https://kelee.one/Tool/Loon/Plugin/QuarkBrowser_remove_ads.plugin", "headers": {"User-Agent": "Loon/853 CFNetwork/3826.500.131 Darwin/24.5.0"}},
   {"name": "微信公众号去广告", "url": "https://kelee.one/Tool/Loon/Plugin/Weixin_Official_Accounts_remove_ads.plugin", "headers": {"User-Agent": "Loon/853 CFNetwork/3826.500.131 Darwin/24.5.0"}},
   {"name": "微信外部链接解锁", "url": "https://kelee.one/Tool/Loon/Plugin/Weixin_external_links_unlock.plugin", "headers": {"User-Agent": "Loon/853 CFNetwork/3826.500.131 Darwin/24.5.0"}},
-  {"name": "汽水音乐去广告", "url": "https://kelee.one/Tool/Loon/Plugin/WexinMiniPrograms_Remove_ads.plugin", "headers": {"User-Agent": "Loon/853 CFNetwork/3826.500.131 Darwin/24.5.0"}},
+  {"name": "微信小程序去广告", "url": "https://kelee.one/Tool/Loon/Plugin/WexinMiniPrograms_Remove_ads.plugin", "headers": {"User-Agent": "Loon/853 CFNetwork/3826.500.131 Darwin/24.5.0"}},
   {"name": "汽水音乐去广告", "url": "https://kelee.one/Tool/Loon/Plugin/SodaMusic_remove_ads.plugin", "headers": {"User-Agent": "Loon/853 CFNetwork/3826.500.131 Darwin/24.5.0"}},
   {"name": "百度网盘去广告", "url": "https://kelee.one/Tool/Loon/Plugin/BaiduNetDisk_remove_ads.plugin", "headers": {"User-Agent": "Loon/853 CFNetwork/3826.500.131 Darwin/24.5.0"}},
   {"name": "百度贴吧去广告", "url": "https://kelee.one/Tool/Loon/Plugin/Tieba_remove_ads.plugin", "headers": {"User-Agent": "Loon/853 CFNetwork/3826.500.131 Darwin/24.5.0"}},
