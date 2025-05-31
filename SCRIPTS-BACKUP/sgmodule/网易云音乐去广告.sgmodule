@@ -1,13 +1,11 @@
-#!name = 网易云音乐去广告 
-#!desc = 过滤网易云音乐广告，并允许自定义界面。\n解锁网易云音乐会员，非会员用户在模块参数中自行开启。
-#!category = 去广告
-#!author = Keywos[https://github.com/Keywos], RuCu6[https://github.com/RuCu6], wish[https://github.com/mist-whisper], Yuheng0101[https://raw.githubusercontent.com/Yuheng0101]
-#!homepage = https://github.com/mist-whisper/Surge/blob/master/README.md
-#!icon = https://raw.githubusercontent.com/mist-whisper/Icon/master/App_icon/120px/NeteaseCloudMusic.png
-#!date = 2025-05-14 13:23:00
+#!name=网易云音乐去广告 
+#!desc=过滤网易云音乐广告，并允许自定义界面。\n解锁网易云音乐会员，非会员用户在模块参数中自行开启。
+#!author=Keywos[https://github.com/Keywos], RuCu6[https://github.com/RuCu6], wish[https://github.com/mist-whisper], anyehttp[https://github.com/anyehttp]
+#!category=去广告
+#!date=2025-05-31 02:12:00
 
-#!arguments= 共享会员:#,漫游:1,笔记:1,发现:1,问候语:0,排行榜:0,每日推荐:0,推荐歌单:0,最近常听:1,雷达歌单:1,音乐合伙人:1,推荐专属歌单:0,你的专属歌单:0
-#!arguments-desc= 将 # 改成任意名称即可开启对应脚本\n\n隐藏为:1/true  不隐藏为:0/false
+#!arguments=共享会员:#,漫游:1,笔记:1,发现:1,问候语:0,排行榜:0,每日推荐:0,推荐歌单:0,最近常听:1,雷达歌单:1,音乐合伙人:1,推荐专属歌单:0,你的专属歌单:0
+#!arguments-desc=将 # 改成任意名称即可开启对应脚本\n\n隐藏为:1/true  不隐藏为:0/false
 
 [Rule]
 DOMAIN,iadmusicmat.music.126.net,REJECT-NO-DROP
@@ -36,18 +34,19 @@ DOMAIN,httpdns.music.163.com,REJECT-NO-DROP
 
 [Script]
 # 会员解锁
-# {{{黑胶会员}}} = type=http-response, pattern=^https?:\/\/interface\d?\.music\.163\.com\/e?api\/(mine\/(collect|rn)\/header\/info|v\d\/user\/detail\/\d+|vipnewcenter\/app\/resource\/newaccountpage|music-vip-membership\/(client|front)\/vip\/info|batch|playlist\/privilege|search\/complex\/page|v\d\/(discovery\/recommend\/songs|playlist\/detail)), script-path=https://raw.githubusercontent.com/Yuheng0101/X/main/Scripts/NeteaseCloudMusic/netease.js, requires-body=1, binary-body-mode=1, max-size=-1, timeout=60
-# {{{黑胶会员}}} = type=http-request, pattern=^https?:\/\/interface\d?\.music\.163\.com\/e?api\/(song\/enhance\/player\/url\/v\d|vipauth\/app\/auth\/query), script-path=https://raw.githubusercontent.com/Yuheng0101/X/main/Scripts/NeteaseCloudMusic/netease.js, requires-body=1, binary-body-mode=1, max-size=-1, timeout=60
+{{{共享会员}}} type=http-request, pattern=^https?:\/\/interface\d?\.music\.163\.com\/eapi\/(?:v1\/artist\/top\/song|v3\/discovery\/recommend\/songs), script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js, timeout=20
+{{{共享会员}}} = type=http-request, pattern=^https?:\/\/interface\d?\.music\.163\.com\/eapi\/v3\/song\/detail, script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js, timeout=20
+{{{共享会员}}} = type=http-request, pattern=^https?:\/\/interface\d?\.music\.163\.com\/eapi\/song\/(?:chorus|enhance\/|play\/|type\/detail\/get), script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js, timeout=20
 
-# 会员解锁优选
-{{{共享会员}}} = type=http-request, pattern=^https:\/\/interface3?\.music\.163\.com\/eapi\/playermode\/, script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js, timeout=60
-{{{共享会员}}} = type=http-request, pattern=^https:\/\/interface3?\.music\.163\.com\/eapi\/search\/complex\/(page|rec\/song\/get), script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js, timeout=60
-{{{共享会员}}} = type=http-request, pattern=^https:\/\/interface3?\.music\.163\.com\/eapi\/v3\/song\/detail, script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js, timeout=60
-{{{共享会员}}} = type=http-request, pattern=^https:\/\/interface3?\.music\.163\.com\/eapi\/song\/(chorus|enhance\/|play\/|type\/detail\/get), script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js, timeout=60
-{{{共享会员}}} = type=http-request, pattern=^https:\/\/interface3?\.music\.163\.com\/eapi\/(v1\/artist\/top\/song|v3\/discovery\/recommend\/songs), script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js, timeout=60
-{{{共享会员}}} = type=http-request, pattern=^https:\/\/interface3?\.music\.163\.com\/eapi\/vipnewcenter\/app\/resource\/newaccountpage, script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js, timeout=60
-{{{共享会员}}} = type=http-request, pattern=^https?:\/\/interface3?\.music\.163\.com\/eapi\/(homepage\/|v6\/)?playlist\/, script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js, timeout=60
-{{{共享会员}}} = type=http-request, pattern=^https?:\/\/interface3?\.music\.163\.com\/eapi\/vipauth\/app\/auth\/(soundquality\/)?query, script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js, timeout=60
+{{{共享会员}}} = type=http-request, pattern=^https?:\/\/interface\d?\.music\.163\.com\/eapi\/playermode\/, script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js, timeout=20
+
+{{{共享会员}}} = type=http-request, pattern=^https?:\/\/interface\d?\.music\.163\.com\/eapi\/search\/(?:complex\/page|complex\/rec\/song\/get|song\/list\/page), script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js, timeout=20
+
+{{{共享会员}}} = type=http-request, pattern=^https?:\/\/interface\d?\.music\.163\.com\/eapi\/vipnewcenter\/app\/resource\/newaccountpage, script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js, timeout=20
+
+{{{共享会员}}} = type=http-request, pattern=^https?:\/\/interface\d?\.music\.163\.com\/w?e?api\/(homepage\/|v6\/)?playlist\/(?!(?:delete|subscribe|unsubscribe)), script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js, timeout=20
+
+{{{共享会员}}} = type=http-request, pattern=^https?:\/\/interface\d?\.music\.163\.com\/eapi\/vipauth\/app\/auth\/(soundquality\/)?query, script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js, timeout=20
 
 # 以下为非会员部分
 评论区、热推、有话想说、分享一下、歌曲下的祝福等小提示 = type=http-response,pattern=^https?:\/\/(ipv4|interface\d?)\.music\.163\.com\/e?api\/(batch|v\d\/resource\/comment\/floor\/get),requires-body=1,max-size=0,timeout=20,binary-body-mode=1,script-path=https://raw.githubusercontent.com/Keywos/rule/main/script/wy/js/wyres.js
