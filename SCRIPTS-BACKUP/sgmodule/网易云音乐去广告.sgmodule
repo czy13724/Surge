@@ -14,10 +14,6 @@ DOMAIN,iadmatapk.nosdn.127.net,REJECT-NO-DROP
 DOMAIN,httpdns.n.netease.com,REJECT-NO-DROP
 DOMAIN,httpdns.music.163.com,REJECT-NO-DROP
 
-[Header Rewrite]
-# 解锁网易云音乐黑胶会员并解锁播放权限
-# http-request ^https?:\/\/(?:ipv4|interface\d?)\.music\.163\.com\/e?api\/(mine\/(collect|rn)\/header\/info|v\d\/user\/detail\/\d+|vipnewcenter\/app\/resource\/newaccountpage|music-vip-membership\/(client|front)\/vip\/info|batch|playlist\/privilege|search\/complex\/page|v\d\/(discovery\/recommend\/songs|playlist\/detail)) header-replace 'x-aeapi' 'false'
-
 [Map Local]
 # 开屏广告
 ^https?:\/\/(ipv4|interface\d?)\.music\.163.com\/e?api\/ad data-type=text data="{}"
@@ -34,7 +30,7 @@ DOMAIN,httpdns.music.163.com,REJECT-NO-DROP
 
 [Script]
 # 会员解锁
-{{{共享会员}}} type=http-request, pattern=^https?:\/\/interface\d?\.music\.163\.com\/eapi\/(?:v1\/artist\/top\/song|v3\/discovery\/recommend\/songs), script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js, timeout=20
+{{{共享会员}}} = type=http-request, pattern=^https?:\/\/interface\d?\.music\.163\.com\/eapi\/(?:v1\/artist\/top\/song|v3\/discovery\/recommend\/songs), script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js, timeout=20
 {{{共享会员}}} = type=http-request, pattern=^https?:\/\/interface\d?\.music\.163\.com\/eapi\/v3\/song\/detail, script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js, timeout=20
 {{{共享会员}}} = type=http-request, pattern=^https?:\/\/interface\d?\.music\.163\.com\/eapi\/song\/(?:chorus|enhance\/|play\/|type\/detail\/get), script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/NeteaseCloudMusic/ShareVIP.js, timeout=20
 
