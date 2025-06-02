@@ -1,16 +1,15 @@
-#!name = Spotify去广告
-#!desc = 过滤Spotify播放广告，移除随机播放，恢复歌手和专辑列表的正常展示。建议重新登录并清除缓存，且音质不能设置为超高，仅建议iOS 15及以上设备使用。
-#!openUrl = 
-#!author = app2smile[https://github.com/app2smile]
-#!homepage = https://github.com/mist-whisper/Surge/blob/master/README.md
-#!icon = https://raw.githubusercontent.com/mist-whisper/Icon/master/App_icon/120px/Spotify.png
-#!date = 2024-11-28 00:00:00
-#!category = 解锁去广告
+#!name=Spotify去广告
+#!desc=过滤Spotify播放广告，移除随机播放，自定义移除歌单创建按钮，恢复歌手和专辑列表的正常展示。建议重新登录并清除缓存，且音质不能设置为超高，仅建议iOS 15及以上设备使用。
+#!author=001ProMax[https://github.com/001ProMax]
+#!category=解锁去广告
+#!date=2025-05-31 23:59:50
+
+
+#!arguments=隐藏底栏创建按钮:1,接力功能:0
+#!arguments-desc=隐藏底栏创建按钮: [1, 0]\n- 1: 开启\n- 0: 关闭\n\n接力功能: [1, 0]\n- 1: 开启\n- 0: 关闭
 
 [Script]
-JSON处理 = type=http-request, pattern=^https:\/\/spclient\.wg\.spotify\.com\/(artistview\/v1\/artist|album-entity-view\/v2\/album)\/, script-path=https://raw.githubusercontent.com/mist-whisper/Script/refs/heads/master/Spotify/Spotify_remove_ads.js, timeout=10
-
-Proto处理 = type=http-response, pattern=^https:\/\/spclient\.wg\.spotify\.com\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$, script-path=https://raw.githubusercontent.com/mist-whisper/Script/refs/heads/master/Spotify/Spotify_proto.js, requires-body=true, binary-body-mode=true, timeout=10
+Protobuf处理 = type=http-response, pattern=^https:\/\/spclient\.wg\.spotify\.com\/(?:bootstrap|user-customization-service), script-path=https://raw.githubusercontent.com/001ProMax/Surge/refs/heads/main/Script/Spotify.Crack.js, requires-body=true, binary-body-mode=true, argument="{"tab":"{{{隐藏底栏创建按钮}}}","useractivity":{{{接力功能}}}}"
 
 [MITM]
 hostname = %APPEND% spclient.wg.spotify.com
