@@ -8,7 +8,7 @@
 #!loon_version=3.2.4(787)
 #!homepage=https://github.com/luestr/ProxyResource/blob/main/README.md
 #!icon=https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/Spotify.png
-#!date=2025-06-02 19:39:26
+#!date=2025-06-08 03:40:18
 
 [Argument]
 tab=switch, "false", "true", tag=移除底栏创建按钮, desc=此开关控制是否移除底栏创建按钮
@@ -18,12 +18,12 @@ useractivity=switch, "true", "false", tag=启用Apple设备接力, desc=此开�
 AND, ((DOMAIN, spclient.wg.spotify.com), (PROTOCOL, QUIC)), REJECT
 
 [Rewrite]
-^https:\/\/spclient\.wg\.spotify\.com\/pendragon\/ reject-dict
+^https:\/\/.+\.spotify\.com\/pendragon\/ reject-dict
 
-^https:\/\/spclient\.wg\.spotify\.com\/(artistview\/v1\/artist|album-entity-view\/v2\/album)\/(.*)platform=iphone header https://spclient.wg.spotify.com/$1/$2platform=ipad
+^https:\/\/(.+)\.spotify\.com(:443)?\/(artistview\/v1\/artist|album-entity-view\/v2\/album)\/(.*)platform=iphone header https://$1.spotify.com$2/$3/$4platform=ipad
 
 [Script]
-http-response ^https:\/\/spclient\.wg\.spotify\.com\/(?:bootstrap|user-customization-service) script-path=https://kelee.one/Resource/Script/Spotify/Spotify_remove_ads.js, requires-body=true, binary-body-mode=true, timeout=10, argument=[{tab},{useractivity}], tag=Protobuf处理
+http-response ^https:\/\/.+\.spotify\.com(:443)?\/(?:bootstrap|user-customization-service) script-path=https://kelee.one/Resource/Script/Spotify/Spotify_remove_ads.js, requires-body=true, binary-body-mode=true, timeout=10, argument=[{tab},{useractivity}], tag=Protobuf处理
 
 [MitM]
-hostname=spclient.wg.spotify.com
+hostname=*.spotify.com
