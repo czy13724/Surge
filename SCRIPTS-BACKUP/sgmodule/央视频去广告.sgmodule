@@ -1,11 +1,8 @@
-#!name = 央视频去广告
-#!desc = 去除赛事直播前的广告。
-#!openUrl = 
-#!author = Yu9191[https://github.com/Yu9191]
-#!homepage = https://github.com/mist-whisper/Surge/blob/master/README.md
-#!icon = https://raw.githubusercontent.com/mist-whisper/Icon/master/App_icon/120px/YangShiPin.png
-#!date = 2024-07-24 15:44:57
-#!category = 去广告
+#!name=央视频去广告
+#!desc=去除赛事直播前的广告。
+#!author=Yu9191[https://github.com/Yu9191]
+#!category=去广告
+#!date=2024-07-24 15:44:57
 
 [URL Rewrite]
 # 解锁[电视]内会员 如果登录提示错误的话 手动屏蔽下面这条
