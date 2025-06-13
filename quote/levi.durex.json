@@ -1,0 +1,83 @@
+{
+  "id": "dls.boxjs.sub",
+  "name": "杜蕾斯会员中心",
+  "author": "@Levi",
+  "icon": "https://fastly.jsdelivr.net/gh/czy13724/LeviIcons@main/leviicons/duleisi.png",
+  "repo": "https://github.com/czy13724/Quantumult-X",
+  "apps": [
+    {
+      "id": "dls",
+      "name": "杜蕾斯签到小程序",
+      "keys": [
+        "dls_data",
+        "dls_enable_notify",
+        "dls_single_notify", 
+        "dls_enable_lottery",
+        "dls_snid",
+        "dls_random_delay",
+        "bark_key"
+      ],
+      "author": "@Levi",
+      "repo": "https://github.com/czy13724/Quantumult-X",
+      "icons": [
+        "https://fastly.jsdelivr.net/gh/czy13724/LeviIcons@main/leviicons/duleisi.png",
+        "https://fastly.jsdelivr.net/gh/czy13724/LeviIcons@main/leviicons/duleisi.png"
+      ],
+      "script": "https://fastly.jsdelivr.net/gh/czy13724/Quantumult-X@main/scripts/dls.js",
+      "settings": [
+        {
+          "id": "dls_data",
+          "name": "账号数据",
+          "val": "",
+          "type": "textarea",
+          "placeholder": "[{\"mobile\":\"138xxxx\",\"token\":\"xxxx\"},{\"mobile\":\"139xxxx\",\"token\":\"yyyy\"}]",
+          "desc": "账号数据，JSON数组格式，包含手机号和token"
+        },
+        {
+          "id": "dls_enable_notify",
+          "name": "启用通知推送",
+          "val": "true",
+          "type": "boolean",
+          "desc": "是否启用通知推送功能"
+        },
+        {
+          "id": "dls_single_notify",
+          "name": "单账号独立通知",
+          "val": "false", 
+          "type": "boolean",
+          "desc": "开启后每个账号独立推送通知，关闭则汇总推送"
+        },
+        {
+          "id": "dls_enable_lottery",
+          "name": "启用抽奖功能",
+          "val": "false",
+          "type": "boolean", 
+          "desc": "是否启用抽奖功能（需要配置抽奖活动ID）"
+        },
+        {
+          "id": "dls_snid",
+          "name": "抽奖活动ID",
+          "val": "",
+          "type": "text",
+          "placeholder": "输入抽奖活动的snId",
+          "desc": "抽奖活动的snId，启用抽奖功能时必填"
+        },
+        {
+          "id": "dls_random_delay",
+          "name": "启用随机延迟",
+          "val": "true",
+          "type": "boolean",
+          "desc": "账号间是否启用随机延迟（1-3秒），避免请求过快"
+        },
+        {
+          "id": "bark_key",
+          "name": "Bark推送Key",
+          "val": "",
+          "type": "text", 
+          "placeholder": "输入Bark的推送Key",
+          "desc": "Bark推送的Key，用于iOS推送通知"
+        }
+      ]
+    }
+  ]
+}
