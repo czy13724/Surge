@@ -3,12 +3,11 @@ Surge自用规则库
 
 * 如您是开发者或强迫症患者，想要专属于单一BoxJS订阅/自用BoxJS订阅，请访问[该网址](https://boxjs.levifree.dpdns.org)自行构建。此网站需您了解对应功能否则勿用。
 
+* 个人使用的图标库： [levi.icons.json](https://raw.githubusercontent.com/czy13724/LeviIcons/main/levi.icons.json)
+
 请勿fork！！！请勿fork！！！请勿fork！！！喜欢请点击star✨
 
 Plz Do Not FORK!!! Plz Do Not FORK!!! Plz Do Not FORK!!! If u like it, plz click star✨
-
-
-个人使用的图标库： [levi.icons.json](https://raw.githubusercontent.com/czy13724/LeviIcons/main/levi.icons.json)
 
 
 #### 免责声明
