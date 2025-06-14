@@ -1,5 +1,5 @@
 # Levi对本仓库说明
-Surge自用规则库
+## Surge自用规则库
 
 * 如您是开发者或强迫症患者，想要专属于单一BoxJS订阅/自用BoxJS订阅，请访问[该网址](https://boxjs.levifree.dpdns.org)自行构建。此网站需您了解对应功能否则勿用。
 
@@ -10,7 +10,7 @@ Surge自用规则库
 Plz Do Not FORK!!! Plz Do Not FORK!!! Plz Do Not FORK!!! If u like it, plz click star✨
 
 
-#### 免责声明
+## 免责声明
 
 * 项目内所涉及任何脚本、LOGO 、工作流仅为资源共享、学习参考之目的，不保证其合法性、正当性、准确性；请根据情况自行判断，切勿使用项目做任何商业用途或牟利；
 
