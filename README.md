@@ -1,23 +1,14 @@
 # Levi对本仓库说明
 Surge自用规则库
-脚本请访问[该地址获取](https://github.com/czy13724/Quantumult-X/tree/main/Surge)。按照各个脚本的说明操作即可。
 
-什么也不会，靠自己！
-
-
-Everyone is best! To try, to make it! U‘ll get some senses of achievement.
-
+* 如您是开发者或强迫症患者，想要专属于单一BoxJS订阅/自用BoxJS订阅，请访问[该网址](https://boxjs.levifree.dpdns.org)自行构建。此网站需您了解对应功能否则勿用。
 
 请勿fork！！！请勿fork！！！请勿fork！！！喜欢请点击star✨
-
 
 Plz Do Not FORK!!! Plz Do Not FORK!!! Plz Do Not FORK!!! If u like it, plz click star✨
 
 
-先看说明再操作，再不会无缘使用。
-
-以下是个人使用的图标库：
-请用Quantumult X, Surge, Loon等App添加图标订阅 [levi.icons.json](https://raw.githubusercontent.com/czy13724/LeviIcons/main/levi.icons.json)
+个人使用的图标库： [levi.icons.json](https://raw.githubusercontent.com/czy13724/LeviIcons/main/levi.icons.json)
 
 
 #### 免责声明
