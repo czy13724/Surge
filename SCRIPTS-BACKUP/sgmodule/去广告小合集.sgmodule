@@ -2,7 +2,7 @@
 #!desc=移除一些小广告，优化一些小功能。
 #!author = RuCu6[https://github.com/RuCu6],fishdown[https://github.com/fishdown],wish[https://github.com/mist-whisper]
 #!category=去广告增强
-#!date=2025-06-23 12:28:00
+#!date=2025-06-29 05:04:00
 
 #!arguments=Dsenrp55去广告:跳转外部播放器
 #!arguments-desc = [参数设置]\nDsenrp55去广告:跳转外部播放器脚本启停\n   ├ 跳转外部播放器：启用（默认值）\n   └ 填入"#"：注释停用
@@ -116,6 +116,8 @@ http-response ^https:\/\/(.*\.)?kelee\.one(\/.*)? header-replace 'content-type' 
 http-request ^https:\/\/github\.com\/ header-replace 'Accept-Language' 'en-us'
 
 [Body Rewrite]
+http-response-jq ^https:\/\/misc-api-prd-mx\.wandafilm\.com\/commend\/common_banner_batch\.api '.data.objects["OpenAPP-&-FlashAD"] = [] | .data.objects["InTheaters-&-BoxAD"] = []'
+http-response ^https?:\/\/misc-api-prd-mx\.wandafilm\.com\/commend\/common_banner_batch\.api\?bannerInfos=%5B%7B%22cinemaI "WX_index_mp-&-boxAD" "fmz200"
 http-response-jq ^https:\/\/api\.xiaoyuzhoufm\.com\/v1\/discovery-feed\/list '.data |= map(select(.type != "DISCOVERY_HEADER" and .type != "DISCOVERY_BANNER"))'
 http-response-jq ^https:\/\/api\.m\.mi\.com\/v1\/order\/expressView 'delpaths([["data","bottom","ad_info"]])'
 http-response ^https?:\/\/[^\/]+\/category\/6\.html$ <style> <style> .video-list > .video-item:nth-of-type(-n+2) { display:none !important} .gotoclick{ display:none !important} .modal{ display:none !important} .addbox{ display:none !important}
@@ -276,4 +278,4 @@ http-response ^https:\/\/dsenrp55\.com\/tabbar </head> </head><style>.swiperBox,
 {{{移除Dsenrp55广告}}} = type=http-request, pattern=^https:\/\/ghfgnm\.com\/mmapi\/m3u8\/p\/.+\.m3u8, script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/Dsenrp55.js, requires-body=true, timeout=60
 
 [MITM]
-hostname = %APPEND% ad.12306.cn, mobile.12306.cn, list-app-m.i4.cn, *api.alipan.com, member.alipan.com, acs.m.taobao.com, heic.alicdn.com, guide-acs.m.taobao.com, poplayer.template.alibaba.com, pan.baidu.com, 2023.redircdn.com, www.washpayer.com, api.douban.com, img3.doubanio.com, qnmob3.doubanio.com, img*.douban.com, frodo.douban.com, erebor.douban.com, image.mybank.icbc.com.cn, hfapp-service.qweather.net, acs-m.freshippo.com, gab.122.gov.cn, adserviceretry.kglink.cn, p0.pipi.cn, flowplus.meituan.net, img.meituan.net, s3plus.meituan.net, osg-service.sgcc.com.cn, api.m.mi.com, home.mi.com, shop-api.retail.mi.com, wallet.95516.com, mobilepaas.abchina.com.cn, ad.mcloud.139.com, jzts.cmpassport.com, boxer.baidu.com, m.baidu.com, www.baidu.com, zhidao.baidu.com, asserts.avple.tv, javdb.com, *.pornhub.com, 18hlw.com, lneuk.rslsilne.cc, 7054s.rbcmpeu.org, d2bkn61acaxm61.cloudfront.net, missav.ai, missav.ws, dsenrp55.com, ghfgnm.com, *.kelee.one, kelee.one, api.xiaoyuzhoufm.com, mobads.baidu.com, fmapp.chinafamilymart.com.cn, spamblocker-api.zeekstudio.com
+hostname = %APPEND% ad.12306.cn, mobile.12306.cn, list-app-m.i4.cn, *api.alipan.com, member.alipan.com, acs.m.taobao.com, heic.alicdn.com, guide-acs.m.taobao.com, poplayer.template.alibaba.com, pan.baidu.com, 2023.redircdn.com, www.washpayer.com, api.douban.com, img3.doubanio.com, qnmob3.doubanio.com, img*.douban.com, frodo.douban.com, erebor.douban.com, image.mybank.icbc.com.cn, hfapp-service.qweather.net, acs-m.freshippo.com, gab.122.gov.cn, adserviceretry.kglink.cn, p0.pipi.cn, flowplus.meituan.net, img.meituan.net, s3plus.meituan.net, osg-service.sgcc.com.cn, api.m.mi.com, home.mi.com, shop-api.retail.mi.com, wallet.95516.com, mobilepaas.abchina.com.cn, ad.mcloud.139.com, jzts.cmpassport.com, boxer.baidu.com, m.baidu.com, www.baidu.com, zhidao.baidu.com, asserts.avple.tv, javdb.com, *.pornhub.com, 18hlw.com, lneuk.rslsilne.cc, 7054s.rbcmpeu.org, d2bkn61acaxm61.cloudfront.net, missav.ai, missav.ws, dsenrp55.com, ghfgnm.com, *.kelee.one, kelee.one, api.xiaoyuzhoufm.com, mobads.baidu.com, fmapp.chinafamilymart.com.cn, spamblocker-api.zeekstudio.com, misc-api-prd-mx.wandafilm.com
