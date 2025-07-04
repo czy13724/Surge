@@ -2,7 +2,7 @@
 #!desc=移除一些小广告，优化一些小功能。
 #!author = RuCu6[https://github.com/RuCu6],fishdown[https://github.com/fishdown],wish[https://github.com/mist-whisper]
 #!category=去广告增强
-#!date=2025-06-29 05:04:00
+#!date=2025-07-03 18:18:00
 
 #!arguments=Dsenrp55去广告:跳转外部播放器
 #!arguments-desc = [参数设置]\nDsenrp55去广告:跳转外部播放器脚本启停\n   ├ 跳转外部播放器：启用（默认值）\n   └ 填入"#"：注释停用
@@ -85,7 +85,7 @@ DOMAIN-SUFFIX,criteo.com,REJECT
 DOMAIN-SUFFIX,pubmatic.com,REJECT
 DOMAIN-SUFFIX,smaato.net,REJECT
 DOMAIN-SUFFIX,amazon-adsystem.com,REJECT
-DOMAIN-KEYWORD,googleads,REJECT
+# DOMAIN-KEYWORD,googleads,REJECT
 DOMAIN-SUFFIX,adsappier.com,REJECT
 DOMAIN-SUFFIX,appier.net,REJECT
 DOMAIN-SUFFIX,appiersig.com,REJECT
