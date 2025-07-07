@@ -28,7 +28,11 @@ env_clean = os.getenv("CLEAN_MODE", "false").lower() == "true"
 EXTENSION_MAP = {
     ".js": "js",
     ".sgmodule": "sgmodule",
-    ".plugin": "plugin",
+    ".plugin": "loon",
+    ".lpx": "loon",
+    ".lsr": "loon",
+    ".lcf": "loon",
+    ".ltx": "loon",
     ".json": "json",
     ".sh": "shell",
     ".py": "python",
