@@ -164,7 +164,7 @@
   {"name": "Apple天气增强", "url": "https://kelee.one/Tool/Loon/Lpx/AppleWeatherEnhancer.lpx", "headers": {"User-Agent": "Loon/853 CFNetwork/3826.500.131 Darwin/24.5.0"}},
   {"name": "WPS每日签到", "url": "https://kelee.one/Tool/Loon/Lpx/WPS_checkin.lpx", "headers": {"User-Agent": "Loon/853 CFNetwork/3826.500.131 Darwin/24.5.0"}},
   {"name": "Follow每日签到", "url": "https://kelee.one/Tool/Loon/Lpx/FollowRSS_checkin.lpx", "headers": {"User-Agent": "Loon/853 CFNetwork/3826.500.131 Darwin/24.5.0"}},
-  {"name": "书香门第每日签到", "url": "https://raw.githubusercontent.com/bgvioletsky/ios_rule/main/Loon/Lpx/sxmd_sign.plugin"},
+  {"name": "书香门第每日签到", "url": "https://raw.githubusercontent.com/bgvioletsky/ios_rule/main/Loon/plugin/sxmd_sign.plugin"},
   {"name": "BiliBili每日等级任务", "url": "https://raw.githubusercontent.com/ClydeTime/BiliBili/master/modules/BiliBiliDailyBonus.plugin"},
   {"name": "Loon最小配置", "url": "https://raw.githubusercontent.com/luestr/ProxyResource/main/Tool/Loon/Lcf/zh-CN/Loon_Simple_Sample_Configuration_By_iKeLee.lcf"},
   {"name": "Loon-simple-config", "url": "https://raw.githubusercontent.com/luestr/ProxyResource/main/Tool/Loon/Lcf/en-US/Loon_Simple_Configuration_By_iKeLee.lcf"},
