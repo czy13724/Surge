@@ -8,7 +8,7 @@
 #!loon_version=3.2.4(787)
 #!homepage=https://github.com/luestr/ProxyResource/blob/main/README.md
 #!icon=https://raw.githubusercontent.com/luestr/IconResource/main/Website_icon/120px/TencentAd.png
-#!date=2025-07-05 01:13:04
+#!date=2025-07-09 08:54:09
 
 [Rule]
 # 字节跳动广告
@@ -223,6 +223,7 @@ DOMAIN-SUFFIX, igexin.com, REJECT
 # 友盟
 DOMAIN, cnlogs.umeng.com, REJECT
 DOMAIN, errlog.umeng.com, REJECT
+DOMAIN, resolve.umeng.com, REJECT
 DOMAIN, errnewlog.umeng.com, REJECT
 DOMAIN, ucc.umeng.com, REJECT
 DOMAIN, ulogs.umeng.com, REJECT
