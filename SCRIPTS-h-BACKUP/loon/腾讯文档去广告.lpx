@@ -11,10 +11,8 @@
 #!date=2025-05-13 15:17:08
 
 [Rewrite]
-# 弹窗广告
 ^https:\/\/tianshu\.qq\.com\/open\/ts_access\/GetAds\? reject-dict
 
-# 首页横幅推广
 ^https:\/\/h5\.qzone\.qq\.com\/p\/adboss\/api\/json\/ts_access\/GetAds$ reject-dict
 
 [MitM]
