@@ -11,13 +11,10 @@
 #!date=2025-05-13 15:17:08
 
 [Rewrite]
-# 首页横幅广告
 ^https:\/\/www\.kdocs\.cn\/kdg\/api\/v1\/cards\/type\/3\?iosVer=\d+\.\d+\.\d+&isGetList=1 reject-dict
 
-# 我的页面推广
 ^https:\/\/www\.kdocs\.cn\/kdg\/api\/v1\/cards\/type\/27\?iosVer=\d+\.\d+\.\d+&isGetList=1 reject-dict
 
-# 表单收集页面推广
 ^https:\/\/f-api\.kdocs\.cn\/godfather\/api\/thirdparty\/v1\/viewpager\?showLocal=mobileWebIndex reject-dict
 
 [MitM]
