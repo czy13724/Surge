@@ -5,6 +5,11 @@
 
 * 个人使用的图标库： [levi.icons.json](https://raw.githubusercontent.com/czy13724/LeviIcons/main/levi.icons.json)
 
+* Surge 单一模块生成器(带参数版)：
+ [链接1](https://surge-argu.levifree.news);
+ [链接2](https://surge-argu.levifree.dpdns.org);
+ [工具使用指南](https://github.com/czy13724/Surge/blob/main/Tutorials/surge_argu_moduler.md)
+
 请勿fork！！！请勿fork！！！请勿fork！！！喜欢请点击star✨
 
 Plz Do Not FORK!!! Plz Do Not FORK!!! Plz Do Not FORK!!! If u like it, plz click star✨
