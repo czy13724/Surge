@@ -8,7 +8,7 @@
 #!loon_version=3.2.4(787)
 #!homepage=https://github.com/luestr/ProxyResource/blob/main/README.md
 #!icon=https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/Himalaya.png
-#!date=2025-05-13 15:17:08
+#!date=2025-07-11 17:53:22
 
 [Rule]
 DOMAIN, adse.ximalaya.com, REJECT
@@ -38,6 +38,8 @@ DOMAIN, adbehavior.wsa.ximalaya.com, REJECT
 ^https:\/\/(mobile|mobilehera|mobwsa)\.ximalaya\.com\/social-web\/follow-stream\/category\/\d+$ reject-dict
 
 ^https:\/\/(m|mwsa)\.ximalaya\.com\/community\/square\/v\d\/stream\? mock-response-body data-type=json data="{"data":{"cards":[{"content":{},"type":"RECOMMENDS"}]},"ret":0}" status-code=200
+
+^https:\/\/mobwsa\.ximalaya\.com\/mobile-playpage\/playpage\/tabs\/v2\/ response-body-json-del data.playpage.resourceMap.defaultResource data.playpage.resourceMap.playPageTip
 
 ^https:\/\/(mobile|mobilehera|mobwsa)\.ximalaya\.com\/mobile-playpage\/playpage\/recommendContentV\d\/ reject-dict
 
