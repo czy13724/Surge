@@ -2,10 +2,7 @@
 #!desc=移除一些小广告，优化一些小功能。
 #!author = RuCu6[https://github.com/RuCu6],fishdown[https://github.com/fishdown],wish[https://github.com/mist-whisper]
 #!category=去广告增强
-#!date=2025-07-03 18:18:00
-
-#!arguments=Dsenrp55去广告:跳转外部播放器
-#!arguments-desc = [参数设置]\nDsenrp55去广告:跳转外部播放器脚本启停\n   ├ 跳转外部播放器：启用（默认值）\n   └ 填入"#"：注释停用
+#!date=2025-07-12 16:19:00
 
 [Rule]
 # 12306
@@ -31,6 +28,13 @@ IP-CIDR,180.76.76.200/32,REJECT,no-resolve
 DOMAIN,afd.baidu.com,REJECT
 DOMAIN,afdconf.baidu.com,REJECT
 DOMAIN,lc.map.baidu.com,REJECT
+AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch"),(USER-AGENT,"eleme*")),REJECT
+URL-REGEX,"^https?:\/\/elemecdn.com\/.+\/sitemap",REJECT
+URL-REGEX,"^https?:\/\/fuss10.elemecdn.com\/.+\/w\/640\/h\/\d{3,4}",REJECT
+URL-REGEX,"^https?:\/\/fuss10.elemecdn.com\/.+\/w\/750\/h\/\d{3,4}",REJECT
+URL-REGEX,"^https?:\/\/cube\.elemecdn\.com\/\w\/\w{2}\/\w+mp4\.mp4\?",REJECT
+URL-REGEX,"^https?:\/\/www1\.elecfans\.com\/www\/delivery\/",REJECT
+AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch"),(USER-AGENT,"%E9%A3%9E%E7%8C%AA%E6%97%85%E8%A1%8C*")),REJECT
 # 工商银行
 DOMAIN-SUFFIX,mall.icbc.com.cn,REJECT
 DOMAIN,pageviewp.icbc.com.cn,REJECT
@@ -91,6 +95,21 @@ DOMAIN-SUFFIX,appier.net,REJECT
 DOMAIN-SUFFIX,appiersig.com,REJECT
 
 [URL Rewrite]
+# 飞猪
+^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.fliggy\.crm\.(?:popresource|screen) - reject
+^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.trip\.guide\.guess\.what\.you\.like - reject
+# 饿了么
+^https?:\/\/elemecdn\.com\/.+\/sitemap - reject
+^https?:\/\/fuss10\.elemecdn\.com\/.+\/w\/640\/h\/\d{3,4} - reject
+^https?:\/\/fuss10\.elemecdn\.com\/.+\/w\/750\/h\/\d{3,4} - reject
+^https?:\/\/cube\.elemecdn\.com\/[\w\/]+\.jpeg\?x-oss-process=image\/resize,m_fill,w_1\d{3},h_2\d{3}\/format,webp\/ - reject
+^https?:\/\/cube\.elemecdn\.com\/[\w\/]+\.jpeg\?x-oss-process=image\/resize,m_fill,w_6\d{2},h_8\d{2}\/format,webp\/ - reject
+^https?:\/\/cube\.elemecdn\.com\/[\w\/]+\.jpeg\?x-oss-process=image\/resize,m_fill,w_\d{3},h_\d{4}\/format,webp\/ - reject
+^https?:\/\/cube\.elemecdn\.com\/\w\/\w{2}\/\w+mp4\.mp4\? - reject
+^https?:\/\/www1\.elecfans\.com\/www\/delivery\/ - reject
+^https?:\/\/(nr-op|cube)\.elemecdn\.com\/.+\.jpeg\?x-oss-process=image\/resize,m_fill,w_\d{4,},h_\d{4,}\/($|format,webp\/$) - reject
+^https:\/\/cube\.elemecdn\.com\d\w{2}\/\w{32}\.(png|gif)\?x-oss-process=image\/resize,m_fill,w_9\d{2},h_d{3}\/format,webp\/ - reject
+^https:\/\/nr-op\.elemecdn\.com\/image\/mussel-\d+\.(png|gif)\?x-oss-process=image\/resize\,m_fill,w_1\d{2},h_1\d{2}\/ - reject
 # 爱思助手
 ^https:\/\/list-app-m\.i4\.cn\/(?:adclickcb|getHotSearchList|getopfstadinfo)\.xhtml - reject
 ^https?:\/\/img\d\.doubanio\.com\/view\/dale-online\/dale_ad\/ - reject
@@ -129,6 +148,41 @@ http-response ^https:\/\/d2bkn61acaxm61\.cloudfront\.net <style> <style> .gotocl
 http-response ^https:\/\/dsenrp55\.com\/tabbar </head> </head><style>.swiperBox,.adBox,.ad,.adItem,.start-page-container,.n-container,.intercept-18,div.van-tabbar-item:first-of-type,div.van-tabbar-item:last-of-type{display:none!important}img.back{margin:40px!important}</style>
 
 [Map Local]
+^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.fliggy\.crm\.screen\.(?:allresource|predict) data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.trip\.activity\.querytmsresources data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+^https?:\/\/fuss10\.elemecdn\.com\/.+?\.mp4 data-type=tiny-gif status-code=200
+
+# 大麦
+^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.damai\.wireless\.home\.welcome data-type=text data=" " status-code=200
+
+^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.damai\.mec\.popup\.get data-type=text data=" " status-code=200
+
+^https?:\/\/img\.alicdn\.com\/imgextra\/i1\/.*-tps-1080-1920.jpg data-type=text data=" " status-code=200
+
+^https?:\/\/img\.alicdn\.com\/imgextra\/i2\/.*-tps-1080-1920.jpg data-type=text data=" " status-code=200
+
+^https?:\/\/img\.alicdn\.com\/imgextra\/i3\/.*-tps-1080-1920.jpg data-type=text data=" " status-code=200
+
+^https?:\/\/img\.alicdn\.com\/imgextra\/i4\/.*-tps-1080-1920.jpg data-type=text data=" " status-code=200
+
+^https?:\/\/img\.alicdn\.com\/imgextra\/i1\/.*-tps-1125-2436.jpg data-type=text data=" " status-code=200
+
+^https?:\/\/img\.alicdn\.com\/imgextra\/i2\/.*-tps-1125-2436.jpg data-type=text data=" " status-code=200
+
+^https?:\/\/img\.alicdn\.com\/imgextra\/i3\/.*-tps-1125-2436.jpg data-type=text data=" " status-code=200
+
+^https?:\/\/img\.alicdn\.com\/imgextra\/i4\/.*-tps-1125-2436.jpg data-type=text data=" " status-code=200
+
+^https?:\/\/img\.alicdn\.com\/imgextra\/i1\/.*-tps-900-1350.jpg data-type=text data=" " status-code=200
+
+^https?:\/\/img\.alicdn\.com\/imgextra\/i2\/.*-tps-900-1350.jpg data-type=text data=" " status-code=200
+
+^https?:\/\/img\.alicdn\.com\/imgextra\/i3\/.*-tps-900-1350.jpg data-type=text data=" " status-code=200
+
+^https?:\/\/img\.alicdn\.com\/imgextra\/i4\/.*-tps-900-1350.jpg data-type=text data=" " status-code=200
+
 # 百词斩 开屏广告
 ^http:\/\/advertise\.baicizhan\.com\/rpc\/advertise\/get_startup_ad data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
@@ -159,9 +213,6 @@ http-response ^https:\/\/dsenrp55\.com\/tabbar </head> </head><style>.swiperBox,
 
 ^https:\/\/member\.alipan\.com\/v2\/activity\/sign_in_luckyBottle data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
-# 阿里巴巴
-^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.fliggy\.crm\.screen\.(?:allresource|predict) data-type=text data="{}" status-code=200 header="Content-Type:application/json"
-
 ^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.alibaba\.advertisementservice\.getadv data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
 ^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.alimama\.etao\.config\.query\/.+?etao_advertise data-type=text data="{}" status-code=200 header="Content-Type:application/json"
@@ -173,8 +224,6 @@ http-response ^https:\/\/dsenrp55\.com\/tabbar </head> </head><style>.swiperBox,
 ^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.film\.mtopadvertiseapi\.queryadvertise data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
 ^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.o2o\.ad\.gateway\.get data-type=text data="{}" status-code=200 header="Content-Type:application/json"
-
-^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.trip\.activity\.querytmsresources data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
 ^https:\/\/heic\.alicdn\.com\/imgextra\/i\d\/\d*\/?[\w!]+-\d-(?:octopus|tps-1125-1602|tps-1080-1920)\.(?:jpg|png)_(?:1\d{3}|9\d{2})x(?:1\d{3}|9\d{2})q[59]0 data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
@@ -275,7 +324,7 @@ http-response ^https:\/\/dsenrp55\.com\/tabbar </head> </head><style>.swiperBox,
 移除Missav广告 = type=http-response, pattern=^https:\/\/missav\.(?:ai|ws)\/(?!(build|fonts|img|js|api|cdn-cgi)\/)., script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/Missav.js, requires-body=true
 
 # dsenrp55
-{{{移除Dsenrp55广告}}} = type=http-request, pattern=^https:\/\/ghfgnm\.com\/mmapi\/m3u8\/p\/.+\.m3u8, script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/Dsenrp55.js, requires-body=true, timeout=60
+移除Dsenrp55广告 = type=http-request, pattern=^https:\/\/ghfgnm\.com\/mmapi\/m3u8\/p\/.+\.m3u8, script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/Dsenrp55.js, requires-body=true, timeout=60
 
 [MITM]
-hostname = %APPEND% ad.12306.cn, mobile.12306.cn, list-app-m.i4.cn, *api.alipan.com, member.alipan.com, acs.m.taobao.com, heic.alicdn.com, guide-acs.m.taobao.com, poplayer.template.alibaba.com, pan.baidu.com, 2023.redircdn.com, www.washpayer.com, api.douban.com, img3.doubanio.com, qnmob3.doubanio.com, img*.douban.com, frodo.douban.com, erebor.douban.com, image.mybank.icbc.com.cn, hfapp-service.qweather.net, acs-m.freshippo.com, gab.122.gov.cn, adserviceretry.kglink.cn, p0.pipi.cn, flowplus.meituan.net, img.meituan.net, s3plus.meituan.net, osg-service.sgcc.com.cn, api.m.mi.com, home.mi.com, shop-api.retail.mi.com, wallet.95516.com, mobilepaas.abchina.com.cn, ad.mcloud.139.com, jzts.cmpassport.com, boxer.baidu.com, m.baidu.com, www.baidu.com, zhidao.baidu.com, asserts.avple.tv, javdb.com, *.pornhub.com, 18hlw.com, lneuk.rslsilne.cc, 7054s.rbcmpeu.org, d2bkn61acaxm61.cloudfront.net, missav.ai, missav.ws, dsenrp55.com, ghfgnm.com, *.kelee.one, kelee.one, api.xiaoyuzhoufm.com, mobads.baidu.com, fmapp.chinafamilymart.com.cn, spamblocker-api.zeekstudio.com, misc-api-prd-mx.wandafilm.com
+hostname = %APPEND% ad.12306.cn, mobile.12306.cn, list-app-m.i4.cn, *api.alipan.com, member.alipan.com, acs.m.taobao.com, heic.alicdn.com, guide-acs.m.taobao.com, poplayer.template.alibaba.com, pan.baidu.com, 2023.redircdn.com, www.washpayer.com, api.douban.com, img3.doubanio.com, qnmob3.doubanio.com, img*.douban.com, frodo.douban.com, erebor.douban.com, image.mybank.icbc.com.cn, hfapp-service.qweather.net, acs-m.freshippo.com, gab.122.gov.cn, adserviceretry.kglink.cn, p0.pipi.cn, flowplus.meituan.net, img.meituan.net, s3plus.meituan.net, osg-service.sgcc.com.cn, api.m.mi.com, home.mi.com, shop-api.retail.mi.com, wallet.95516.com, mobilepaas.abchina.com.cn, ad.mcloud.139.com, jzts.cmpassport.com, boxer.baidu.com, m.baidu.com, www.baidu.com, zhidao.baidu.com, asserts.avple.tv, javdb.com, *.pornhub.com, 18hlw.com, lneuk.rslsilne.cc, 7054s.rbcmpeu.org, d2bkn61acaxm61.cloudfront.net, missav.ai, missav.ws, dsenrp55.com, ghfgnm.com, *.kelee.one, kelee.one, api.xiaoyuzhoufm.com, mobads.baidu.com, fmapp.chinafamilymart.com.cn, spamblocker-api.zeekstudio.com, misc-api-prd-mx.wandafilm.com, elemecdn.com, fuss10.elemecdn.com, cube.elemecdn.com, www1.elecfans.com, nr-op.elemecdn.com, img.alicdn.com
