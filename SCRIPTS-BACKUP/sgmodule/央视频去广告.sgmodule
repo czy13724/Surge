@@ -13,7 +13,7 @@
 ^https?:\/\/cdn\.cmgadx\.com\/sdk\/pool\/.+\.json data-type=text data="{}" status-code=200
 
 [Script]
-央视频去广告 = type=http-request, pattern=^http:\/\/(liveinfo|bkliveinfo|playvv)\.ysp\.cctv\.cn\/(playvinfo\?.+|.*), script-path=https://raw.githubusercontent.com/mist-whisper/Script/refs/heads/master/Yangshipin/Yangshipin_remove_ads.js, timeout=60
+央视频去广告 = type=http-request, pattern=^http:\/\/(liveinfo|bkliveinfo|playvv)\.ysp\.cctv\.cn\/(playvinfo\?.+|.*), script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/Yangshipin/Yangshipin_remove_ads.js, timeout=60
 
 [MITM]
 hostname = %APPEND% *.ysp.cctv.cn, cdn.cmgadx.com
