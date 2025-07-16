@@ -8,7 +8,7 @@
 #!arguments-desc=隐藏底栏创建按钮: [1, 0]\n- 1: 开启\n- 0: 关闭\n\n接力功能: [1, 0]\n- 1: 开启\n- 0: 关闭
 
 [URL Rewrite]
-^https?:\/\/(gae2-spclient|guc3-spclient|spclient\.wg)\.spotify\.com\/artistview\/v1\/artist\/(.*)&platform=iphone https://$1.spotify.com/artistview/v1/artist/$2&platform=ipad
+^https?:\/\/(gae2-spclient|guc3-spclient|spclient\.wg)\.spotify\.com\/artistview\/v1\/artist\/(.*)&platform=iphone https://$1.spotify.com/artistview/v1/artist/$2&platform=ipad header
 
 [Map Local]
 ^https?:\/\/(?:gae2-spclient|guc3-spclient|spclient\.wg)\.spotify\.com\/(?:ad-|pendragon) data-type=text data="" status-code=200
