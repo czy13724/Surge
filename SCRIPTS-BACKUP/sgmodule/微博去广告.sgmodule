@@ -46,6 +46,8 @@ DOMAIN-SUFFIX,biz.weibo.com,REJECT
 
 ^https:\/\/weibo\.com\/ttarticle\/x\/m\/aj\/(?:reward|uvead) data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
+^https:\/\/api\.weibo\.cn\/2\/!\/was\/finder\/searchbarchange data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
 [Script]
 移除首页推广 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/(?:checkin\/show|client\/publisher_list|push\/active), script-path=https://kelee.one/Resource/JavaScript/Weibo/Weibo_remove_ads.js, requires-body=true
 
