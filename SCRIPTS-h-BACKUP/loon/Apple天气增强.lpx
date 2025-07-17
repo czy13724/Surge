@@ -16,7 +16,7 @@ AQI.Provider=select, "ColorfulClouds", "WeatherKit", "QWeather", "WAQI", tag=[�
 AQI.ReplaceProviders=input, "", tag=[空气质量]需要替换的供应商, desc=填写的空气质量数据源会被替换
 AQI.Local.Scale=select, "WAQI_InstantCast", "NONE", tag=[空气质量]本地替换算法, desc=本地替换时使用的算法
 AQI.Local.ReplaceScales=input, "HJ6332012", tag=[空气质量]需要修改的标准, desc=填写的空气质量标准会被替换
-AQI.Local.ConvertUnits=switch, "false", "true", tag=[空气质量]转换污染物计量单位, desc=将污染物数据替换为转换单位后的数据，方便对照转换后的标准。
+AQI.Local.ConvertUnits=switch, false, true, tag=[空气质量]转换污染物计量单位, desc=将污染物数据替换为转换单位后的数据，方便对照转换后的标准。
 API.ColorfulClouds.Token=input, "", tag=[API]彩云天气API令牌, desc=填写此字段将自动使用彩云天气高级API
 API.QWeather.Host=select, "devapi.qweather.com", "api.qweather.com", tag=[API]和风天气API主机, desc=和风天气API使用的主机名
 API.QWeather.Token=input, "", tag=[API]和风天气API令牌, desc=填写此字段将自动使用和风天气高级API
