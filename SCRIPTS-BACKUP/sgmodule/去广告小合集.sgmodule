@@ -312,7 +312,7 @@ http-response ^https:\/\/dsenrp55\.com\/tabbar </head> </head><style>.swiperBox,
 移除中国移动云盘广告 = type=http-response, pattern=^https:\/\/jzts\.cmpassport\.com\/personalized\/getPushContent, script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/Cloud139.js, requires-body=true
 
 # 百度防跳转
-百度防跳转 = type=http-request, pattern=^https:\/\/boxer\.baidu\.com\/scheme\?scheme, script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/BaiduNoRedirect.js
+百度防跳转 = type=http-response, pattern=^https:\/\/boxer\.baidu\.com\/scheme\?scheme, script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/BaiduNoRedirect.js
 
 # 百度首页
 移除百度首页广告 = type=http-response, pattern=^https:\/\/(?:www|m)\.baidu\.com(\/|\/\?(tn=&)?from=\d+\w)?$, script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/BaiduIndex.js, requires-body=true
