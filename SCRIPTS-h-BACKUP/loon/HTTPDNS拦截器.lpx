@@ -2,7 +2,7 @@
 #!desc=拦截常见的HTTPDNS服务，以确保这些请求都能够在Loon的DNS框架下工作。
 #!openUrl=
 #!author=可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md], VirgilClyne[https://github.com/VirgilClyne]
-#!tag=DNS
+#!tag=去广告, 依赖
 #!system=
 #!system_version=
 #!loon_version=3.2.4(787)
