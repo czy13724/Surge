@@ -2,7 +2,7 @@
 #!desc=移除一些小广告，优化一些小功能。
 #!author = RuCu6[https://github.com/RuCu6],fishdown[https://github.com/fishdown],wish[https://github.com/mist-whisper]
 #!category=去广告
-#!date=2025-07-23 22:40:00
+#!date=2025-07-24 15:36:00
 
 [Rule]
 # 12306
@@ -153,6 +153,15 @@ http-response ^https:\/\/d2bkn61acaxm61\.cloudfront\.net <style> <style> .gotocl
 http-response ^https:\/\/dsenrp55\.com\/tabbar </head> </head><style>.swiperBox,.adBox,.ad,.adItem,.start-page-container,.n-container,.intercept-18,div.van-tabbar-item:first-of-type,div.van-tabbar-item:last-of-type{display:none!important}img.back{margin:40px!important}</style>
 
 [Map Local]
+# 转转小程序弹窗广告
+^https:\/\/app\.zhuanzhuan\.com\/zzopen\/zzbmlogic\/queryFrontPageWindowInfo\?cateId data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+# 建行生活外卖(美团)弹窗广告
+^https:\/\/i\.waimai\.meituan\.com\/tsp\/open\/openh5\/home\/rcmd\?set data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+# 建行生活外卖(美团)横幅广告
+^https:\/\/i\.waimai\.meituan\.com\/openh5\/homepage\/dsp\/resource\? data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
 ^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.fliggy\.crm\.screen\.(?:allresource|predict) data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
 ^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.trip\.activity\.querytmsresources data-type=text data="{}" status-code=200 header="Content-Type:application/json"
@@ -285,9 +294,9 @@ http-response ^https:\/\/dsenrp55\.com\/tabbar </head> </head><style>.swiperBox,
 
 [Script]
 # 12306
-移除12306广告 = type=http-request, pattern=^https:\/\/ad\.12306\.cn\/ad\/ser\/getAdList$, script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/12306.js, requires-body=true
+移除12306开屏广告 = type=http-request, pattern=^https:\/\/ad\.12306\.cn\/ad\/ser\/getAdList$, script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/12306.js, requires-body=true
 
-移除12306广告 = type=http-response, pattern=^https:\/\/mobile\.12306\.cn\/otsmobile\/app\/mgs\/mgw\.htm$, script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/header.js
+移除12306应用内广告 = type=http-request, pattern=^https:\/\/mobile\.12306\.cn\/otsmobile\/app\/mgs\/mgw\.htm$, script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/header.js
 
 # 阿里云盘
 移除阿里云盘广告 = type=http-response, pattern=^https:\/\/(biz)?api\.alipan\.com\/apps\/v\d\/users?\/home\/(?:news|widgets), script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/Adrive.js, requires-body=true
@@ -331,5 +340,11 @@ http-response ^https:\/\/dsenrp55\.com\/tabbar </head> </head><style>.swiperBox,
 # dsenrp55
 移除Dsenrp55广告 = type=http-request, pattern=^https:\/\/ghfgnm\.com\/mmapi\/m3u8\/p\/.+\.m3u8, script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/Dsenrp55.js, requires-body=true, timeout=60
 
+# 建行生活全面净化
+移除建行生活广告 = type=http-response, pattern=^https:\/\/yunbusiness\.ccb\.com\/clp_service|basic_service\/txCtrl\?txcode=, script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/CCB.js, requires-body=true, timeout=20
+
+# 转转小程序多处横幅广告悬浮广告
+移除转转广告 = type=http-response, pattern=^https:\/\/app\.zhuanzhuan\.com\/zz\/(?:transfer\/getpersonalcenter\?entChanl=&uiType=1&from=1089|v2\/zzlogic\/mywxcontinenthomepage\?from=1089), script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/Zhuan.js, requires-body=true
+
 [MITM]
-hostname = %APPEND% ad.12306.cn, mobile.12306.cn, list-app-m.i4.cn, *api.alipan.com, member.alipan.com, acs.m.taobao.com, heic.alicdn.com, guide-acs.m.taobao.com, poplayer.template.alibaba.com, pan.baidu.com, 2023.redircdn.com, www.washpayer.com, api.douban.com, img3.doubanio.com, qnmob3.doubanio.com, img*.douban.com, frodo.douban.com, erebor.douban.com, image.mybank.icbc.com.cn, hfapp-service.qweather.net, acs-m.freshippo.com, gab.122.gov.cn, adserviceretry.kglink.cn, p0.pipi.cn, flowplus.meituan.net, img.meituan.net, s3plus.meituan.net, osg-service.sgcc.com.cn, api.m.mi.com, home.mi.com, shop-api.retail.mi.com, wallet.95516.com, mobilepaas.abchina.com.cn, ad.mcloud.139.com, jzts.cmpassport.com, boxer.baidu.com, m.baidu.com, www.baidu.com, zhidao.baidu.com, asserts.avple.tv, javdb.com, *.pornhub.com, 18hlw.com, lneuk.rslsilne.cc, 7054s.rbcmpeu.org, d2bkn61acaxm61.cloudfront.net, missav.ai, missav.ws, dsenrp55.com, ghfgnm.com, *.kelee.one, kelee.one, api.xiaoyuzhoufm.com, mobads.baidu.com, fmapp.chinafamilymart.com.cn, spamblocker-api.zeekstudio.com, misc-api-prd-mx.wandafilm.com, elemecdn.com, fuss10.elemecdn.com, cube.elemecdn.com, www1.elecfans.com, nr-op.elemecdn.com, img.alicdn.com, front-gateway-c.wandafilm.com, gql.reddit.com, gql-fed.reddit.com
+hostname = %APPEND% ad.12306.cn, mobile.12306.cn, list-app-m.i4.cn, *api.alipan.com, member.alipan.com, acs.m.taobao.com, heic.alicdn.com, guide-acs.m.taobao.com, poplayer.template.alibaba.com, pan.baidu.com, 2023.redircdn.com, www.washpayer.com, api.douban.com, img3.doubanio.com, qnmob3.doubanio.com, img*.douban.com, frodo.douban.com, erebor.douban.com, image.mybank.icbc.com.cn, hfapp-service.qweather.net, acs-m.freshippo.com, gab.122.gov.cn, adserviceretry.kglink.cn, p0.pipi.cn, flowplus.meituan.net, img.meituan.net, s3plus.meituan.net, osg-service.sgcc.com.cn, api.m.mi.com, home.mi.com, shop-api.retail.mi.com, wallet.95516.com, mobilepaas.abchina.com.cn, ad.mcloud.139.com, jzts.cmpassport.com, boxer.baidu.com, m.baidu.com, www.baidu.com, zhidao.baidu.com, asserts.avple.tv, javdb.com, *.pornhub.com, 18hlw.com, lneuk.rslsilne.cc, 7054s.rbcmpeu.org, d2bkn61acaxm61.cloudfront.net, missav.ai, missav.ws, dsenrp55.com, ghfgnm.com, *.kelee.one, kelee.one, api.xiaoyuzhoufm.com, mobads.baidu.com, fmapp.chinafamilymart.com.cn, spamblocker-api.zeekstudio.com, misc-api-prd-mx.wandafilm.com, elemecdn.com, fuss10.elemecdn.com, cube.elemecdn.com, www1.elecfans.com, nr-op.elemecdn.com, img.alicdn.com, front-gateway-c.wandafilm.com, gql.reddit.com, gql-fed.reddit.com, app.zhuanzhuan.com, i.waimai.meituan.com, yunbusiness.ccb.com
