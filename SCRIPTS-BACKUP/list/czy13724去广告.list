@@ -217,15 +217,34 @@ DOMAIN-KEYWORD,trace.video.qq.com
 IP-CIDR,47.110.187.87/32,no-resolve
 
 # Talkatone
-DOMAIN-SUFFIX,d.tktn.be
-DOMAIN-SUFFIX,ow.pubmatic.com
-DOMAIN-SUFFIX,telemetry.sdk.inmobi.cn
-DOMAIN-SUFFIX,googleads4.g.doubleclick.net
+DOMAIN-KEYWORD,inner-active.mobi
+DOMAIN-SUFFIX,a1.tktn.be
 DOMAIN-SUFFIX,adclick.g.doubleclick.net
-DOMAIN-SUFFIX,tr-us.adsmoloco.com
-DOMAIN-SUFFIX,sdk.ad.smaato.net
-DOMAIN-SUFFIX,ads.inmobi.com
 DOMAIN-SUFFIX,adrta.com
+DOMAIN-SUFFIX,adsappier.com
+DOMAIN-SUFFIX,ads.inmobi.com
+DOMAIN-SUFFIX,amazon-adsystem.com
+DOMAIN-SUFFIX,appier.net
+DOMAIN-SUFFIX,appiersig.com
+DOMAIN-SUFFIX,as.cluep.com
+DOMAIN-SUFFIX,criteo.com
+DOMAIN-SUFFIX,doubleverify.com
+DOMAIN-SUFFIX,d.tktn.be
+DOMAIN-SUFFIX,evidon.com
+DOMAIN-SUFFIX,googleads.g.doubleclick.net
+DOMAIN-SUFFIX,googleads4.g.doubleclick.net
+DOMAIN-SUFFIX,mobilefuse.com
+DOMAIN-SUFFIX,ow.pubmatic.com
+DOMAIN-SUFFIX,pubmatic.com
+DOMAIN-SUFFIX,pubnative.net
+DOMAIN-SUFFIX,rfihub.net
+DOMAIN-SUFFIX,sdk.ad.smaato.net
+DOMAIN-SUFFIX,smaato.net
+DOMAIN-SUFFIX,smadex.com
+DOMAIN-SUFFIX,tappx.com
+DOMAIN-SUFFIX,taboola.com
+DOMAIN-SUFFIX,telemetry.sdk.inmobi.cn
+DOMAIN-SUFFIX,tr-us.adsmoloco.com
 
 
 # ======= W ======= #
