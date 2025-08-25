@@ -1,0 +1,62 @@
+{
+  "id": "Levi_QL_Sync", 
+  "name": "Levi青龙环境变量同步", 
+  "author": "@Levi", 
+  "icon": "https://raw.githubusercontent.com/czy13724/LeviIcons/main/leviicons/QingLong.png", 
+  "repo": "https://github.com/czy13724/Quantumult-X", 
+  "apps": [
+    {
+      "id": "Levi_Sync_Env_To_QL", 
+      "name": "同步环境变量到青龙", 
+      "author": "Levi", 
+      "repo": "https://github.com/czy13724/Quantumult-X", 
+      "icons": [
+        "https://raw.githubusercontent.com/czy13724/LeviIcons/main/leviicons/QingLong.png", 
+        "https://raw.githubusercontent.com/czy13724/LeviIcons/main/leviicons/QingLong.png"
+      ], 
+      "keys": [
+        "QL_HOST", 
+        "QL_CLIENT_ID", 
+        "QL_CLIENT_SECRET", 
+        "SYNC_VARS"
+      ], 
+      "scripts": [
+        {
+          "name": "同步变量到青龙(填写，保存，执行)", 
+          "script": "https://cdn.jsdelivr.net/gh/czy13724/Surge@refs/heads/main/Scripts/qlsync.js"
+        }
+      ], 
+      "settings": [
+        {
+          "id": "SYNC_VARS", 
+          "name": "要同步的变量名称（逗号分隔）", 
+          "val": "", 
+          "type": "textarea", 
+          "autoGrow": true, 
+          "desc": "在此处填写要同步到青龙面板的变量名称，多个变量用英文逗号分隔。例如：jd_cookie,tb_token,my_token"
+        }, 
+        {
+          "id": "QL_HOST", 
+          "name": "青龙服务器地址", 
+          "val": "", 
+          "type": "text", 
+          "desc": "青龙服务器地址，例如：http://127.0.0.1:5700"
+        }, 
+        {
+          "id": "QL_CLIENT_ID", 
+          "name": "青龙 Client ID", 
+          "val": "", 
+          "type": "text", 
+          "desc": "青龙 Client ID"
+        }, 
+        {
+          "id": "QL_CLIENT_SECRET", 
+          "name": "青龙 Client Secret", 
+          "val": "", 
+          "type": "textarea", 
+          "desc": "青龙 Client Secret"
+        }
+      ]
+    }
+  ]
+}
