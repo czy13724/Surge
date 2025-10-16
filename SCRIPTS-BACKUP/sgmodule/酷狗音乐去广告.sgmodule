@@ -2,7 +2,7 @@
 #!desc=移除开屏广告、应用各类弹窗、各类横幅广告、评论区广告和播放器界面广告。
 #!author=可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
 #!category=去广告
-#!date=2025-05-13 15:17:08
+#!date=2025-10-14 02:01:00
 
 [Rule]
 DOMAIN,ads.service.kugou.com,REJECT
@@ -17,6 +17,15 @@ URL-REGEX,"^http:\/\/log\.stat\.kugou\.com\/mobile\/ad\.html",REJECT
 
 [Body Rewrite]
 http-response-jq ^https:\/\/gateway(retry)?\.kugou\.com\/ocean\/v\d\/tab\/list_v\d 'def namesToRemove:["AI帮唱","长相思2","K歌","小说","游戏"];def removeParentIfNameMatches:if type=="object"then with_entries(select(.value|(type=="object"and .name as $name|$name|IN(namesToRemove[])|not)))|map_values(removeParentIfNameMatches)else .end;removeParentIfNameMatches'
+http-response-jq ^https?:\/\/ads\.service\.kugou\.com\/v4\/mobile_splash.*$ '.data.boot_ads = [] | .data.front_ads = []'
+http-response-jq ^https?:\/\/ads\.service\.kugou\.com\/v4\/mobile_splash_sort(\?.*)?$ '.data.ads = [] | .data.retry_local_ads = [] | .data.retry_ads = [] | .data.least_ads = []'
+http-response-jq ^https?:\/\/gateway\.kugou\.com\/(?:\w+\/)*combo\/startup 'del(.data.responses[] | select(.module == "overseas_check_v2" or .module == "tab_bottom_list"))'
+http-response-jq ^https:\/\/gateway\.kugou\.com\/location\/v1\/location\/locate\? '.data.info.province = "上海市" | .data.info.city = "上海" | .data.info.adcode = "310000"'
+http-response-jq ^https?:\/\/gateway\.kugou\.com\/searchnofocus\/v1\/search_no_focus_word(\?.*)?$ '.data.ads = [] | .data.fallback = []'
+http-response-jq # ^https?:\/\/gateway\.kugou\.com\/hotsearch\/v1\/search_hotword(\?.*)?$ '.data.list = [] | .data.extension = []'
+http-response-jq ^https?:\/\/gateway\.kugou\.com\/guessyousearch\/v1\/guess_you_search(\?.*)?$ '.data.words = []'
+http-response-jq ^https?://gateway\.kugou\.com/mstc/musicsymbol/v1/system/profile '.data.task = [] | .data.ads = []'
+http-response-jq ^https:\/\/gateway\.kugou\.com\/card\/v1\/pxy\/recommend_stream_v2\?.*$ 'del(.data.responses[] | select((.module | startswith("song_module")) or .module == "realtime_songlist" or .module == "follow_newsong_album" or .module == "longaudio_picked_show" or .module == "video_tab" or .module == "store_recommend" or .module == "perfection_album" or .module == "ai_songlist" or .module == "kroom_kuqun" or .module == "ys_recommend_sing" or .module == "ad_fx_recommend" or .module == "longaudio_category" or .module == "fx_recommend_star"))'
 
 [Map Local]
 ^https:\/\/fx\.service\.kugou\.com\/mfx-kugoulive\/ad\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
@@ -50,4 +59,4 @@ http-response-jq ^https:\/\/gateway(retry)?\.kugou\.com\/ocean\/v\d\/tab\/list_v
 ^https:\/\/ep\.kugou\.com\/v\d\/album_shop\/get_entrance_info data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
 [MITM]
-hostname=%APPEND% gateway.kugou.com, fx.service.kugou.com, hwstore.kugou.com, ep.kugou.com, gatewayretry.kugou.com, gzacshow.kugou.com, m1fxgroup.kugou.com
+hostname = %APPEND% gateway.kugou.com, fx.service.kugou.com, hwstore.kugou.com, ep.kugou.com, gatewayretry.kugou.com, gzacshow.kugou.com, m1fxgroup.kugou.com, ads.service.kugou.com
