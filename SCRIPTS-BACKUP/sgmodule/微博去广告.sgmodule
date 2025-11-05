@@ -2,7 +2,7 @@
 #!desc=过滤广告及去除各部分推广模块，全面净化微博
 #!author=RuCu6[https://github.com/RuCu6], zmqcherish[https://github.com/zmqcherish]
 #!category = 去广告
-#!date=2025-09-18 13:39:00
+#!date=2025-11-04 21:00:00
 
 [Rule]
 DOMAIN-SUFFIX,uve.weibo.com,DIRECT
@@ -49,7 +49,9 @@ DOMAIN-SUFFIX,biz.weibo.com,REJECT
 ^https:\/\/api\.weibo\.cn\/2\/!\/was\/finder\/searchbarchange data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
 [Body Rewrite]
-response-body-json-jq ^https:\/\/api\.weibo\.cn\/2\/(?:checkin\/show|client\/publisher_list|push\/active) '.feed_redpacket = {}| .floating_windows = [] | .surprise_config = []'
+http-response-jq ^https:\/\/api\.weibo\.cn\/2\/(?:checkin\/show|client\/publisher_list|push\/active) '.feed_redpacket = {}| .floating_windows = [] | .surprise_config = []'
+
+http-response-jq ^https?:\/\/api\.weibo\.cn\/\d\/groups\/allgroups\/v\d '.pageDatas |= map(select(.pageDataType != "homeExtend" and .pageDataType != "homeHot")) | (.pageDatas[0].categories[0].pageDatas |= del(.[0]))'
 
 [Script]
 移除首页推广 = type=http-response, pattern=^https:\/\/api\.weibo\.cn\/2\/(?:checkin\/show|client\/publisher_list|push\/active), script-path=https://kelee.one/Resource/JavaScript/Weibo/Weibo_remove_ads.js, requires-body=true
