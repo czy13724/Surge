@@ -2,7 +2,7 @@
 #!desc=移除一些小广告，优化一些小功能。
 #!author = RuCu6[https://github.com/RuCu6],fishdown[https://github.com/fishdown],wish[https://github.com/mist-whisper],可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
 #!category=去广告
-#!date=2025-10-08 14:04:00
+#!date=2025-11-21 12:23:49
 
 [Rule]
 # 12306
@@ -126,13 +126,35 @@ http-request ^https:\/\/github\.com\/ header-replace 'Accept-Language' 'en-us'
 http-response ^https:\/\/dsenrp55\.com\/tabbar </head> </head><style>.swiperBox,.adBox,.ad,.adItem,.start-page-container,.n-container,.intercept-18,div.van-tabbar-item:first-of-type,div.van-tabbar-item:last-of-type{display:none!important}img.back{margin:40px!important}</style>
 http-response-jq ^https:\/\/bp-api\.bestv\.cn\/cms\/api\/free\/open\/advertisingV2 '.dt = []'
 http-response-jq ^https:\/\/bp-api\.bestv\.cn\/cms\/api\/c\/search\/hot\/v(2|4) '.dt.hot = [] | .dt.recommand = [] | .dt.bannerList = []'
+http-response-jq ^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.damai\.wireless\.user\.my\.content\.get\/ 'delpaths([["data","banner"]])'
+http-response-jq ^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.damai\.wireless\.user\.my\.content\.get\/ 'delpaths([["data","performFilmVip","userProfitList"]])'
+http-response-jq ^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.damai\.wireless\.mypage\.feed\/ 'delpaths([["data","feedCard"]])'
+http-response-jq ^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.damai\.mec\.aristotle\.get\/ 'delpaths([["data","data","top","keywords"]])'
 http-response ^https?:\/\/[^\/]+\/category\/6\.html$ <style> <style> .video-list > .video-item:nth-of-type(-n+2) { display:none !important} .gotoclick{ display:none !important} .modal{ display:none !important} .addbox{ display:none !important}
 http-response ^https?:\/\/[^\/]+\/category\/20\.html$ <style> <style> .video-list > .video-item:nth-of-type(3) { display:none !important} .gotoclick{ display:none !important} .modal{ display:none !important} .addbox{ display:none !important}
 http-response ^https:\/\/18hlw\.com <style> <style> .gotoclick{ display:none !important} .modal{ display:none !important} .addbox{ display:none !important}
 http-response ^https:\/\/lneuk\.rslsilne\.cc <style> <style> .gotoclick{ display:none !important} .modal{ display:none !important} .addbox{ display:none !important}
 http-response ^https:\/\/7054s\.rbcmpeu\.org <style> <style> .gotoclick{ display:none !important} .modal{ display:none !important} .addbox{ display:none !important}
 http-response ^https:\/\/d2bkn61acaxm61\.cloudfront\.net <style> <style> .gotoclick{ display:none !important} .modal{ display:none !important} .addbox{ display:none !important}
+http-response-jq ^https:\/\/api\.bevol\.com\/appmain\/app\/home\/page$ 'delpaths([["result","versionPopUp"]])'
+http-response-jq ^https:\/\/api\.bevol\.com\/appmain\/app\/home\/page$ 'delpaths([["result","isShowSearchLabel"]])'
+http-response-jq ^https:\/\/api\.bevol\.com\/appmain\/app\/home\/page$ 'delpaths([["result","isShowSearchFeedBack"]])'
+http-response-jq ^https:\/\/api\.bevol\.com\/appmain\/app\/home\/page$ 'delpaths([["result","centerBannerAdvert"]])'
+http-response-jq ^https:\/\/api\.bevol\.com\/appmain\/app\/home\/page$ 'delpaths([["result","programmaticAdvertising"]])'
+http-response-jq ^https:\/\/api\.bevol\.com\/appmain\/app\/home\/page$ 'delpaths([["result","mattsData"]])'
+http-response-jq ^https:\/\/api\.bevol\.com\/appmain\/app\/home\/page$ 'delpaths([["result","questionnaireMap"]])'
+http-response-jq ^https:\/\/api\.bevol\.com\/appmain\/app\/home\/page$ 'delpaths([["result","appPullDownAdvert"]])'
+http-response-jq ^https:\/\/api\.bevol\.com\/appmain\/app\/home\/feed$ 'delpaths([["result","banners"]])'
+http-response-jq ^https:\/\/api\.bevol\.com\/appmain\/app\/home\/feed$ '. | .result.returnList |= (map(select(.tname == "userPart"))) | .result.returnList |= map(select(. | has("adId") | not))'
+http-response-jq ^https:\/\/api\.bevol\.com\/trialbox\/shop\/app\/homePage$ 'delpaths([["result","firstPersonActivity"]])'
+http-response-jq ^https:\/\/api\.bevol\.com\/trialbox\/shop\/app\/homePage$ 'delpaths([["result","mainActivity"]])'
+http-response-jq ^https:\/\/api\.bevol\.com\/trialbox\/shop\/app\/homePage$ 'delpaths([["result","brandZone"]])'
+http-response-jq ^https:\/\/api\.bevol\.com\/trialbox\/shop\/app\/homePage$ 'delpaths([["result","imageAD2"]])'
 http-response-jq ^https?:\/\/gql(-fed)?\.reddit\.com ' walk(   if type == "object" then      (if .isNsfw == true then .isNsfw = false else . end)     | (if .isNsfwMediaBlocked == true then .isNsfwMediaBlocked = false else . end)     | (if .isNsfwContentShown == false then .isNsfwContentShown = true else . end)      | (if (.commentsPageAds | type == "array") then (.commentsPageAds = []) else . end)      | (if ( (.node | type == "object") and (.node.cells | type == "array") and (.node.cells | any(.__typename? == "AdMetadataCell" or .isAdPost? == true)) ) then empty else . end)     | (if (.node | type == "object") and (.node.adPayload | type == "object") then empty else . end)     | (if .__typename == "AdPost" then empty else . end)   else .  end)'
+http-response-jq ^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.film\.mtopintegrationapi\.homeconfig\/ 'delpaths([["data","returnValue","floatingBanner"]])'
+http-response-jq ^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.film\.mtopintegrationapi\.homeconfig\/ 'delpaths([["data","returnValue","searchShadeList"]])'
+http-response-jq ^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.film\.mtopintegrationapi\.homeconfig\/ '.data.returnValue.topTab |= map(select(.activeImage | not)) | .data.returnValue.topTab |= map(del(.backgroundColor))'
+http-response-jq ^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.film\.life\.aristotle\.get\/ 'def filter_nodes: map(if .data.componentId? and (.data.componentId | type == "string") and (.data.componentId | (contains("tpp_banner") or . == "tpp_guess_like")) then empty else .nodes |= (if . then filter_nodes else . end) end); .data.nodes |= (if . then filter_nodes else . end)'
 http-response-jq ^https?:\/\/m\.pvp\.xoyo\.com\/conf\/server-mapping$ 'delpaths([["data","splashConf"]])'
 http-response-jq ^https?:\/\/m\.pvp\.xoyo\.com\/conf\/server-mapping$ 'delpaths([["data","splashConfNew"]])'
 http-response-jq ^https:\/\/misc-api-prd-mx\.wandafilm\.com\/commend\/common_banner_batch\.api '.data.objects["OpenAPP-&-FlashAD"] = [] | .data.objects["InTheaters-&-BoxAD"] = [] | .data.objects["NewHome-&-Search"] = [] | .data.objects["NewHome-&-foatAd"] = []'
@@ -178,33 +200,9 @@ http-response-jq ^https:\/\/api\.xiaoyuzhoufm\.com\/v1\/related-podcast\/list$ '
 ^https:\/\/pan\.baidu\.com\/(?:act\/|aipic\/|aisearch\/|api\/getsyscfg\?|rest\/) data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
 # 大麦
-^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.damai\.wireless\.home\.welcome data-type=text data=" " status-code=200
+^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.damai\.wireless\.home\.welcome\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
-^https?:\/\/acs\.m\.taobao\.com\/gw\/mtop\.damai\.mec\.popup\.get data-type=text data=" " status-code=200
-
-^https?:\/\/img\.alicdn\.com\/imgextra\/i1\/.*-tps-1080-1920.jpg data-type=text data=" " status-code=200
-
-^https?:\/\/img\.alicdn\.com\/imgextra\/i2\/.*-tps-1080-1920.jpg data-type=text data=" " status-code=200
-
-^https?:\/\/img\.alicdn\.com\/imgextra\/i3\/.*-tps-1080-1920.jpg data-type=text data=" " status-code=200
-
-^https?:\/\/img\.alicdn\.com\/imgextra\/i4\/.*-tps-1080-1920.jpg data-type=text data=" " status-code=200
-
-^https?:\/\/img\.alicdn\.com\/imgextra\/i1\/.*-tps-1125-2436.jpg data-type=text data=" " status-code=200
-
-^https?:\/\/img\.alicdn\.com\/imgextra\/i2\/.*-tps-1125-2436.jpg data-type=text data=" " status-code=200
-
-^https?:\/\/img\.alicdn\.com\/imgextra\/i3\/.*-tps-1125-2436.jpg data-type=text data=" " status-code=200
-
-^https?:\/\/img\.alicdn\.com\/imgextra\/i4\/.*-tps-1125-2436.jpg data-type=text data=" " status-code=200
-
-^https?:\/\/img\.alicdn\.com\/imgextra\/i1\/.*-tps-900-1350.jpg data-type=text data=" " status-code=200
-
-^https?:\/\/img\.alicdn\.com\/imgextra\/i2\/.*-tps-900-1350.jpg data-type=text data=" " status-code=200
-
-^https?:\/\/img\.alicdn\.com\/imgextra\/i3\/.*-tps-900-1350.jpg data-type=text data=" " status-code=200
-
-^https?:\/\/img\.alicdn\.com\/imgextra\/i4\/.*-tps-900-1350.jpg data-type=text data=" " status-code=200
+^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.damai\.mec\.popup\.get\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
 # 豆瓣
 ^https:\/\/api\.douban\.com\/v2\/app_ads\/splash\w+ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
@@ -240,6 +238,15 @@ http-response-jq ^https:\/\/api\.xiaoyuzhoufm\.com\/v1\/related-podcast\/list$ '
 
 ^https:\/\/p0\.pipi\.cn\/(?:adAdmin|mediaplus\/maoyantong_ads_fe)\/\w+\.(?:jpg|png)\?imageMogr2\/thumbnail\/(?:860x0|!165x165|!1049x1169) data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
+# 美丽修行
+^https:\/\/api\.bevol\.com\/appmain\/app\/home\/launch$ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+^https:\/\/api\.bevol\.com\/appmain\/app\/home\/popup$ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+^https:\/\/api\.bevol\.com\/personal\/page$ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+^https:\/\/api\.bevol\.com\/seach\/foundAndTopSearch$ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
 # 美团 & 美团外卖
 ^http:\/\/wmapi\.meituan\.com\/api\/v7\/(?:loadInfo|openscreen|startpicture) data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
@@ -256,6 +263,13 @@ http-response-jq ^https:\/\/api\.xiaoyuzhoufm\.com\/v1\/related-podcast\/list$ '
 
 # 全家 开屏广告
 ^https:\/\/fmapp\.chinafamilymart\.com\.cn\/api\/app\/market\/start\/ad data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+# 淘票票
+^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.film\.life\.popup\.get\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.film\.mtopindependentadvertiseapi\.queryadvertise\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.film\.mtopitemadvertiseapi\.queryadvertise\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
 # 网上国网
 ^https:\/\/osg-service\.sgcc\.com\.cn:18600\/emss-pfa-appset-front\/bootpageoutter\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
@@ -341,4 +355,4 @@ http-response-jq ^https:\/\/api\.xiaoyuzhoufm\.com\/v1\/related-podcast\/list$ '
 移除转转广告 = type=http-response, pattern=^https:\/\/app\.zhuanzhuan\.com\/zz\/(?:transfer\/getpersonalcenter\?entChanl=&uiType=1&from=1089|v2\/zzlogic\/mywxcontinenthomepage\?from=1089), script-path=https://raw.githubusercontent.com/mist-whisper/Script/master/BlockAds/Zhuan.js, requires-body=true
 
 [MITM]
-hostname = %APPEND% ad.12306.cn, mobile.12306.cn, list-app-m.i4.cn, *api.alipan.com, member.alipan.com, acs.m.taobao.com, heic.alicdn.com, guide-acs.m.taobao.com, poplayer.template.alibaba.com, pan.baidu.com, 2023.redircdn.com, www.washpayer.com, api.douban.com, img3.doubanio.com, qnmob3.doubanio.com, img*.douban.com, frodo.douban.com, erebor.douban.com, image.mybank.icbc.com.cn, hfapp-service.qweather.net, acs-m.freshippo.com, gab.122.gov.cn, adserviceretry.kglink.cn, p0.pipi.cn, flowplus.meituan.net, img.meituan.net, s3plus.meituan.net, osg-service.sgcc.com.cn, api.m.mi.com, home.mi.com, shop-api.retail.mi.com, wallet.95516.com, mobilepaas.abchina.com.cn, ad.mcloud.139.com, jzts.cmpassport.com, boxer.baidu.com, m.baidu.com, www.baidu.com, zhidao.baidu.com, asserts.avple.tv, javdb.com, *.pornhub.com, 18hlw.com, lneuk.rslsilne.cc, 7054s.rbcmpeu.org, d2bkn61acaxm61.cloudfront.net, missav.ai, missav.ws, dsenrp55.com, ghfgnm.com, api.xiaoyuzhoufm.com, mobads.baidu.com, fmapp.chinafamilymart.com.cn, spamblocker-api.zeekstudio.com, misc-api-prd-mx.wandafilm.com, elemecdn.com, fuss10.elemecdn.com, cube.elemecdn.com, www1.elecfans.com, nr-op.elemecdn.com, img.alicdn.com, front-gateway-c.wandafilm.com, gql.reddit.com, gql-fed.reddit.com, app.zhuanzhuan.com, i.waimai.meituan.com, yunbusiness.ccb.com, 114.115.217.129, home.umetrip.com, gw.xiaocantech.com, m.pvp.xoyo.com, bp-api.bestv.cn
+hostname = %APPEND% ad.12306.cn, mobile.12306.cn, list-app-m.i4.cn, *api.alipan.com, member.alipan.com, acs.m.taobao.com, heic.alicdn.com, guide-acs.m.taobao.com, poplayer.template.alibaba.com, pan.baidu.com, 2023.redircdn.com, www.washpayer.com, api.douban.com, img3.doubanio.com, qnmob3.doubanio.com, img*.douban.com, frodo.douban.com, erebor.douban.com, image.mybank.icbc.com.cn, hfapp-service.qweather.net, acs-m.freshippo.com, gab.122.gov.cn, adserviceretry.kglink.cn, p0.pipi.cn, flowplus.meituan.net, img.meituan.net, s3plus.meituan.net, osg-service.sgcc.com.cn, api.m.mi.com, home.mi.com, shop-api.retail.mi.com, wallet.95516.com, mobilepaas.abchina.com.cn, ad.mcloud.139.com, jzts.cmpassport.com, boxer.baidu.com, m.baidu.com, www.baidu.com, zhidao.baidu.com, asserts.avple.tv, javdb.com, *.pornhub.com, 18hlw.com, lneuk.rslsilne.cc, 7054s.rbcmpeu.org, d2bkn61acaxm61.cloudfront.net, missav.ai, missav.ws, dsenrp55.com, ghfgnm.com, api.xiaoyuzhoufm.com, mobads.baidu.com, fmapp.chinafamilymart.com.cn, spamblocker-api.zeekstudio.com, misc-api-prd-mx.wandafilm.com, elemecdn.com, fuss10.elemecdn.com, cube.elemecdn.com, www1.elecfans.com, nr-op.elemecdn.com, img.alicdn.com, front-gateway-c.wandafilm.com, gql.reddit.com, gql-fed.reddit.com, app.zhuanzhuan.com, i.waimai.meituan.com, yunbusiness.ccb.com, 114.115.217.129, home.umetrip.com, gw.xiaocantech.com, m.pvp.xoyo.com, bp-api.bestv.cn, api.bevol.com
