@@ -1,14 +1,14 @@
 # NAME: China
 # AUTHOR: blackmatrix7
 # REPO: https://github.com/blackmatrix7/ios_rule_script
-# UPDATED: 2025-06-06 09:17:02
-# DOMAIN: 17
+# UPDATED: 2025-11-12 02:08:36
+# DOMAIN: 20
 # DOMAIN-KEYWORD: 9
-# DOMAIN-SUFFIX: 3676
+# DOMAIN-SUFFIX: 3677
 # IP-CIDR: 17
 # IP-CIDR6: 4
 # USER-AGENT: 31
-# TOTAL: 3754
+# TOTAL: 3758
 .00cdn.com
 .0123456789.com
 .0379home.com
@@ -1934,6 +1934,7 @@
 .jiazhao.com
 .jibencaozuo.com
 .jidian.im
+.jiedaibao.gs
 .jiemeng8.com
 .jiemian.com
 .jikeiot.cloud
@@ -2472,7 +2473,6 @@
 .onlinedown.net
 .onlinesjtu.com
 .onlylady.com
-.ooklaserver.net
 .opdown.com
 .open.cd
 .openapp.run
@@ -2661,6 +2661,7 @@
 .qq.cn.com
 .qq.com
 .qq.design
+.qq.net
 .qq.wang
 .qq.xn--fiqs8s
 .qq163.com
@@ -3686,6 +3687,7 @@
 analytics.strava.com
 blzddist1-a.akamaihd.net
 cdn.angruo.com
+cdn.lilyemby.com
 client.amplifi.com
 download.jetbrains.com
 download.microsoft.com
@@ -3695,8 +3697,10 @@ kc.kexinshe.com
 ntservicepack.microsoft.com
 origin-a.akamaihd.ne
 origin-a.akamaihd.net
+smart.uhdnow.com
 sms.imagetasks.com
 steamcommunity-a.akamaihd.net
+tx.lilyemby.com
 weixin.com
 www.libvideo.com
 www.yxssp.com
