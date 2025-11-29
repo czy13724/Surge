@@ -7,7 +7,7 @@
 DOMAIN-SUFFIX,agkn.com,DIRECT
 DOMAIN-SUFFIX,cohere.com,DIRECT
 DOMAIN-SUFFIX,crashlytics.com,DIRECT
-DOMAIN-SUFFIX,ip-api.com,DIRECT
+# DOMAIN-SUFFIX,ip-api.com,DIRECT
 DOMAIN-SUFFIX,kochava.com,DIRECT
 # ************************************************************
 # 以下为该软件要走节点的规则
