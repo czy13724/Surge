@@ -11,7 +11,7 @@
  [链接3🔗](https://surge-argu.levifree.news);
  [工具使用指南🔧](https://github.com/czy13724/Surge/blob/main/Tutorials/surge_argu_moduler.md)
 
-* 脚本查询:[链接🔗](https://scripts.levifree.qzz.io)
+* 脚本查询:[链接🔗](https://script.levifree.qzz.io)
 
 ⚠️请勿fork！！！请勿fork！！！请勿fork！！！喜欢请点击star✨
 
