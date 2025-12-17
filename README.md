@@ -8,7 +8,6 @@
 * Surge 单一模块生成器(带参数版)：
  [链接1🔗](https://surge-argu.levifree.qzz.io);
  [链接2🔗](https://surge-argu.levifree.dpdns.org);
- [链接3🔗](https://surge-argu.levifree.news);
  [工具使用指南🔧](https://github.com/czy13724/Surge/blob/main/Tutorials/surge_argu_moduler.md)
 
 * 脚本查询:[链接🔗](https://script.levifree.qzz.io)
