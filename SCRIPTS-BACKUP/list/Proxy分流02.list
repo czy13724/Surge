@@ -1,14 +1,14 @@
 # NAME: Proxy
 # AUTHOR: blackmatrix7
 # REPO: https://github.com/blackmatrix7/ios_rule_script
-# UPDATED: 2025-12-16 02:08:30
+# UPDATED: 2026-01-08 02:08:42
 # DOMAIN: 9
 # DOMAIN-KEYWORD: 26
-# DOMAIN-SUFFIX: 6559
+# DOMAIN-SUFFIX: 6583
 # IP-CIDR: 93
 # IP-CIDR6: 4
 # USER-AGENT: 8
-# TOTAL: 6699
+# TOTAL: 6723
 .000webhost.com
 .030buy.com
 .0rz.tw
@@ -225,6 +225,7 @@
 .ai-kan.net
 .ai-wen.net
 .ai.dev
+.ai.studio
 .aiosearch.com
 .aiph.net
 .airasia.com
@@ -264,6 +265,7 @@
 .aliengu.com
 .alive.bar
 .aljazeera.com
+.aljazeera.net
 .alkasir.com
 .all4mom.org
 .allcoin.com
@@ -649,6 +651,7 @@
 .bit.do
 .bit.ly
 .bit.no.com
+.bitbaby.com
 .bitbay.net
 .bitbucket.org
 .bitc.bme.emory.edu
@@ -1357,6 +1360,7 @@
 .dayabook.com
 .daylife.com
 .dayone.me
+.dazn.com
 .db.tt
 .dbc.hk
 .dbgjd.com
@@ -2196,6 +2200,7 @@
 .gfw.press
 .gfw.report
 .gfwatch.org
+.gfwbao.com
 .gfwlist.end
 .gfwlist.start
 .gfx.ms
@@ -2717,6 +2722,7 @@
 .icu-project.org
 .id.hao123.com
 .idaiwan.com
+.idcflare.com
 .iddddg.com
 .idemocracy.asia
 .identi.ca
@@ -3310,6 +3316,7 @@
 .lotsawahouse.org
 .lotuslight.org.hk
 .lotuslight.org.tw
+.lovart.ai
 .loved.hk
 .lovetvshow.com
 .lpsg.com
@@ -3784,6 +3791,7 @@
 .neo-miracle.com
 .neoforged.net
 .neowin.net
+.nephobox.com
 .netalert.me
 .netbirds.com
 .netcolony.com
@@ -4059,6 +4067,8 @@
 .onthehunt.com
 .ontrac.com
 .oojj.de
+.ooni.io
+.ooni.org
 .oopsforum.com
 .ooyala.com
 .open.com.hk
@@ -4161,6 +4171,7 @@
 .parler.com
 .parse.com
 .parsevideo.com
+.partnerstack.xyz
 .passion.com
 .passiontimes.hk
 .paste.ee
@@ -4188,6 +4199,7 @@
 .pdetails.com
 .pdfexpert.com
 .pdproxy.com
+.pdst.fm
 .peace.ca
 .peacefire.org
 .peacehall.com
@@ -4256,14 +4268,23 @@
 .pinoy-n.com
 .pinterest.at
 .pinterest.ca
+.pinterest.cl
 .pinterest.co.kr
 .pinterest.co.uk
 .pinterest.com
+.pinterest.com.au
+.pinterest.com.mx
 .pinterest.de
 .pinterest.dk
+.pinterest.es
 .pinterest.fr
+.pinterest.ie
+.pinterest.it
 .pinterest.jp
 .pinterest.nl
+.pinterest.nz
+.pinterest.ph
+.pinterest.pt
 .pinterest.se
 .pipii.tv
 .piposay.com
@@ -5053,6 +5074,7 @@
 .stat.gov.tw
 .state.gov
 .static-economist.com
+.static.pocketcasts.com
 .statically.io
 .staticflickr.com
 .statueofdemocracy.org
@@ -5806,6 +5828,7 @@
 .untraceable.us
 .unwire.hk
 .uocn.org
+.up.audio
 .upbit.com
 .updatestar.com
 .upghsbc.com
@@ -6285,6 +6308,7 @@
 .xbookcn.com
 .xbtce.com
 .xcafe.in
+.xcancel.com
 .xcity.jp
 .xclient.info
 .xcritic.com
