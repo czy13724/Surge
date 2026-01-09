@@ -1,42 +1,45 @@
-# Levi对本仓库说明
-## Surge自用规则库
+# 📖 Levi Surge 规则库说明
 
-* 如您是开发者或强迫症患者，想要专属于单一BoxJS订阅/自用BoxJS订阅，请访问[Boxjs订阅生成器](https://boxjs.levifree.dpdns.org)自行构建。此网站需您了解对应功能否则勿用。
+> ⚠️ **警告：建议 Star 本仓库以获取更新。为避免潜在风险，请勿直接 Fork。**
+> **Warning:** Please Star this repo for updates. Do not Fork directly to avoid potential risks.
 
-* 个人使用的图标库： [levi.icons.json](https://raw.githubusercontent.com/czy13724/LeviIcons/main/levi.icons.json)，[查询图标](https://icons.levifree.news)
+## 🤝 Support Levi
 
-* Surge 单一模块生成器(带参数版)：
- [链接1🔗](https://surge-argu.levifree.qzz.io);
- [链接2🔗](https://surge-argu.levifree.dpdns.org);
- [工具使用指南🔧](https://github.com/czy13724/Surge/blob/main/Tutorials/surge_argu_moduler.md)
+Your support keeps the projects alive and the coffee flowing! ☕
 
-* 脚本查询:[链接🔗](https://script.levifree.qzz.io)
+<a href="https://www.buymeacoffee.com/czy13724" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" /></a>
 
-⚠️请勿fork！！！请勿fork！！！请勿fork！！！喜欢请点击star✨
+---
 
-⚠️Plz Do Not FORK!!! Plz Do Not FORK!!! Plz Do Not FORK!!! If u like it, plz click star✨
+## 🚀 资源与工具
 
+*   🔍 **脚本查询工具**：[Script Search](https://script.levifree.qzz.io)
+*   🎨 **Levi Icons 图标库**
+    *   **图标检索**：[Levi_Icons_Search](https://icons.levifree.news)
+    *   **图标订阅**：`levi.icons.json`
+        *   [源链接](https://raw.githubusercontent.com/czy13724/LeviIcons/main/levi.icons.json) | [CDN加速链接](https://cdn.jsdmirror.com/gh/czy13724/LeviIcons@main/levi.icons.json)
+*   📦 **BoxJS 订阅生成器**
+    *   [在线生成器 1](https://boxjs.levifree.qzz.io) | [在线生成器 2](https://boxjs.levifree.dpdns.org)
+    *   (定制化 BoxJS 订阅工具，建议具备相关知识的用户使用)
+*   ⚡️ **Surge 模块生成器 (带参数版)**
+    *   [在线生成器 1](https://surge-argu.levifree.qzz.io) | [在线生成器 2](https://surge-argu.levifree.dpdns.org)
+    *   [🛠️ 使用教程](https://github.com/czy13724/Surge/blob/main/Tutorials/surge_argu_moduler.md)
 
-## 免责声明
+## ⚖️ 免责声明
+
+<details>
+<summary>点击展开查看完整免责声明</summary>
 
 * 项目内所涉及任何脚本、LOGO 、工作流仅为资源共享、学习参考之目的，不保证其合法性、正当性、准确性；请根据情况自行判断，切勿使用项目做任何商业用途或牟利；
-
 * 遵循避风港原则，若有图片和内容等侵权，请在 Issues 告知，核实后删除，其版权均归原作者及其网站所有；
-
-* 本人不对任何内容承担任何责任，包括但不限于任何内容错误导致的任何损失、损害;
-
+* 本人不对任何内容承担任何责任，包括但不限于任何内容错误导致的任何损失、损害；
 * 其它人通过任何方式登陆本网站或直接、间接使用项目相关资源，均应仔细阅读本声明，一旦使用、转载项目任何相关教程或资源，即被视为您已接受此免责声明。
-
 * 本项目内所有资源文件，禁止任何公众号、自媒体进行任何形式的转载、发布。
-
 * 本项目涉及的数据由使用的个人或组织自行填写，本项目不对数据内容负责，包括但不限于数据的真实性、准确性、合法性。使用本项目所造成的一切后果，与本项目的所有贡献者无关，由使用的个人或组织完全承担。
-
 * 本项目中涉及的第三方硬件、软件等，与本项目没有任何直接或间接的关系。本项目仅对部署和使用过程进行客观描述，不代表支持使用任何第三方硬件、软件。使用任何第三方硬件、软件，所造成的一切后果由使用的个人或组织承担，与本项目无关。
-
-* 本项目中所有内容只供学习和研究使用，不得将本项目中任何内容用于违法行为，包括但不限于建立 VPS 或违反国家/地区/组织等的法律法规或相关规定的其他用途。作者对于由此引起的任何隐私泄漏或其他后果概不负责.
-
+* 本项目中所有内容只供学习和研究使用，不得将本项目中任何内容用于违法行为，包括但不限于建立 VPS 或违反国家/地区/组织等的法律法规或相关规定的其他用途。作者对于由此引起的任何隐私泄漏或其他后果概不负责。
 * 所有基于本项目源代码，进行的任何修改，为其他个人或组织的自发行为，与本项目没有任何直接或间接的关系，所造成的一切后果亦与本项目无关。
-
 * 所有直接或间接使用本项目的个人和组织，应24小时内完成学习和研究，并及时删除本项目中的所有内容。如对本项目的功能有需求，应自行开发相关功能。
-
 * 本项目保留随时对免责声明进行补充或更改的权利，直接或间接使用本项目内容的个人或组织，视为接受本项目的特别声明。
+
+</details>
