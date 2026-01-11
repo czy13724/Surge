@@ -16,7 +16,7 @@
 ### 在线使用
 
 直接访问网站开始使用：
-[链接1](https://surge-argu.levifree.news)
+[链接1](https://surge-argu.levifree.qzz.io)
 [链接2](https://surge-argu.levifree.dpdns.org)
 
 ⚠️ 建议创建模块文件将得到的内容放到本地模块使用。不推荐使用GIST推送，除非你相信网站作者。
