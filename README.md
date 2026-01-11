@@ -15,7 +15,7 @@ Your support keeps the projects alive and the coffee flowing! ☕
 
 *   🔍 **脚本查询工具**：[Script Search](https://script.levifree.qzz.io)
 *   🎨 **Levi Icons 图标库**
-    *   **图标检索**：[Levi_Icons_Search](https://icons.levifree.news)
+    *   **图标检索**：[Levi_Icons_Search](https://icons.levifree.qzz.io)
     *   **图标订阅**：`levi.icons.json`
         *   [源链接](https://raw.githubusercontent.com/czy13724/LeviIcons/main/levi.icons.json) | [CDN加速链接](https://cdn.jsdmirror.com/gh/czy13724/LeviIcons@main/levi.icons.json)
 *   📦 **BoxJS 订阅生成器**
