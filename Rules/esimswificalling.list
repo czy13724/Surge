@@ -1,0 +1,115 @@
+# 地区检测
+DOMAIN-SUFFIX,gspe1-ssl.ls.apple.com
+
+# 美国 SIM 卡 Wi-Fi Calling 配置规则
+DOMAIN-SUFFIX,crl.t-mobile.com
+DOMAIN-SUFFIX,depdg.epc.mnc260.mcc310.pub.3gppnetwork.org
+DOMAIN-SUFFIX,eas3.msg.t-mobile.com
+DOMAIN-SUFFIX,epdg.epc.mnc240.mcc310.pub.3gppnetwork.org
+DOMAIN-SUFFIX,epdg.epc.mnc260.mcc310.pub.3gppnetwork.org
+DOMAIN-SUFFIX,mascns.t-mobile.com
+DOMAIN-SUFFIX,ns.sipgeo.t-mobile.com
+DOMAIN-SUFFIX,optimizely.com
+DOMAIN-SUFFIX,redirect.ultra.me
+DOMAIN-SUFFIX,epdg.epc.geo.mnc260.mcc310.pub.3gppnetwork.org
+DOMAIN-SUFFIX,ultramobile.com
+DOMAIN-KEYWORD,t-mobile
+DOMAIN-KEYWORD,ultramobile
+IP-CIDR,206.29.177.36/32,no-resolve
+IP-CIDR,208.54.0.0/16,no-resolve
+IP-CIDR,66.94.0.0/19,no-resolve
+
+# 英国 SIM 卡 Wi-Fi Calling 配置规则
+
+# 沃达丰
+DOMAIN-SUFFIX,entsrv-uk.vodafone.com
+DOMAIN-SUFFIX,epdg.epc.mnc015.mcc234.pub.3gppnetwork.org
+DOMAIN-SUFFIX,epdg.epc.geo.mnc015.mcc234.pub.3gppnetwork.org
+DOMAIN-SUFFIX,vuk-gto.prod.ondemandconnectivity.com
+IP-CIDR,88.82.0.0/19,no-resolve
+
+# CMLink UK EE
+IP-CIDR,46.68.0.0/17,no-resolve
+
+# CTEXCEL
+DOMAIN-SUFFIX,epdg.epc.mnc033.mcc234.pub.3gppnetwork.org
+IP-CIDR,31.94.0.0/16,no-resolve
+
+# Giffgaff
+DOMAIN-SUFFIX,giffgaff.com
+DOMAIN-SUFFIX,epdg.epc.mnc010.mcc234.pub.3gppnetwork.org
+IP-CIDR,87.194.0.0/16,no-resolve
+
+# 3UK
+DOMAIN-SUFFIX,epdg.epc.mnc020.mcc234.pub.3gppnetwork.org
+IP-CIDR,185.153.236.0/22,no-resolve
+IP-CIDR,185.153.237.0/24,no-resolve
+
+# VOXI
+IP-CIDR,148.252.160.0/19,no-resolve
+
+# 乌克兰 SIM 卡 Wi-Fi Calling 配置规则
+
+# lifecell
+DOMAIN-SUFFIX,epdg.epc.mnc006.mcc255.pub.3gppnetwork.org
+IP-CIDR,212.58.160.0/19,no-resolve
+IP-CIDR,212.58.168.0/21,no-resolve
+
+# 香港 SIM 卡 Wi-Fi Calling 配置规则
+
+DOMAIN-SUFFIX,wlan.three.com.hk
+DOMAIN-SUFFIX,epdg.epc.mnc000.mcc454.pub.3gppnetwork.org
+DOMAIN-SUFFIX,ss.epdg.epc.mnc000.mcc454.pub.3gppnetwork.org
+DOMAIN-SUFFIX,ss.epdg.epc.geo.mnc000.mcc454.pub.3gppnetwork.org
+IP-CIDR,203.145.92.0/24,no-resolve
+IP-CIDR,203.145.88.0/21,no-resolve
+IP-CIDR,203.145.80.0/20,no-resolve
+IP-CIDR,124.217.186.0/24,no-resolve
+IP-CIDR,124.217.128.0/18,no-resolve
+
+# 荷兰 SIM 卡 Wi-Fi Calling 配置规则
+
+# Vodafone NL
+DOMAIN-SUFFIX,epdg.epc.mnc004.mcc204.pub.3gppnetwork.org
+IP-CIDR,109.32.0.0/13,no-resolve
+
+# 泰国 SIM 卡 Wi-Fi Calling 配置规则
+
+#AIS
+DOMAIN-SUFFIX,epdg.epc.mnc003.mcc520.pub.3gppnetwork.org
+IP-CIDR,119.31.123.0/24,no-resolve
+IP-CIDR,119.31.0.0/17,no-resolve
+
+# 新西兰 SIM 卡 Wi-Fi Calling 配置规则
+
+#2degrees
+DOMAIN-SUFFIX,epdg.ims.2degrees.net.nz
+IP-CIDR,118.148.0.0/15,no-resolve
+
+#one nz
+DOMAIN-SUFFIX,epdg.epc.mnc001.mcc530.pub.3gppnetwork.org
+IP-CIDR,203.96.192.0/19,no-resolve
+
+# 澳大利亚 SIM 卡 Wi-Fi Calling 配置规则
+
+# ALDI
+DOMAIN-SUFFIX,epdg.epc.mnc001.mcc505.pub.3gppnetwork.org
+IP-CIDR,149.135.0.0/16,no-resolve
+
+# Optus
+DOMAIN-SUFFIX,epdg.epc.mnc002.mcc505.pub.3gppnetwork.org
+
+# Vodafone AU
+DOMAIN-SUFFIX,epdg.epc.mnc003.mcc505.pub.3gppnetwork.org
+
+# 德国 SIM 卡 Wi-Fi Calling 配置规则
+
+# Vodafone DE
+DOMAIN-SUFFIX,epdg.epc.mnc002.mcc262.pub.3gppnetwork.org
+IP-CIDR,139.7.117.168/30,no-resolve
+
+# 冰岛 SIM 卡 Wi-Fi Calling 配置规则
+
+# Nova
+DOMAIN-SUFFIX,epdg.epc.mnc011.mcc274.pub.3gppnetwork.org
+IP-CIDR,78.40.249.216/31,no-resolve
