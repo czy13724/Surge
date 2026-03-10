@@ -55,6 +55,9 @@ added, updated, deleted = 0, 0, 0
 updated_files = []
 deleted_files = []
 failed_sync = []
+added_by_type = {}
+updated_by_type = {}
+deleted_by_type = {}
 
 def log(msg): print(f"[GIST-BACKUP] {msg}")
 
@@ -143,11 +146,13 @@ def download_and_compare(name, url):
                     with open(filename, "w", encoding="utf-8") as wf:
                         wf.write(content)
                     updated_files.append((filename, subdir))
+                    updated_by_type.setdefault(subdir, []).append(name)
                     updated += 1
         else:
             with open(filename, "w", encoding="utf-8") as f:
                 f.write(content)
             updated_files.append((filename, subdir))
+            added_by_type.setdefault(subdir, []).append(name)
             added += 1
     except Exception as e:
         log(f"❌ Failed to fetch {name}: {e}")
@@ -164,6 +169,7 @@ def cleanup_files(valid_files_set):
                 os.remove(full_path)
                 subdir = os.path.relpath(root, BACKUP_DIR)
                 deleted_files.append((full_path, subdir))
+                deleted_by_type.setdefault(subdir, []).append(os.path.splitext(fname)[0])
                 deleted += 1
 # Bark app通知
 def send_bark(title, content, url):
@@ -226,22 +232,40 @@ def main():
     if os.getenv("CLEAN_MODE", "true") == "true":
         cleanup_files(valid_files_set)
 
-    for filepath, subdir in updated_files:
-        fname = os.path.basename(filepath)
-        os.system(f'git add "{filepath}"')
-        os.system(f'git commit -m "sync({subdir}): {fname}"')
+    if updated_files or deleted_files or os.path.exists(CONFIG_FILE):
+        os.system("git add -A")
+        staged = os.popen("git diff --cached --name-only").read().splitlines()
+        parts = []
 
-    for filepath, subdir in deleted_files:
-        fname = os.path.basename(filepath)
-        os.system(f'git rm "{filepath}"')
-        os.system(f'git commit -m "remove ({subdir}): {fname}"')
+        def compact_list(items, limit=6):
+            seen = set()
+            ordered = []
+            for item in items:
+                if item in seen:
+                    continue
+                seen.add(item)
+                ordered.append(item)
+            if len(ordered) <= limit:
+                return ordered
+            return ordered[:limit] + [f"...+{len(ordered) - limit}"]
 
-    if updated_files or deleted_files:
-        os.system("git push")
+        def add_parts(prefix, data):
+            for subdir, names in data.items():
+                compacted = compact_list(names)
+                parts.append(f"{prefix}{subdir}({len(names)}:{','.join(compacted)})")
 
-    if os.path.exists(CONFIG_FILE):
-        os.system(f'git add "{CONFIG_FILE}"')
-        os.system(f'git diff --cached --quiet || git commit -m "config: update {CONFIG_FILE}"')
+        if added_by_type:
+            add_parts("+", added_by_type)
+        if updated_by_type:
+            add_parts("~", updated_by_type)
+        if deleted_by_type:
+            add_parts("-", deleted_by_type)
+
+        if CONFIG_FILE in staged:
+            parts.append(f"cfg({CONFIG_FILE})")
+
+        summary = "sync: " + (" ".join(parts) if parts else "no changes")
+        os.system(f'git diff --cached --quiet || git commit -m "{summary}"')
         os.system("git push")
 
     notify = os.getenv("FORCE_NOTIFY", "true").lower() == "true" or added or updated or deleted
