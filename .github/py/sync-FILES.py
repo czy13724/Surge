@@ -2,13 +2,13 @@
 # 作者：Levi
 # 需搭配sync_FILES.yml使用
 #!/usr/bin/env python3
-import os, json, requests
+import os, requests
 from urllib.parse import quote, urlparse
 import re
 from datetime import datetime, timedelta
 
-CONFIG_FILE = "script-gist.json"
-BACKUP_DIR = "SCRIPTS-BACKUP"
+CONFIG_FILE = "script-backup.txt"  # 每行一条："名称":"链接"
+BACKUP_DIR = "backup"
 FAILED_DIR = BACKUP_DIR
 FAILED_LOG_PREFIX = "failed_"
 
@@ -57,6 +57,52 @@ deleted_files = []
 failed_sync = []
 
 def log(msg): print(f"[GIST-BACKUP] {msg}")
+
+def parse_config_file(path):
+    config = {}
+    with open(path, "r", encoding="utf-8") as f:
+        for lineno, raw in enumerate(f, start=1):
+            line = raw.strip()
+            if not line or line.startswith("#") or line.startswith("//"):
+                continue
+            if line.endswith(","):
+                line = line[:-1].rstrip()
+
+            name = None
+            url = None
+
+            if line[0] in ("'", '"'):
+                quote = line[0]
+                end = line.find(quote, 1)
+                if end != -1:
+                    name = line[1:end].strip()
+                    rest = line[end + 1:].lstrip()
+                    if rest.startswith(":"):
+                        rest = rest[1:].lstrip()
+                    if rest:
+                        if rest[0] in ("'", '"'):
+                            q = rest[0]
+                            endu = rest.find(q, 1)
+                            if endu != -1:
+                                url = rest[1:endu].strip()
+                            else:
+                                url = rest[1:].strip()
+                        else:
+                            url = rest.strip()
+
+            if name is None or url is None:
+                if ":" in line:
+                    name_part, _, rest = line.partition(":")
+                    name = name_part.strip().strip('"').strip("'")
+                    url = rest.strip().strip('"').strip("'")
+
+            if not name or not url:
+                log(f"⚠️ Invalid line {lineno}: {raw.strip()}")
+                continue
+
+            config[name] = url
+
+    return config
 
 def record_failure(name, url, error_message):
     today = datetime.now().strftime("%Y-%m-%d")
@@ -159,13 +205,12 @@ def send_telegram(title, content, token, user_id):
 
 def main():
     if not os.path.exists(CONFIG_FILE):
-        log("❌ No config file found.")
+        log(f"❌ No config file found: {CONFIG_FILE}")
         return
 
     clean_old_failed_logs()
 
-    with open(CONFIG_FILE, "r", encoding="utf-8") as f:
-        config = json.load(f)
+    config = parse_config_file(CONFIG_FILE)
 
     valid_files_set = set()
 
@@ -194,9 +239,9 @@ def main():
     if updated_files or deleted_files:
         os.system("git push")
 
-    if os.path.exists("script-gist.json"):
-        os.system("git add script-gist.json")
-        os.system("git diff --cached --quiet || git commit -m 'config: update script-gist.json'")
+    if os.path.exists(CONFIG_FILE):
+        os.system(f'git add "{CONFIG_FILE}"')
+        os.system(f'git diff --cached --quiet || git commit -m "config: update {CONFIG_FILE}"')
         os.system("git push")
 
     notify = os.getenv("FORCE_NOTIFY", "true").lower() == "true" or added or updated or deleted

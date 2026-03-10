@@ -1,0 +1,36 @@
+# Modules (each item can have -dep lines following it)
+"Youtube (Music) Enhance":"https://raw.githubusercontent.com/Maasea/sgmodule/master/YouTube.Enhance.sgmodule"
+"Youtube (Music) Enhance-dep":"https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Youtube/youtube.response.js"
+
+"YoutubeLite":"https://raw.githubusercontent.com/Maasea/sgmodule/master/YouTube.Lite.sgmodule"
+
+"BlockHTTPDNS":"https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Official/拦截HTTPDNS.official.sgmodule"
+
+"Skip_Proxy&Real-IP_Lists":"https://raw.githubusercontent.com/mieqq/mieqq/master/skip-proxy-lists.sgmodule"
+
+"清除DNS缓存面板":"https://raw.githubusercontent.com/mist-whisper/Surge/master/Modules/Panel_FlushDNS.sgmodule"
+"清除DNS缓存面板-dep":"https://raw.githubusercontent.com/mist-whisper/Script/master/Tools/Flush-DNS.js"
+
+"打断请求面板":"https://raw.githubusercontent.com/xream/scripts/main/surge/modules/kill-active-requests/index.sgmodule"
+"打断请求面板-dep":"https://raw.githubusercontent.com/xream/scripts/main/surge/modules/kill-active-requests/index.js"
+
+"机场流量信息面板":"https://raw.githubusercontent.com/mist-whisper/Surge/master/Modules/Panel_Sub-info.sgmodule"
+"机场流量信息面板-dep":"https://raw.githubusercontent.com/Rabbit-Spec/Surge/Master/Module/Panel/Sub-info/Moore/Sub-info.js"
+
+"流媒体解锁检测面板":"https://raw.githubusercontent.com/mist-whisper/Surge/master/Modules/Panel_MediaChecker.sgmodule"
+"流媒体解锁检测面板-dep":"https://raw.githubusercontent.com/githubdulong/Script/master/Stream-All.js"
+
+"网络信息面板":"https://raw.githubusercontent.com/xream/scripts/main/surge/modules/network-info/net-lsp-x.sgmodule"
+"网络信息面板-dep":"https://raw.githubusercontent.com/xream/scripts/main/surge/modules/network-info/net-lsp-x.js"
+
+"网络详情面板":"https://raw.githubusercontent.com/mist-whisper/Surge/master/Modules/Panel_Network_Info_CN.sgmodule"
+"网络详情面板-dep":"https://raw.githubusercontent.com/getsomecat/GetSomeCats/Surge/modules/Panel/Network-Info/Moore/net-info-panel_CN.js"
+
+"节点信息面板":"https://raw.githubusercontent.com/mist-whisper/Surge/master/Modules/Panel_IP-info.sgmodule"
+"节点信息面板-dep1":"https://raw.githubusercontent.com/cc63/Surge/main/Module/Panel/IP-info/Moore/IP-1.js"
+"节点信息面板-dep2":"https://raw.githubusercontent.com/mist-whisper/Script/master/Tools/IP-info/IP-2.js"
+"节点信息面板-dep3":"https://raw.githubusercontent.com/mist-whisper/Script/master/Tools/IP-info/IP-3.js"
+"节点信息面板-dep4":"https://raw.githubusercontent.com/mist-whisper/Script/master/Tools/IP-info/IP-4.js"
+
+"通知推送":"https://raw.githubusercontent.com/Sliverkiss/GoodNight/master/Surge/module/Notification.sgmodule"
+"通知推送-dep":"https://raw.githubusercontent.com/Sliverkiss/GoodNight/refs/heads/master/Surge/module/Notification.js"
