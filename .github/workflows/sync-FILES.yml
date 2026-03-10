@@ -4,20 +4,17 @@
 # 搭配sync-FILES.py使用
 # 🚨推荐同步备份到你的私有仓库 你必须授予仓库读写权限才可使用！
 # 使用方式：
-# 1. 在仓库根目录创建 script-gist.json 文件，格式为 {"文件名称": "文件链接"}
-# 2. 将 sync_FILES.py 文件放入 .github/scripts 目录中
+# 1. 在仓库根目录创建 script-backup.txt 文件，每行一条，格式为 "文件名称":"文件链接"
+# 2. 将 sync_FILES.py 文件放入 .github/py 目录中
 # 3. 将此工作流文件放入 .github/workflows/sync_FILES.yml
 # 4. 在设置里为环境变量(env部分)增加Secrets以启用通知（可选项，未设置则不推送）
 # 5. 可监测配置文件改动执行或手动运行或等待定时触发（默认每天执行一次）
 # ------------------------------------------------------------------------
-# script-gist.json 文件格式如下（示例）：
-# {
-#   "示例1": "https://raw.githubusercontent.com/example1.js",
-#   "示例2": "https://raw.githubusercontent.com/example2.txt",
-#   ...,
-#   "example": "https://gist.githubusercontent.com/raw/example.json"
-# }
-# ⚠️ script-gist.json 文件最后一个链接不需要加逗号，否则报错！
+# script-backup.txt 文件格式如下（示例）：
+# "示例1":"https://raw.githubusercontent.com/example1.js"
+# "示例2":"https://raw.githubusercontent.com/example2.txt"
+# "example":"https://gist.githubusercontent.com/raw/example.json"
+# ⚠️ 每行只写一条，不需要逗号！
 # ------------------------------------------------------------------------
 name: Specific Files Backup via
 
@@ -26,11 +23,11 @@ on:
     - cron: '0 2 * * *'        # UTC时间 到规定时间自动执行
   push:                        # 监测文件内容改动 若有改动自动执行
     paths:
-      - 'script-gist.json'     # 监视根目录文件夹script-gist.json内容是否改动
+      - 'script-backup.txt'    # 监视根目录文件夹script-backup.txt内容是否改动
   workflow_dispatch:           # 手动执行备份
     inputs:
       clean_mode:
-        description: '是否清理未在 script-gist.json 中的保留的历史文件?(true=清理，false=不清理)'
+        description: '是否清理未在 script-backup.txt 中的保留的历史文件?(true=清理，false=不清理)'
         required: false
         default: 'false'
       notify_lang:
@@ -43,7 +40,7 @@ on:
         default: 'main'  
 
 env:
-  CLEAN_MODE: ${{ github.event.inputs.clean_mode }}            # 谨慎开启。如你的配置文件链接访问失败/你移除了部分文件，开启后工作流执行完毕会将你备份的对应文件移除，即是否清理未在 script-gist.json 中的保留的历史文件（true/false）
+  CLEAN_MODE: ${{ github.event.inputs.clean_mode }}            # 谨慎开启。如你的配置文件链接访问失败/你移除了部分文件，开启后工作流执行完毕会将你备份的对应文件移除，即是否清理未在 script-backup.txt 中的保留的历史文件（true/false）
   TARGET_BRANCH: ${{ github.event.inputs.target_branch }}      # 推送分支 默认main
   FORCE_NOTIFY: true                                           # 自定义开启。强制推送通知，需在仓库secret里添加配置，搭配下方可选通知方式使用。（true/false）
   NOTIFY_LANG: ${{ github.event.inputs.notify_lang }}          # 通知语言配置 仅支持中英切换 (zh-cn或en-us)
