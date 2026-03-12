@@ -73,3 +73,19 @@ jobs:
 
       - name: Run sync-FILES.py
         run: python3 .github/py/sync-FILES.py
+
+  cleanup-runs:
+    runs-on: ubuntu-latest
+    needs: run-script
+    permissions:
+      actions: write
+      contents: read
+    steps:
+      - name: Delete old workflow runs (keep 7 days)
+        uses: Mattraks/delete-workflow-runs@v2.1.0
+        with:
+          token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          retain_days: 7
+          keep_minimum_runs: 1
+          delete_workflow_pattern: sync-FILES.yml
