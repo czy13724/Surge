@@ -1,0 +1,44 @@
+#!name=银行业务与跳过代理列表 (Direct & Skip Proxy)
+#!desc=包含了从跳过代理中提取的直连规则、跳过代理列表及真实 IP 列表，以改善连接并解决系统绕过列表截断问题。
+
+[Rule]
+DOMAIN,msmp.abchina.com.cn,REJECT // 拒绝
+DOMAIN,e.crashlytics.com,DIRECT // Firebase 崩溃采集
+DOMAIN,captive.apple.com,DIRECT // Apple 联网检测
+DOMAIN,sequoia.apple.com,DIRECT // Apple 系统服务
+DOMAIN,seed-sequoia.siri.apple.com,DIRECT // Apple Siri 服务
+DOMAIN,app.yinxiang.com,DIRECT // 印象笔记
+DOMAIN,injections.adguard.org,DIRECT // AdGuard 脚本注入
+DOMAIN,local.adguard.org,DIRECT // AdGuard 本地回环
+DOMAIN,cable.auth.com,DIRECT // CABLE 授权
+DOMAIN-SUFFIX,id.ui.direct,DIRECT // Ubiquiti UI
+DOMAIN,www.baidu.com,DIRECT // 百度 (国网/顺丰/中行等应用使用)
+DOMAIN,wxh.wo.cn,DIRECT // 联通沃小号
+DOMAIN,gate.lagou.com,DIRECT // 拉勾招聘
+DOMAIN,www.abchina.com.cn,DIRECT // 中国农业银行
+DOMAIN,yunbusiness.ccb.com,DIRECT // 建设银行 (建行生活)
+DOMAIN,www.shanbay.com,DIRECT // 扇贝单词
+DOMAIN,login-service.mobile-bank.psbc.com,DIRECT // 邮储银行
+DOMAIN,mobile-bank.psbc.com,DIRECT // 邮储银行
+DOMAIN,id6.me,DIRECT // 电信一键登录
+DOMAIN,www.163.com,DIRECT // 网易 (交管12123应用使用)
+DOMAIN,easy-login.10099.com.cn,DIRECT // 广电一键登录
+DOMAIN,open.e.189.cn,DIRECT // 电信一键登录
+DOMAIN-SUFFIX,xoyocdn.com,DIRECT // 剑网三无界 (西山居)
+
+[General]
+skip-proxy = %APPEND% www.baidu.com,yunbusiness.ccb.com,wxh.wo.cn,gate.lagou.com,www.abchina.com.cn,www.shanbay.com,login-service.mobile-bank.psbc.com,mobile-bank.psbc.com,id6.me,www.163.com
+always-real-ip = %APPEND% easy-login.10099.com.cn,*-update.xoyocdn.com,id6.me,open.e.189.cn
+
+# www.baidu.com：网上国网、多看阅读、顺丰金融、广东农信、丰云行、中国银行缤纷生活、通信行程卡app、趣智校园、趣听音乐、光大手机银行、掌上12333、沃视频
+# yunbusiness.ccb.com 建行生活
+# wxh.wo.cn：沃小号
+# gate.lagou.com：拉勾招聘
+# www.abchina.com.cn 中国农业银行
+# www.shanbay.com 扇贝单词消息中心
+# www.google.com 成都公积金
+# login-service.mobile-bank.psbc.com,mobile-bank.psbc.com 中国邮政储蓄银行
+# easy-login.10099.com.cn 中国广电
+# *-update.xoyocdn.com 剑网三无界
+# id6.me 中国电信一键登陆
+# www.163.com 交管12123
