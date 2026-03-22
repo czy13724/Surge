@@ -1,0 +1,8 @@
+#!name=ESTK eSIM 模拟
+#!desc=用于有锁 iPhone 的 ESTK eSIM 配置文件下载流程。
+
+[MITM]
+hostname = %APPEND% sq-device.apple.com
+
+[Map Local]
+^https?:\/\/sq-device\.apple\.com\/customer\/ data-type=text data="{\"sessionId\":\"ESTKme\",\"serviceDiscovery\":{},\"setupOptions\":[],\"result\":\"ALLOWED\",\"responseStatus\":{\"code\":2000},\"responseCode\":2000}"
