@@ -1,8 +1,21 @@
 # GagaOOLala
 # author: @Levi
-# date:2024/12/6
+# date:2026/04/29
 # taiwan
+# Generated from GagaOOLala 4.2.1 static analysis
+# Replace policy name `GagaOOLala` with your Surge policy/group name if needed.
 
-DOMAIN,licensing.bitmovin.com,GagaOOLala
+DOMAIN,api.gagaoolala.com,GagaOOLala
 DOMAIN-SUFFIX,gagaoolala.com,GagaOOLala
+DOMAIN,img.gagaoolala.com,GagaOOLala
+URL-REGEX,^https?:\/\/api\.gagaoolala\.com\/api\/v[0-9.]+\/,GagaOOLala
+URL-REGEX,^https?:\/\/api\.gagaoolala\.com\/api\/v[0-9.]+\/plan\/ios\/subscribe,GagaOOLala
+URL-REGEX,^https?:\/\/www\.gagaoolala\.com\/,GagaOOLala
+URL-REGEX,^https?:\/\/img\.gagaoolala\.com\/,GagaOOLala
+URL-REGEX,^https?:\/\/img\.gagaoolala\.com\/css\/player,GagaOOLala
+DOMAIN,licensing.bitmovin.com,GagaOOLala
+DOMAIN,analytics-ingress-global.bitmovin.com,GagaOOLala
+DOMAIN-SUFFIX,bitmovin.com,GagaOOLala
+DOMAIN-SUFFIX,bitmovinapi.com,GagaOOLala
+
 DOMAIN-SUFFIX,cloudfront.net,GagaOOLala
