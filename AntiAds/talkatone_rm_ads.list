@@ -1,0 +1,106 @@
+# Talkatone 去广告及遥测专用规则
+# Author: Levi
+# Update: 2026.04.29
+# 说明：包含 Talkatone 内部集成的所有核心广告联盟及深层遥测域名。
+# 用法：在配置中将此规则集指向 "REJECT" 或 "REJECT-DROP" 策略。
+
+# >>> Talkatone 专有广告子域名 <<<
+DOMAIN-SUFFIX,a1.tktn.be
+DOMAIN-SUFFIX,d.tktn.be
+
+# >>> 核心广告联盟 <<<
+# 1. Google AdMob & Google Ads
+DOMAIN-SUFFIX,googlesyndication.com
+DOMAIN-SUFFIX,googleads.g.doubleclick.net
+DOMAIN-SUFFIX,googleads4.g.doubleclick.net
+DOMAIN-SUFFIX,adclick.g.doubleclick.net
+DOMAIN-SUFFIX,app-measurement.com
+
+# 2. MobileFuse
+DOMAIN-SUFFIX,mobilefuse.com
+DOMAIN-SUFFIX,mobi.fuse.com
+
+# 3. InMobi
+DOMAIN-SUFFIX,inmobi.com
+DOMAIN-SUFFIX,inmobisdk-a.akamaihd.net
+DOMAIN-SUFFIX,telemetry.sdk.inmobi.cn
+
+# 4. PubMatic
+DOMAIN-SUFFIX,pubmatic.com
+
+# 5. Smaato
+DOMAIN-SUFFIX,smaato.net
+DOMAIN-SUFFIX,smaato.com
+
+# 6. Tappx
+DOMAIN-SUFFIX,tappx.com
+
+# 7. Fyber / Inneractive
+DOMAIN-SUFFIX,fyber.com
+DOMAIN-SUFFIX,inner-active.mobi
+DOMAIN-SUFFIX,exchange-b-events.inner-active.mobi
+DOMAIN-SUFFIX,wv.inner-active.mobi
+DOMAIN-SUFFIX,cdn2.inner-active.mobi
+DOMAIN-SUFFIX,sdk-events.inner-active.mobi
+DOMAIN-SUFFIX,skadnetworks.fyber.com
+
+# 8. Amazon Ads
+DOMAIN-SUFFIX,amazon-adsystem.com
+
+# 9. Vungle
+DOMAIN-SUFFIX,vungle.com
+
+# 10. AppLovin
+DOMAIN-SUFFIX,applovin.com
+
+# 11. Google 广告其他子域
+DOMAIN-SUFFIX,pagead2.googlesyndication.com
+DOMAIN-SUFFIX,googleadservices.com
+DOMAIN-SUFFIX,doubleclick-cn.net
+DOMAIN-SUFFIX,googlesyndication-cn.com
+DOMAIN-SUFFIX,mediation.goog
+DOMAIN-SUFFIX,badad.googleplex.com
+DOMAIN-SUFFIX,imasdk.googleapis.com
+
+# 12. Apple 广告归因
+DOMAIN-SUFFIX,app-ads-services.com
+
+# >>> 其他散碎广告联盟 <<<
+DOMAIN-SUFFIX,adrta.com
+DOMAIN-SUFFIX,adsappier.com
+DOMAIN-SUFFIX,appier.net
+DOMAIN-SUFFIX,appiersig.com
+DOMAIN-SUFFIX,as.cluep.com
+DOMAIN-SUFFIX,criteo.com
+DOMAIN-SUFFIX,pubnative.net
+DOMAIN-SUFFIX,smadex.com
+DOMAIN-SUFFIX,taboola.com
+DOMAIN-SUFFIX,tr-us.adsmoloco.com
+DOMAIN-SUFFIX,impression.link
+DOMAIN-SUFFIX,jampp.com
+DOMAIN-SUFFIX,pomodoromedia.com
+DOMAIN-SUFFIX,zemanta.com
+DOMAIN-SUFFIX,outbrain.com
+DOMAIN-SUFFIX,outbrainimg.com
+DOMAIN-SUFFIX,trustarc.com
+DOMAIN-SUFFIX,truste.com
+DOMAIN-SUFFIX,adsrvr.org
+DOMAIN-SUFFIX,inhousedsp.com
+DOMAIN-SUFFIX,i.sng.link
+DOMAIN-SUFFIX,richmob.cn
+DOMAIN-SUFFIX,4dvertible.com
+DOMAIN-SUFFIX,m.tktn.me
+
+# >>> 遥测与崩溃报告 <<<
+DOMAIN-SUFFIX,appsflyer.com
+DOMAIN-SUFFIX,crashlytics.com
+DOMAIN-SUFFIX,agkn.com
+DOMAIN-SUFFIX,cohere.com
+DOMAIN-SUFFIX,kochava.com
+DOMAIN-SUFFIX,firebaselogging.googleapis.com
+DOMAIN-SUFFIX,crashlyticsreports-pa.googleapis.com
+DOMAIN-SUFFIX,firebase-settings.crashlytics.com
+DOMAIN-SUFFIX,firebaseinstallations.googleapis.com
+DOMAIN-SUFFIX,firebaseappcheck.googleapis.com
+DOMAIN-SUFFIX,app-analytics-services.com
+DOMAIN-SUFFIX,app-analytics-services-att.com
