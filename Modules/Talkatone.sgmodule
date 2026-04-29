@@ -1,0 +1,126 @@
+#!name=Talkatone 分流 & 去广告
+#!desc=请确保您的配置中存在名为 "Talkatone" 的策略组。
+#!author=Levi
+#!update=2026.04.29
+
+[Rule]
+# >>> 核心通讯与功能 (策略组：Talkatone) <<<
+DOMAIN-SUFFIX,talkatone.com,Talkatone
+DOMAIN-SUFFIX,talkamobile.com,Talkatone
+DOMAIN-SUFFIX,tktn.at,Talkatone
+DOMAIN-SUFFIX,tktn.be,Talkatone
+DOMAIN-SUFFIX,cnt.tktn.be,Talkatone
+DOMAIN-SUFFIX,media.tenor.com,Talkatone
+
+# >>> 核心 IP 段 (通话/短信专线) <<<
+IP-CIDR,50.117.27.0/24,Talkatone,no-resolve
+IP-CIDR,63.251.124.0/24,Talkatone,no-resolve
+IP-CIDR,69.46.75.0/24,Talkatone,no-resolve
+IP-CIDR,104.244.53.0/24,Talkatone,no-resolve
+IP-CIDR,131.153.5.0/24,Talkatone,no-resolve
+IP-CIDR,131.153.7.0/24,Talkatone,no-resolve
+IP-CIDR,198.24.160.0/24,Talkatone,no-resolve
+IP-CIDR,198.24.161.0/24,Talkatone,no-resolve
+IP-CIDR,198.24.163.0/24,Talkatone,no-resolve
+IP-CIDR,198.24.183.0/24,Talkatone,no-resolve
+IP-CIDR,205.164.56.0/24,Talkatone,no-resolve
+IP-CIDR,216.172.154.0/24,Talkatone,no-resolve
+
+# >>> 专有广告 <<<
+DOMAIN-SUFFIX,a1.tktn.be,REJECT-DROP
+DOMAIN-SUFFIX,d.tktn.be,REJECT-DROP
+
+# >>> 广告 <<<
+# 1. Google AdMob & Google Ads
+DOMAIN-SUFFIX,googlesyndication.com,REJECT
+DOMAIN-SUFFIX,googleads.g.doubleclick.net,REJECT
+DOMAIN-SUFFIX,googleads4.g.doubleclick.net,REJECT
+DOMAIN-SUFFIX,adclick.g.doubleclick.net,REJECT
+DOMAIN-SUFFIX,app-measurement.com,REJECT
+
+# 2. MobileFuse
+DOMAIN-SUFFIX,mobilefuse.com,REJECT
+DOMAIN-SUFFIX,mobi.fuse.com,REJECT
+
+# 3. InMobi
+DOMAIN-SUFFIX,inmobi.com,REJECT
+DOMAIN-SUFFIX,inmobisdk-a.akamaihd.net,REJECT
+DOMAIN-SUFFIX,telemetry.sdk.inmobi.cn,REJECT
+
+# 4. PubMatic
+DOMAIN-SUFFIX,pubmatic.com,REJECT
+
+# 5. Smaato
+DOMAIN-SUFFIX,smaato.net,REJECT
+DOMAIN-SUFFIX,smaato.com,REJECT
+
+# 6. Tappx
+DOMAIN-SUFFIX,tappx.com,REJECT
+
+# 7. Fyber / Inneractive
+DOMAIN-SUFFIX,fyber.com,REJECT
+DOMAIN-SUFFIX,inner-active.mobi,REJECT
+DOMAIN-SUFFIX,exchange-b-events.inner-active.mobi,REJECT
+DOMAIN-SUFFIX,wv.inner-active.mobi,REJECT
+DOMAIN-SUFFIX,cdn2.inner-active.mobi,REJECT
+DOMAIN-SUFFIX,sdk-events.inner-active.mobi,REJECT
+DOMAIN-SUFFIX,skadnetworks.fyber.com,REJECT
+
+# 8. Amazon Ads
+DOMAIN-SUFFIX,amazon-adsystem.com,REJECT
+
+# 9. Vungle
+DOMAIN-SUFFIX,vungle.com,REJECT
+
+# 10. AppLovin
+DOMAIN-SUFFIX,applovin.com,REJECT
+
+# 11. Google 广告其他子域
+DOMAIN-SUFFIX,pagead2.googlesyndication.com,REJECT
+DOMAIN-SUFFIX,googleadservices.com,REJECT
+DOMAIN-SUFFIX,doubleclick-cn.net,REJECT
+DOMAIN-SUFFIX,googlesyndication-cn.com,REJECT
+DOMAIN-SUFFIX,mediation.goog,REJECT
+DOMAIN-SUFFIX,badad.googleplex.com,REJECT
+DOMAIN-SUFFIX,imasdk.googleapis.com,REJECT
+
+# 12. Apple 广告归因
+DOMAIN-SUFFIX,app-ads-services.com,REJECT
+
+# >>> 广告 & 遥测 <<< 
+DOMAIN-SUFFIX,adrta.com,REJECT-DROP
+DOMAIN-SUFFIX,adsappier.com,REJECT-DROP
+DOMAIN-SUFFIX,appier.net,REJECT-DROP
+DOMAIN-SUFFIX,appiersig.com,REJECT-DROP
+DOMAIN-SUFFIX,as.cluep.com,REJECT-DROP
+DOMAIN-SUFFIX,criteo.com,REJECT-DROP
+DOMAIN-SUFFIX,pubnative.net,REJECT-DROP
+DOMAIN-SUFFIX,smadex.com,REJECT-DROP
+DOMAIN-SUFFIX,taboola.com,REJECT-DROP
+DOMAIN-SUFFIX,tr-us.adsmoloco.com,REJECT-DROP
+DOMAIN-SUFFIX,impression.link,REJECT-DROP
+DOMAIN-SUFFIX,jampp.com,REJECT-DROP
+DOMAIN-SUFFIX,pomodoromedia.com,REJECT-DROP
+DOMAIN-SUFFIX,zemanta.com,REJECT-DROP
+DOMAIN-SUFFIX,outbrain.com,REJECT-DROP
+DOMAIN-SUFFIX,outbrainimg.com,REJECT-DROP
+DOMAIN-SUFFIX,trustarc.com,REJECT-DROP
+DOMAIN-SUFFIX,truste.com,REJECT-DROP
+DOMAIN-SUFFIX,adsrvr.org,REJECT-DROP
+DOMAIN-SUFFIX,inhousedsp.com,REJECT-DROP
+DOMAIN-SUFFIX,i.sng.link,REJECT-DROP
+DOMAIN-SUFFIX,richmob.cn,REJECT-DROP
+DOMAIN-SUFFIX,4dvertible.com,REJECT-DROP
+DOMAIN-SUFFIX,m.tktn.me,REJECT-DROP
+DOMAIN-SUFFIX,appsflyer.com,REJECT-DROP
+DOMAIN-SUFFIX,crashlytics.com,REJECT-DROP
+DOMAIN-SUFFIX,agkn.com,REJECT-DROP
+DOMAIN-SUFFIX,cohere.com,REJECT-DROP
+DOMAIN-SUFFIX,kochava.com,REJECT-DROP
+DOMAIN-SUFFIX,firebaselogging.googleapis.com,REJECT-DROP
+DOMAIN-SUFFIX,crashlyticsreports-pa.googleapis.com,REJECT-DROP
+DOMAIN-SUFFIX,firebase-settings.crashlytics.com,REJECT-DROP
+DOMAIN-SUFFIX,firebaseinstallations.googleapis.com,REJECT-DROP
+DOMAIN-SUFFIX,firebaseappcheck.googleapis.com,REJECT-DROP
+DOMAIN-SUFFIX,app-analytics-services.com,REJECT-DROP
+DOMAIN-SUFFIX,app-analytics-services-att.com,REJECT-DROP
