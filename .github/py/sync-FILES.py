@@ -5,12 +5,11 @@
 import os, requests
 from urllib.parse import quote, urlparse
 import re
-from datetime import datetime, timedelta
+
 
 CONFIG_FILE = "script-backup.txt"  # 每行一条："名称":"链接"
 BACKUP_DIR = "backup"
-FAILED_DIR = BACKUP_DIR
-FAILED_LOG_PREFIX = "failed_"
+
 
 EXTENSION_MAP = {
     ".js": "js",
@@ -107,26 +106,7 @@ def parse_config_file(path):
 
     return config
 
-def record_failure(name, url, error_message):
-    today = datetime.now().strftime("%Y-%m-%d")
-    failed_log_file = os.path.join(FAILED_DIR, f"{FAILED_LOG_PREFIX}{today}.log")
-    with open(failed_log_file, "a", encoding="utf-8") as f:
-        f.write(f"[{name}] 对应链接为 {url} ，同步失败 ，状态原因：{error_message}\n")
 
-def clean_old_failed_logs():
-    now = datetime.now()
-    cutoff = now - timedelta(days=30)
-    for fname in os.listdir(FAILED_DIR):
-        if fname.startswith(FAILED_LOG_PREFIX) and fname.endswith(".log"):
-            full_path = os.path.join(FAILED_DIR, fname)
-            try:
-                date_str = fname.replace(FAILED_LOG_PREFIX, "").replace(".log", "")
-                file_date = datetime.strptime(date_str, "%Y-%m-%d")
-                if file_date < cutoff:
-                    os.remove(full_path)
-                    log(f"🧹 Deleted old failed log: {fname}")
-            except:
-                continue
 
 def download_and_compare(name, url):
     global added, updated
@@ -156,14 +136,11 @@ def download_and_compare(name, url):
             added += 1
     except Exception as e:
         log(f"❌ Failed to fetch {name}: {e}")
-        record_failure(name, url, str(e))
 
 def cleanup_files(valid_files_set):
     global deleted, deleted_files
     for root, dirs, files in os.walk(BACKUP_DIR):
         for fname in files:
-            if fname.startswith(FAILED_LOG_PREFIX):
-                continue  # 不清理失败日志
             full_path = os.path.join(root, fname)
             if full_path not in valid_files_set:
                 os.remove(full_path)
@@ -214,7 +191,7 @@ def main():
         log(f"❌ No config file found: {CONFIG_FILE}")
         return
 
-    clean_old_failed_logs()
+
 
     config = parse_config_file(CONFIG_FILE)
 
@@ -232,9 +209,10 @@ def main():
     if os.getenv("CLEAN_MODE", "true") == "true":
         cleanup_files(valid_files_set)
 
-    if updated_files or deleted_files or os.path.exists(CONFIG_FILE):
-        os.system("git add -A")
-        staged = os.popen("git diff --cached --name-only").read().splitlines()
+    os.system("git add -A")
+    staged = os.popen("git diff --cached --name-only").read().splitlines()
+
+    if staged:
         parts = []
 
         def compact_list(items, limit=6):
@@ -265,8 +243,10 @@ def main():
             parts.append(f"cfg({CONFIG_FILE})")
 
         summary = "sync: " + (" ".join(parts) if parts else "no changes")
-        os.system(f'git diff --cached --quiet || git commit -m "{summary}"')
+        os.system(f'git commit -m "{summary}"')
         os.system("git push")
+    else:
+        log("✅ No changes detected, skip commit.")
 
     notify = os.getenv("FORCE_NOTIFY", "true").lower() == "true" or added or updated or deleted
     if notify:

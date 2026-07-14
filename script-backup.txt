@@ -2,8 +2,6 @@
 "Youtube (Music) Enhance":"https://raw.githubusercontent.com/Maasea/sgmodule/master/YouTube.Enhance.sgmodule"
 "Youtube (Music) Enhance-dep":"https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Youtube/youtube.response.js"
 
-"YoutubeLite":"https://raw.githubusercontent.com/Maasea/sgmodule/master/YouTube.Lite.sgmodule"
-
 "BlockHTTPDNS":"https://raw.githubusercontent.com/QingRex/LoonKissSurge/main/Surge/Official/拦截HTTPDNS.official.sgmodule"
 
 "Skip_Proxy&Real-IP_Lists":"https://raw.githubusercontent.com/mieqq/mieqq/master/skip-proxy-lists.sgmodule"
