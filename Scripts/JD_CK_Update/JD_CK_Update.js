@@ -38,6 +38,14 @@ const $ = new Env('京东Cookie同步青龙');
         $.done();
         return;
     }
+
+    // 强制使用 HTTPS，避免凭证以明文形式在网络中传输
+    if (!/^https:\/\//i.test(qinglongHost)) {
+        $.msg('京东Cookie更新', '配置错误', 'qinglongHost 必须以 https:// 开头，禁止使用明文 http 传输凭证');
+        $.log('❌ qinglongHost 未使用 HTTPS，已终止请求');
+        $.done();
+        return;
+    }
     
     // 从请求头获取 Cookie
     let cookies = '';
@@ -80,7 +88,7 @@ const $ = new Env('京东Cookie同步青龙');
     $.log(`🔑 Cookie长度: ${jdCookie.length}`);
     
     // 更新间隔（10 分钟）
-    const lastUpdateKey  = `jd_cookie_update_${ptPin}`;
+    const lastUpdateKey  = 'jd_cookie_update_' + ptPin;
     const lastUpdateTime = parseInt($.getval(lastUpdateKey) || '0', 10);
     const now            = Date.now();
     const updateInterval = 10 * 60 * 1000; // 10 分钟
@@ -158,7 +166,7 @@ function getQinglongEnvId(host, token, ptPin) {
                 if (res.code !== 200 || !Array.isArray(res.data)) throw new Error();
                 const env = res.data.find(e =>
                     e.name === 'JD_COOKIE' &&
-                    e.value?.includes(`pt_pin=${ptPin}`)
+                    e.value?.includes('pt_pin=' + ptPin)
                 );
                 resolve(env ? env.id : null);
             } catch {
