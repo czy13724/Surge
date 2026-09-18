@@ -1,0 +1,115 @@
+#!name=Talkatone 去广告 (Ads)
+#!desc=Talkatone 专属广告与追踪拦截模块（集成防重试 Mock 脚本，杜绝死循环轮询与电量消耗）。核心分流规则请搭配 Talkatone.list 使用。
+#!author=Levi
+#!update=2026.09.16
+
+[Rule]
+# >>> 广告与遥测拦截 (REJECT / REJECT-DROP) <<<
+# 提示：若启用下方 [Script] 模块，d.tktn.be 和 a1.tktn.be 会由脚本优先 Mock，消除客户端死循环重试
+DOMAIN,ads.mopub.com,REJECT-DROP
+
+# 1. Google AdMob & DoubleClick
+DOMAIN-SUFFIX,doubleclick.net,REJECT
+DOMAIN-SUFFIX,doubleclick-cn.net,REJECT
+DOMAIN-SUFFIX,googlesyndication.com,REJECT
+DOMAIN-SUFFIX,googlesyndication-cn.com,REJECT
+DOMAIN-SUFFIX,googleadservices.com,REJECT
+DOMAIN-SUFFIX,mediation.goog,REJECT
+DOMAIN-SUFFIX,badad.googleplex.com,REJECT
+DOMAIN-SUFFIX,imasdk.googleapis.com,REJECT
+
+# 2. Amazon Ads (APS / DTB)
+DOMAIN-SUFFIX,amazon-adsystem.com,REJECT
+DOMAIN-SUFFIX,advertising.a2z.com,REJECT
+
+# 3. MobileFuse
+DOMAIN-SUFFIX,mobilefuse.com,REJECT
+DOMAIN-SUFFIX,mobi.fuse.com,REJECT
+
+# 4. InMobi
+DOMAIN-SUFFIX,inmobi.com,REJECT
+DOMAIN-SUFFIX,inmobicdn.net,REJECT
+DOMAIN-SUFFIX,inmobisdk-a.akamaihd.net,REJECT
+DOMAIN-SUFFIX,telemetry.sdk.inmobi.cn,REJECT
+
+# 5. PubMatic / OpenWrap
+DOMAIN-SUFFIX,pubmatic.com,REJECT
+DOMAIN-SUFFIX,spadsync.com,REJECT
+
+# 6. Smaato
+DOMAIN-SUFFIX,smaato.net,REJECT
+DOMAIN-SUFFIX,smaato.com,REJECT
+
+# 7. Tappx
+DOMAIN-SUFFIX,tappx.com,REJECT
+
+# 8. Fyber / Inneractive 及动态轮询域名
+DOMAIN-SUFFIX,fyber.com,REJECT
+DOMAIN-SUFFIX,inner-active.mobi,REJECT
+DOMAIN-SUFFIX,akisinn.info,REJECT
+DOMAIN-SUFFIX,akisinn.site,REJECT
+DOMAIN-SUFFIX,dewrain.life,REJECT
+DOMAIN-SUFFIX,dewrain.site,REJECT
+DOMAIN-SUFFIX,dewrain.world,REJECT
+DOMAIN-SUFFIX,kvaedit.site,REJECT
+DOMAIN-SUFFIX,vaicore.site,REJECT
+DOMAIN-SUFFIX,vaicore.store,REJECT
+DOMAIN-SUFFIX,vaicore.xyz,REJECT
+
+# 9. Criteo
+DOMAIN-SUFFIX,criteo.com,REJECT
+
+# 10. Taboola
+DOMAIN-SUFFIX,taboola.com,REJECT
+
+# 11. Facebook Audience Network
+DOMAIN,an.facebook.com,REJECT
+
+# 12. Vungle & AppLovin
+DOMAIN-SUFFIX,vungle.com,REJECT
+DOMAIN-SUFFIX,applovin.com,REJECT
+
+# 13. 其他聚合广告与中介 DSP
+DOMAIN-SUFFIX,adrta.com,REJECT-DROP
+DOMAIN-SUFFIX,adsappier.com,REJECT-DROP
+DOMAIN-SUFFIX,appier.net,REJECT-DROP
+DOMAIN-SUFFIX,appiersig.com,REJECT-DROP
+DOMAIN-SUFFIX,as.cluep.com,REJECT-DROP
+DOMAIN-SUFFIX,pubnative.net,REJECT-DROP
+DOMAIN-SUFFIX,smadex.com,REJECT-DROP
+DOMAIN-SUFFIX,tr-us.adsmoloco.com,REJECT-DROP
+DOMAIN-SUFFIX,impression.link,REJECT-DROP
+DOMAIN-SUFFIX,jampp.com,REJECT-DROP
+DOMAIN-SUFFIX,pomodoromedia.com,REJECT-DROP
+DOMAIN-SUFFIX,zemanta.com,REJECT-DROP
+DOMAIN-SUFFIX,outbrain.com,REJECT-DROP
+DOMAIN-SUFFIX,outbrainimg.com,REJECT-DROP
+DOMAIN-SUFFIX,trustarc.com,REJECT-DROP
+DOMAIN-SUFFIX,truste.com,REJECT-DROP
+DOMAIN-SUFFIX,adsrvr.org,REJECT-DROP
+DOMAIN-SUFFIX,inhousedsp.com,REJECT-DROP
+DOMAIN-SUFFIX,i.sng.link,REJECT-DROP
+DOMAIN-SUFFIX,richmob.cn,REJECT-DROP
+DOMAIN-SUFFIX,4dvertible.com,REJECT-DROP
+
+# 14. 数据追踪与遥测分析 (已排除 FCM 及 AppCheck 安全组件)
+DOMAIN-SUFFIX,kochava.com,REJECT-DROP
+DOMAIN-SUFFIX,smart.link,REJECT-DROP
+DOMAIN-SUFFIX,appsflyer.com,REJECT-DROP
+DOMAIN-SUFFIX,crashlytics.com,REJECT-DROP
+DOMAIN-SUFFIX,agkn.com,REJECT-DROP
+DOMAIN-SUFFIX,cohere.com,REJECT-DROP
+DOMAIN-SUFFIX,app-measurement.com,REJECT-DROP
+DOMAIN-SUFFIX,firebaselogging.googleapis.com,REJECT-DROP
+DOMAIN-SUFFIX,crashlyticsreports-pa.googleapis.com,REJECT-DROP
+DOMAIN-SUFFIX,app-analytics-services.com,REJECT-DROP
+DOMAIN-SUFFIX,app-analytics-services-att.com,REJECT-DROP
+DOMAIN-SUFFIX,app-ads-services.com,REJECT-DROP
+
+[Script]
+# Talkatone 自有广告下发 (d.tktn.be) 与遥测打点 (a1.tktn.be) Mock 脚本
+# 作用：Mock 返回合法的 no-fill XML 与 200 JSON，优雅进入休眠并清空队列，避免客户端死循环重试
+Talkatone_Ads = type=http-request,pattern=^https?:\/\/(d|a1)\.tktn\.be,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/czy13724/Surge/main/Scripts/talkatone_ads.js
+
+[MITM]
+hostname = %APPEND% d.tktn.be, a1.tktn.be

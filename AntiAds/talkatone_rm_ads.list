@@ -1,80 +1,81 @@
-# Talkatone 去广告及遥测专用规则
+# Talkatone 去广告及遥测追踪专用规则集
 # Author: Levi
-# Update: 2026.04.29
-# 说明：包含 Talkatone 内部集成的所有核心广告联盟及深层遥测域名。
-# 用法：在配置中将此规则集指向 "REJECT" 或 "REJECT-DROP" 策略。
+# Update: 2026.09.16
 
-# >>> Talkatone 专有广告子域名 <<<
-DOMAIN-SUFFIX,a1.tktn.be
-DOMAIN-SUFFIX,d.tktn.be
+# >>> Talkatone 专有广告下发与打点遥测 (推荐配合 talkatone_ads.js 脚本 Mock，可避免后台频繁重试) <<<
+DOMAIN,d.tktn.be
+DOMAIN,a1.tktn.be
+DOMAIN,ads.mopub.com
 
-# >>> 核心广告联盟 <<<
-# 1. Google AdMob & Google Ads
-DOMAIN-SUFFIX,googlesyndication.com
-DOMAIN-SUFFIX,googleads.g.doubleclick.net
-DOMAIN-SUFFIX,googleads4.g.doubleclick.net
-DOMAIN-SUFFIX,adclick.g.doubleclick.net
-DOMAIN-SUFFIX,app-measurement.com
-
-# 2. MobileFuse
-DOMAIN-SUFFIX,mobilefuse.com
-DOMAIN-SUFFIX,mobi.fuse.com
-
-# 3. InMobi
-DOMAIN-SUFFIX,inmobi.com
-DOMAIN-SUFFIX,inmobisdk-a.akamaihd.net
-DOMAIN-SUFFIX,telemetry.sdk.inmobi.cn
-
-# 4. PubMatic
-DOMAIN-SUFFIX,pubmatic.com
-
-# 5. Smaato
-DOMAIN-SUFFIX,smaato.net
-DOMAIN-SUFFIX,smaato.com
-
-# 6. Tappx
-DOMAIN-SUFFIX,tappx.com
-
-# 7. Fyber / Inneractive
-DOMAIN-SUFFIX,fyber.com
-DOMAIN-SUFFIX,inner-active.mobi
-DOMAIN-SUFFIX,exchange-b-events.inner-active.mobi
-DOMAIN-SUFFIX,wv.inner-active.mobi
-DOMAIN-SUFFIX,cdn2.inner-active.mobi
-DOMAIN-SUFFIX,sdk-events.inner-active.mobi
-DOMAIN-SUFFIX,skadnetworks.fyber.com
-
-# 8. Amazon Ads
-DOMAIN-SUFFIX,amazon-adsystem.com
-
-# 9. Vungle
-DOMAIN-SUFFIX,vungle.com
-
-# 10. AppLovin
-DOMAIN-SUFFIX,applovin.com
-
-# 11. Google 广告其他子域
-DOMAIN-SUFFIX,pagead2.googlesyndication.com
-DOMAIN-SUFFIX,googleadservices.com
+# >>> 1. Google AdMob & DoubleClick <<<
+DOMAIN-SUFFIX,doubleclick.net
 DOMAIN-SUFFIX,doubleclick-cn.net
+DOMAIN-SUFFIX,googlesyndication.com
 DOMAIN-SUFFIX,googlesyndication-cn.com
+DOMAIN-SUFFIX,googleadservices.com
 DOMAIN-SUFFIX,mediation.goog
 DOMAIN-SUFFIX,badad.googleplex.com
 DOMAIN-SUFFIX,imasdk.googleapis.com
 
-# 12. Apple 广告归因
-DOMAIN-SUFFIX,app-ads-services.com
+# >>> 2. Amazon Ads (APS / DTB) <<<
+DOMAIN-SUFFIX,amazon-adsystem.com
+DOMAIN-SUFFIX,advertising.a2z.com
 
-# >>> 其他散碎广告联盟 <<<
+# >>> 3. MobileFuse (横幅、开屏、原生) <<<
+DOMAIN-SUFFIX,mobilefuse.com
+DOMAIN-SUFFIX,mobi.fuse.com
+
+# >>> 4. InMobi (横幅、插屏、原生) <<<
+DOMAIN-SUFFIX,inmobi.com
+DOMAIN-SUFFIX,inmobicdn.net
+DOMAIN-SUFFIX,inmobisdk-a.akamaihd.net
+DOMAIN-SUFFIX,telemetry.sdk.inmobi.cn
+
+# >>> 5. PubMatic / OpenWrap (竞价与横幅) <<<
+DOMAIN-SUFFIX,pubmatic.com
+DOMAIN-SUFFIX,spadsync.com
+
+# >>> 6. Smaato (全屏插屏与横幅) <<<
+DOMAIN-SUFFIX,smaato.net
+DOMAIN-SUFFIX,smaato.com
+
+# >>> 7. Tappx (插屏与视频) <<<
+DOMAIN-SUFFIX,tappx.com
+
+# >>> 8. Fyber / Inneractive 及动态防屏蔽轮询域名 <<<
+DOMAIN-SUFFIX,fyber.com
+DOMAIN-SUFFIX,inner-active.mobi
+DOMAIN-SUFFIX,akisinn.info
+DOMAIN-SUFFIX,akisinn.site
+DOMAIN-SUFFIX,dewrain.life
+DOMAIN-SUFFIX,dewrain.site
+DOMAIN-SUFFIX,dewrain.world
+DOMAIN-SUFFIX,kvaedit.site
+DOMAIN-SUFFIX,vaicore.site
+DOMAIN-SUFFIX,vaicore.store
+DOMAIN-SUFFIX,vaicore.xyz
+
+# >>> 9. Criteo (MRAID 横幅与插屏) <<<
+DOMAIN-SUFFIX,criteo.com
+
+# >>> 10. Taboola (信息流自推) <<<
+DOMAIN-SUFFIX,taboola.com
+
+# >>> 11. Facebook Audience Network <<<
+DOMAIN,an.facebook.com
+
+# >>> 12. Vungle & AppLovin <<<
+DOMAIN-SUFFIX,vungle.com
+DOMAIN-SUFFIX,applovin.com
+
+# >>> 13. 其他第三方聚合广告与中介 DSP <<<
 DOMAIN-SUFFIX,adrta.com
 DOMAIN-SUFFIX,adsappier.com
 DOMAIN-SUFFIX,appier.net
 DOMAIN-SUFFIX,appiersig.com
 DOMAIN-SUFFIX,as.cluep.com
-DOMAIN-SUFFIX,criteo.com
 DOMAIN-SUFFIX,pubnative.net
 DOMAIN-SUFFIX,smadex.com
-DOMAIN-SUFFIX,taboola.com
 DOMAIN-SUFFIX,tr-us.adsmoloco.com
 DOMAIN-SUFFIX,impression.link
 DOMAIN-SUFFIX,jampp.com
@@ -89,18 +90,17 @@ DOMAIN-SUFFIX,inhousedsp.com
 DOMAIN-SUFFIX,i.sng.link
 DOMAIN-SUFFIX,richmob.cn
 DOMAIN-SUFFIX,4dvertible.com
-DOMAIN-SUFFIX,m.tktn.me
 
-# >>> 遥测与崩溃报告 <<<
+# >>> 14. 归因、埋点与遥测统计 (已排除 FCM 与推送) <<<
+DOMAIN-SUFFIX,kochava.com
+DOMAIN-SUFFIX,smart.link
 DOMAIN-SUFFIX,appsflyer.com
 DOMAIN-SUFFIX,crashlytics.com
 DOMAIN-SUFFIX,agkn.com
 DOMAIN-SUFFIX,cohere.com
-DOMAIN-SUFFIX,kochava.com
+DOMAIN-SUFFIX,app-measurement.com
 DOMAIN-SUFFIX,firebaselogging.googleapis.com
 DOMAIN-SUFFIX,crashlyticsreports-pa.googleapis.com
-DOMAIN-SUFFIX,firebase-settings.crashlytics.com
-DOMAIN-SUFFIX,firebaseinstallations.googleapis.com
-DOMAIN-SUFFIX,firebaseappcheck.googleapis.com
 DOMAIN-SUFFIX,app-analytics-services.com
 DOMAIN-SUFFIX,app-analytics-services-att.com
+DOMAIN-SUFFIX,app-ads-services.com

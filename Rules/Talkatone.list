@@ -1,16 +1,27 @@
 # Talkatone 分流
 # Author: Levi
-# Update: 2026.04.29
-# 说明：此列表仅包含 Talkatone 正常运行所需的核心域名与IP。
+# Update: 2026.09.16
+# 说明：此列表包含 Talkatone 正常运行所需的核心域名、人机安全校验与信令/通话/短信IP专线。
 # 用法：在配置中将此规则集指向 "Talkatone" 代理策略组。
 
-# >>> 核心通讯与功能 <<<
+# >>> 核心通讯与业务域名 <<<
+DOMAIN-KEYWORD,talkatone
 DOMAIN-SUFFIX,talkatone.com
 DOMAIN-SUFFIX,talkamobile.com
 DOMAIN-SUFFIX,tktn.at
 DOMAIN-SUFFIX,tktn.be
+DOMAIN-SUFFIX,tktn.me
 DOMAIN-SUFFIX,cnt.tktn.be
 DOMAIN-SUFFIX,media.tenor.com
+
+# >>> 人机安全验证（解决 Security Check 报错）<<<
+DOMAIN-SUFFIX,hcaptcha.com
+
+# >>> XMPP 信令通信核心集群 (覆盖全美机房：美西/美中/美东) <<<
+IP-CIDR,23.19.73.0/24,no-resolve
+IP-CIDR,72.18.158.0/24,no-resolve
+IP-CIDR,23.235.228.0/24,no-resolve
+IP-CIDR,216.172.154.0/24,no-resolve
 
 # >>> 核心 IP 段 (通话/短信专线) <<<
 IP-CIDR,50.117.27.0/24,no-resolve
@@ -24,4 +35,4 @@ IP-CIDR,198.24.161.0/24,no-resolve
 IP-CIDR,198.24.163.0/24,no-resolve
 IP-CIDR,198.24.183.0/24,no-resolve
 IP-CIDR,205.164.56.0/24,no-resolve
-IP-CIDR,216.172.154.0/24,no-resolve
+
